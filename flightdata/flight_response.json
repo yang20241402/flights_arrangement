@@ -1,0 +1,12 @@
+{
+  "status": 0,
+  "msg": "success",
+  "data": {
+    "context": {
+      "searchId": "",
+      "finished": true,
+      "flag": 2,
+      "showAuthCode": true
+    }
+  }
+}
