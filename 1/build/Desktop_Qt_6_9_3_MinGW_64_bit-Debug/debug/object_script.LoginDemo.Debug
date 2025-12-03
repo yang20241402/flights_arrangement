@@ -1,0 +1,12 @@
+debug/form.o
+debug/formpwd.o
+debug/main.o
+debug/mainwindow.o
+debug/widget.o
+debug/ClickableLabel.o
+debug/qrc_new_resources.o
+debug/moc_form.o
+debug/moc_formpwd.o
+debug/moc_mainwindow.o
+debug/moc_widget.o
+debug/moc_ClickableLabel.o
