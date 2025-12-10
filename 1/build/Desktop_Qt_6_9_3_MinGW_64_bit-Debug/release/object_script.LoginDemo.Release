@@ -1,0 +1,15 @@
+release/flightitemwidget.o
+release/flightmanage.o
+release/form.o
+release/formpwd.o
+release/main.o
+release/mainwindow.o
+release/widget.o
+release/ClickableLabel.o
+release/qrc_new_resources.o
+release/moc_flightitemwidget.o
+release/moc_form.o
+release/moc_formpwd.o
+release/moc_mainwindow.o
+release/moc_widget.o
+release/moc_ClickableLabel.o
