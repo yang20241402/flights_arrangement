@@ -1,0 +1,12 @@
+# ninja log v6
+3	535	7874033260645431	PersonCenter_autogen/timestamp	cadd5a51f91be86a
+3	535	7874033260645431	PersonCenter_autogen/mocs_compilation.cpp	cadd5a51f91be86a
+3	535	7874033260645431	D:/QT/gitqt/flights_arrangement/PersonCenter/build/Desktop_Qt_6_9_3_MinGW_64_bit-Debug/PersonCenter_autogen/timestamp	cadd5a51f91be86a
+3	535	7874033260645431	D:/QT/gitqt/flights_arrangement/PersonCenter/build/Desktop_Qt_6_9_3_MinGW_64_bit-Debug/PersonCenter_autogen/mocs_compilation.cpp	cadd5a51f91be86a
+543	2079	7874033261303422	CMakeFiles/PersonCenter.dir/main.cpp.obj	6868ab49c09c4e9b
+540	2141	7874033261273333	CMakeFiles/PersonCenter.dir/PersonCenter_autogen/mocs_compilation.cpp.obj	ea7f53d543194532
+546	2269	7874033261323420	CMakeFiles/PersonCenter.dir/mainwindow.cpp.obj	6f7b4ad67562c261
+553	2600	7874033261364398	CMakeFiles/PersonCenter.dir/pointsdialog.cpp.obj	21a46bcbfa4e5349
+548	2635	7874033261364398	CMakeFiles/PersonCenter.dir/myorderdialog.cpp.obj	f64cdec2160236c8
+551	2655	7874033261364398	CMakeFiles/PersonCenter.dir/passengerdialog.cpp.obj	357974f43f657756
+2655	2978	7874033282429334	PersonCenter.exe	f95b7c58ff892f81

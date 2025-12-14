@@ -1,0 +1,810 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>FlightDetailWidget</class>
+ <widget class="QDialog" name="FlightDetailWidget">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1500</width>
+    <height>620</height>
+   </rect>
+  </property>
+<property name="sizePolicy">
+   <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+    <horstretch>1</horstretch>
+    <verstretch>1</verstretch>
+   </sizepolicy>
+  </property>
+<property name="fixedSize">
+   <size>
+    <width>2000</width>  <!-- 强制宽度 -->
+    <height>1500</height> <!-- 强制高度 -->
+   </size>
+  </property>
+  <property name="windowTitle">
+   <string>航班详情</string>
+  </property>
+  <property name="windowIcon">
+   <iconset>
+    <normaloff>.</normaloff>.</iconset>
+  </property>
+  <property name="modal">
+   <bool>true</bool>
+  </property>
+  <property name="windowFlags">
+   <set>Qt::Dialog|Qt::WindowMaximizeButtonHint|Qt::WindowCloseButtonHint</set>
+  </property>
+  <property name="minimumSize">
+   <size>
+    <width>700</width>
+    <height>500</height>
+   </size>
+  </property>
+  <layout class="QVBoxLayout" name="verticalLayout">
+   <property name="spacing">
+    <number>20</number>
+   </property>
+   <property name="leftMargin">
+    <number>24</number>
+   </property>
+   <property name="topMargin">
+    <number>24</number>
+   </property>
+   <property name="rightMargin">
+    <number>24</number>
+   </property>
+   <property name="bottomMargin">
+    <number>24</number>
+   </property>
+   <item>
+    <widget class="QLabel" name="titleLabel">
+     <property name="styleSheet">
+      <string notr="true">
+       QLabel {
+        font-size: 22px;
+        font-weight: bold;
+        color: #2D3748;
+        padding-bottom: 12px;
+        border-bottom: 2px solid #E2E8F0;
+       }
+      </string>
+     </property>
+     <property name="text">
+      <string>航班详细信息</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignmentFlag::AlignCenter</set>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QScrollArea" name="scrollArea">
+     <property name="styleSheet">
+      <string notr="true">
+       QScrollArea {
+        border: none;
+       }
+       QScrollBar:vertical {
+        width: 8px;
+        background: #F7FAFC;
+        border-radius: 4px;
+       }
+       QScrollBar::handle:vertical {
+        background: #CBD5E0;
+        border-radius: 4px;
+       }
+       QScrollBar::handle:vertical:hover {
+        background: #A0AEC0;
+       }
+      </string>
+     </property>
+     <property name="widgetResizable">
+      <bool>true</bool>
+     </property>
+     <widget class="QWidget" name="scrollAreaWidgetContents">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>0</y>
+        <width>782</width>
+        <height>458</height>
+       </rect>
+      </property>
+      <layout class="QVBoxLayout" name="contentLayout">
+       <property name="spacing">
+        <number>16</number>
+       </property>
+       <property name="leftMargin">
+        <number>0</number>
+       </property>
+       <property name="topMargin">
+        <number>0</number>
+       </property>
+       <property name="rightMargin">
+        <number>0</number>
+       </property>
+       <property name="bottomMargin">
+        <number>0</number>
+       </property>
+       <item>
+        <layout class="QVBoxLayout" name="baseInfoLayout">
+         <item>
+          <widget class="QLabel" name="baseTitleLabel">
+           <property name="styleSheet">
+            <string notr="true">
+              QLabel {
+               font-size: 16px;
+               font-weight: 600;
+               color: #2D3748;
+               margin-bottom: 16px;
+              }
+             </string>
+           </property>
+           <property name="text">
+            <string>基础信息</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <layout class="QGridLayout" name="baseGridLayout">
+           <property name="horizontalSpacing">
+            <number>24</number>
+           </property>
+           <property name="verticalSpacing">
+            <number>16</number>
+           </property>
+           <item row="0" column="0">
+            <widget class="QLabel" name="flightIdKeyLabel">
+             <property name="styleSheet">
+              <string notr="true">
+                QLabel {
+                 font-size: 14px;
+                 font-weight: bold; /* 加粗 */
+                 color: #718096;
+                 min-width: 80px;
+                }
+               </string>
+             </property>
+             <property name="text">
+              <string>航班ID：</string>
+             </property>
+            </widget>
+           </item>
+           <item row="0" column="1">
+            <widget class="QLabel" name="lbFlightId">
+             <property name="styleSheet">
+              <string notr="true">
+                QLabel {
+                 font-size: 14px;
+                 color: #2D3748;
+                }
+               </string>
+             </property>
+             <property name="text">
+              <string>--</string>
+             </property>
+            </widget>
+           </item>
+           <item row="0" column="2">
+            <widget class="QLabel" name="flightNoKeyLabel">
+             <property name="styleSheet">
+              <string notr="true">
+                QLabel {
+                 font-size: 14px;
+                 font-weight: bold; /* 加粗 */
+                 color: #718096;
+                 min-width: 80px;
+                }
+               </string>
+             </property>
+             <property name="text">
+              <string>航班号：</string>
+             </property>
+            </widget>
+           </item>
+           <item row="0" column="3">
+            <widget class="QLabel" name="lbFlightNo">
+             <property name="styleSheet">
+              <string notr="true">
+                QLabel {
+                 font-size: 14px;
+                 font-weight: 600;
+                 color: #2B6CB0;
+                }
+               </string>
+             </property>
+             <property name="text">
+              <string>--</string>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="0">
+            <widget class="QLabel" name="airlineKeyLabel">
+             <property name="styleSheet">
+              <string notr="true">
+                QLabel {
+                 font-size: 14px;
+                 font-weight: bold; /* 加粗 */
+                 color: #718096;
+                 min-width: 80px;
+                }
+               </string>
+             </property>
+             <property name="text">
+              <string>航空公司：</string>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="1">
+            <widget class="QLabel" name="lbAirline">
+             <property name="styleSheet">
+              <string notr="true">
+                QLabel {
+                 font-size: 14px;
+                 color: #2D3748;
+                }
+               </string>
+             </property>
+             <property name="text">
+              <string>--</string>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="2">
+            <widget class="QLabel" name="segmentNoKeyLabel">
+             <property name="styleSheet">
+              <string notr="true">
+                QLabel {
+                 font-size: 14px;
+                 font-weight: bold; /* 加粗 */
+                 color: #718096;
+                 min-width: 80px;
+                }
+               </string>
+             </property>
+             <property name="text">
+              <string>航段序号：</string>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="3">
+            <widget class="QLabel" name="lbSegmentNo">
+             <property name="styleSheet">
+              <string notr="true">
+                QLabel {
+                 font-size: 14px;
+                 color: #2D3748;
+                }
+               </string>
+             </property>
+             <property name="text">
+              <string>--</string>
+             </property>
+            </widget>
+           </item>
+           <item row="2" column="0">
+            <widget class="QLabel" name="planeTypeKeyLabel">
+             <property name="styleSheet">
+              <string notr="true">
+                QLabel {
+                 font-size: 14px;
+                 font-weight: bold; /* 加粗 */
+                 color: #718096;
+                 min-width: 80px;
+                }
+               </string>
+             </property>
+             <property name="text">
+              <string>机型：</string>
+             </property>
+            </widget>
+           </item>
+           <item row="2" column="1">
+            <widget class="QLabel" name="lbPlaneType">
+             <property name="styleSheet">
+              <string notr="true">
+                QLabel {
+                 font-size: 14px;
+                 color: #2D3748;
+                }
+               </string>
+             </property>
+             <property name="text">
+              <string>--</string>
+             </property>
+            </widget>
+           </item>
+           <item row="2" column="2">
+            <widget class="QLabel" name="flightTimeKeyLabel">
+             <property name="styleSheet">
+              <string notr="true">
+                QLabel {
+                 font-size: 14px;
+                 font-weight: bold; /* 加粗 */
+                 color: #718096;
+                 min-width: 80px;
+                }
+               </string>
+             </property>
+             <property name="text">
+              <string>飞行时长：</string>
+             </property>
+            </widget>
+           </item>
+           <item row="2" column="3">
+            <widget class="QLabel" name="lbFlightTime">
+             <property name="styleSheet">
+              <string notr="true">
+                QLabel {
+                 font-size: 14px;
+                 color: #2D3748;
+                }
+               </string>
+             </property>
+             <property name="text">
+              <string>--</string>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </item>
+        </layout>
+       </item>
+       <item>
+        <layout class="QVBoxLayout" name="departArriveLayout">
+         <item>
+          <widget class="QLabel" name="routeTitleLabel">
+           <property name="styleSheet">
+            <string notr="true">
+              QLabel {
+               font-size: 16px;
+               font-weight: 600;
+               color: #2D3748;
+               margin-bottom: 20px;
+              }
+             </string>
+           </property>
+           <property name="text">
+            <string>起降信息</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <layout class="QHBoxLayout" name="routeHLayout">
+           <property name="spacing">
+            <number>0</number>
+           </property>
+           <item>
+            <layout class="QVBoxLayout" name="departLayout">
+             <item>
+              <widget class="QLabel" name="departTitleLabel">
+               <property name="styleSheet">
+                <string notr="true">
+                  QLabel {
+                   font-size: 16px;
+                   font-weight: 600;
+                   color: #E53E3E;
+                   margin-bottom: 12px;
+                  }
+                 </string>
+               </property>
+               <property name="text">
+                <string>出发</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QLabel" name="lbDepartCity">
+               <property name="styleSheet">
+                <string notr="true">
+                  QLabel {
+                   font-size: 18px;
+                   font-weight: 600;
+                   color: #2D3748;
+                   margin-bottom: 4px;
+                  }
+                 </string>
+               </property>
+               <property name="text">
+                <string>--</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QLabel" name="lbDepartAirport">
+               <property name="styleSheet">
+                <string notr="true">
+                  QLabel {
+                   font-size: 14px;
+                   color: #718096;
+                   margin-bottom: 8px;
+                  }
+                 </string>
+               </property>
+               <property name="text">
+                <string>--</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QLabel" name="lbDepartTime">
+               <property name="styleSheet">
+                <string notr="true">
+                  QLabel {
+                   font-size: 15px;
+                   font-weight: 600;
+                   color: #2D3748;
+                  }
+                 </string>
+               </property>
+               <property name="text">
+                <string>--</string>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </item>
+           <item>
+            <layout class="QVBoxLayout" name="arrowLayout">
+             <item>
+              <widget class="QLabel" name="arrowLabel">
+               <property name="styleSheet">
+                <string notr="true">
+                  QLabel {
+                   font-size: 24px;
+                   color: #CBD5E0;
+                   padding: 0 30px;
+                  }
+                 </string>
+               </property>
+               <property name="text">
+                <string>➔</string>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </item>
+           <item>
+            <layout class="QVBoxLayout" name="arriveLayout">
+             <item>
+              <widget class="QLabel" name="arriveTitleLabel">
+               <property name="styleSheet">
+                <string notr="true">
+                  QLabel {
+                   font-size: 16px;
+                   font-weight: 600;
+                   color: #38A169;
+                   margin-bottom: 12px;
+                  }
+                 </string>
+               </property>
+               <property name="text">
+                <string>到达</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QLabel" name="lbArriveCity">
+               <property name="styleSheet">
+                <string notr="true">
+                  QLabel {
+                   font-size: 18px;
+                   font-weight: 600;
+                   color: #2D3748;
+                   margin-bottom: 4px;
+                  }
+                 </string>
+               </property>
+               <property name="text">
+                <string>--</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QLabel" name="lbArriveAirport">
+               <property name="styleSheet">
+                <string notr="true">
+                  QLabel {
+                   font-size: 14px;
+                   color: #718096;
+                   margin-bottom: 8px;
+                  }
+                 </string>
+               </property>
+               <property name="text">
+                <string>--</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QLabel" name="lbArriveTime">
+               <property name="styleSheet">
+                <string notr="true">
+                  QLabel {
+                   font-size: 15px;
+                   font-weight: 600;
+                   color: #2D3748;
+                  }
+                 </string>
+               </property>
+               <property name="text">
+                <string>--</string>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </item>
+          </layout>
+         </item>
+        </layout>
+       </item>
+       <item>
+        <layout class="QVBoxLayout" name="priceSeatLayout">
+         <item>
+          <widget class="QLabel" name="priceTitleLabel">
+           <property name="styleSheet">
+            <string notr="true">
+              QLabel {
+               font-size: 16px;
+               font-weight: 600;
+               color: #2D3748;
+               margin-bottom: 16px;
+              }
+             </string>
+           </property>
+           <property name="text">
+            <string>价格与座位</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <layout class="QGridLayout" name="priceSeatGridLayout">
+           <property name="horizontalSpacing">
+            <number>24</number>
+           </property>
+           <property name="verticalSpacing">
+            <number>16</number>
+           </property>
+           <item row="0" column="0">
+            <widget class="QLabel" name="adultPriceKeyLabel">
+             <property name="styleSheet">
+              <string notr="true">
+                QLabel {
+                 font-size: 14px;
+                 font-weight: bold; /* 加粗 */
+                 color: #718096;
+                 min-width: 80px;
+                }
+               </string>
+             </property>
+             <property name="text">
+              <string>成人价格：</string>
+             </property>
+            </widget>
+           </item>
+           <item row="0" column="1">
+            <widget class="QLabel" name="lbAdultPrice">
+             <property name="styleSheet">
+              <string notr="true">
+                QLabel {
+                 font-size: 14px;
+                 font-weight: 600;
+                 color: #718096;
+                }
+               </string>
+             </property>
+             <property name="text">
+              <string>--</string>
+             </property>
+            </widget>
+           </item>
+           <item row="0" column="2">
+            <widget class="QLabel" name="childPriceKeyLabel">
+             <property name="styleSheet">
+              <string notr="true">
+                QLabel {
+                 font-size: 14px;
+                 font-weight: bold; /* 加粗 */
+                 color: #718096;
+                 min-width: 80px;
+                }
+               </string>
+             </property>
+             <property name="text">
+              <string>儿童价格：</string>
+             </property>
+            </widget>
+           </item>
+           <item row="0" column="3">
+            <widget class="QLabel" name="lbChildPrice">
+             <property name="styleSheet">
+              <string notr="true">
+                QLabel {
+                 font-size: 14px;
+                 color: #2D3748;
+                }
+               </string>
+             </property>
+             <property name="text">
+              <string>--</string>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="0">
+            <widget class="QLabel" name="totalSeatsKeyLabel">
+             <property name="styleSheet">
+              <string notr="true">
+                QLabel {
+                 font-size: 14px;
+                 font-weight: bold; /* 加粗 */
+                 color: #718096;
+                 min-width: 80px;
+                }
+               </string>
+             </property>
+             <property name="text">
+              <string>总座位数：</string>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="1">
+            <widget class="QLabel" name="lbTotalSeats">
+             <property name="styleSheet">
+              <string notr="true">
+                QLabel {
+                 font-size: 14px;
+                 color: #2D3748;
+                }
+               </string>
+             </property>
+             <property name="text">
+              <string>--</string>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="2">
+            <widget class="QLabel" name="remainSeatsKeyLabel">
+             <property name="styleSheet">
+              <string notr="true">
+                QLabel {
+                 font-size: 14px;
+                 font-weight: bold; /* 加粗 */
+                 color: #718096;
+                 min-width: 80px;
+                }
+               </string>
+             </property>
+             <property name="text">
+              <string>剩余座位数：</string>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="3">
+            <widget class="QLabel" name="lbRemainSeats">
+             <property name="styleSheet">
+              <string notr="true">
+                QLabel {
+                 font-size: 14px;
+                 font-weight: 600;
+                 color: #2B6CB0;
+                }
+               </string>
+             </property>
+             <property name="text">
+              <string>--</string>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </item>
+        </layout>
+       </item>
+       <item>
+        <spacer name="verticalSpacer">
+         <property name="orientation">
+          <enum>Qt::Orientation::Vertical</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>20</width>
+           <height>20</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+      </layout>
+     </widget>
+    </widget>
+   </item>
+   <item>
+    <layout class="QHBoxLayout" name="buttonLayout">
+     <property name="spacing">
+      <number>12</number>
+     </property>
+     <item>
+      <widget class="QPushButton" name="reserveBtn">
+       <property name="minimumSize">
+        <size>
+         <width>120</width>
+         <height>40</height>
+        </size>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">
+         QPushButton {
+          background-color: #2B6CB0;
+          color: #FFFFFF;
+          border: none;
+          border-radius: 8px;
+          font-size: 14px;
+          font-weight: 500;
+         }
+         QPushButton:hover {
+          background-color: #2C5282;
+         }
+         QPushButton:pressed {
+          background-color: #2A4365;
+         }
+        </string>
+       </property>
+       <property name="text">
+        <string>预订此航班</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="closeBtn">
+       <property name="minimumSize">
+        <size>
+         <width>120</width>
+         <height>40</height>
+        </size>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">
+         QPushButton {
+          background-color: #FFFFFF;
+          color: #4A5568;
+          border: 1px solid #E2E8F0;
+          border-radius: 8px;
+          font-size: 14px;
+          font-weight: 500;
+         }
+         QPushButton:hover {
+          background-color: #F7FAFC;
+         }
+         QPushButton:pressed {
+          background-color: #EDF2F7;
+         }
+        </string>
+       </property>
+       <property name="text">
+        <string>关闭</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </item>
+  </layout>
+ </widget>
+ <resources/>
+ <connections>
+  <connection>
+   <sender>closeBtn</sender>
+   <signal>clicked()</signal>
+   <receiver>FlightDetailWidget</receiver>
+   <slot>close()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>700</x>
+     <y>550</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>390</x>
+     <y>300</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
+</ui>

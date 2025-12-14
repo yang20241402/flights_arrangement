@@ -1,0 +1,9 @@
+D:/QT/gitqt/flights_arrangement/PersonCenter/build/Desktop_Qt_6_9_3_MinGW_64_bit-Debug/CMakeFiles/PersonCenter.dir
+D:/QT/gitqt/flights_arrangement/PersonCenter/build/Desktop_Qt_6_9_3_MinGW_64_bit-Debug/CMakeFiles/edit_cache.dir
+D:/QT/gitqt/flights_arrangement/PersonCenter/build/Desktop_Qt_6_9_3_MinGW_64_bit-Debug/CMakeFiles/rebuild_cache.dir
+D:/QT/gitqt/flights_arrangement/PersonCenter/build/Desktop_Qt_6_9_3_MinGW_64_bit-Debug/CMakeFiles/list_install_components.dir
+D:/QT/gitqt/flights_arrangement/PersonCenter/build/Desktop_Qt_6_9_3_MinGW_64_bit-Debug/CMakeFiles/install.dir
+D:/QT/gitqt/flights_arrangement/PersonCenter/build/Desktop_Qt_6_9_3_MinGW_64_bit-Debug/CMakeFiles/install/local.dir
+D:/QT/gitqt/flights_arrangement/PersonCenter/build/Desktop_Qt_6_9_3_MinGW_64_bit-Debug/CMakeFiles/install/strip.dir
+D:/QT/gitqt/flights_arrangement/PersonCenter/build/Desktop_Qt_6_9_3_MinGW_64_bit-Debug/CMakeFiles/PersonCenter_autogen_timestamp_deps.dir
+D:/QT/gitqt/flights_arrangement/PersonCenter/build/Desktop_Qt_6_9_3_MinGW_64_bit-Debug/CMakeFiles/PersonCenter_autogen.dir
