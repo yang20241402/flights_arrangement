@@ -1,0 +1,445 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>FlightQueryWidget</class>
+ <widget class="QDialog" name="FlightQueryWidget">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1142</width>
+    <height>519</height>
+   </rect>
+  </property>
+  <property name="minimumSize">
+   <size>
+    <width>800</width>
+    <height>320</height>
+   </size>
+  </property>
+  <property name="windowTitle">
+   <string>航班动态查询</string>
+  </property>
+  <widget class="QWidget" name="flightQueryWidget" native="true">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>1071</width>
+     <height>81</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: #F8F9FA; border-radius: 8px; margin: 0 10px;</string>
+   </property>
+   <layout class="QHBoxLayout" name="horizontalLayout">
+    <property name="spacing">
+     <number>12</number>
+    </property>
+    <property name="leftMargin">
+     <number>20</number>
+    </property>
+    <property name="topMargin">
+     <number>15</number>
+    </property>
+    <property name="rightMargin">
+     <number>20</number>
+    </property>
+    <property name="bottomMargin">
+     <number>15</number>
+    </property>
+    <item>
+     <widget class="QLabel" name="label_depart">
+      <property name="minimumSize">
+       <size>
+        <width>60</width>
+        <height>0</height>
+       </size>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>12</pointsize>
+       </font>
+      </property>
+      <property name="text">
+       <string> 出发地：</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignmentFlag::AlignRight|Qt::AlignmentFlag::AlignTrailing|Qt::AlignmentFlag::AlignVCenter</set>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QLineEdit" name="edit_depart">
+      <property name="minimumSize">
+       <size>
+        <width>120</width>
+        <height>30</height>
+       </size>
+      </property>
+      <property name="maximumSize">
+       <size>
+        <width>150</width>
+        <height>16777215</height>
+       </size>
+      </property>
+      <property name="placeholderText">
+       <string>如：北京</string>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QLabel" name="label_dest">
+      <property name="minimumSize">
+       <size>
+        <width>60</width>
+        <height>0</height>
+       </size>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>12</pointsize>
+       </font>
+      </property>
+      <property name="text">
+       <string> 目的地：</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignmentFlag::AlignRight|Qt::AlignmentFlag::AlignTrailing|Qt::AlignmentFlag::AlignVCenter</set>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QLineEdit" name="edit_dest">
+      <property name="minimumSize">
+       <size>
+        <width>120</width>
+        <height>30</height>
+       </size>
+      </property>
+      <property name="maximumSize">
+       <size>
+        <width>150</width>
+        <height>16777215</height>
+       </size>
+      </property>
+      <property name="placeholderText">
+       <string>如：上海</string>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QLabel" name="label_date">
+      <property name="minimumSize">
+       <size>
+        <width>70</width>
+        <height>0</height>
+       </size>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>12</pointsize>
+       </font>
+      </property>
+      <property name="text">
+       <string> 出发日期：</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignmentFlag::AlignRight|Qt::AlignmentFlag::AlignTrailing|Qt::AlignmentFlag::AlignVCenter</set>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QDateEdit" name="dateEdit">
+      <property name="minimumSize">
+       <size>
+        <width>140</width>
+        <height>30</height>
+       </size>
+      </property>
+      <property name="maximumSize">
+       <size>
+        <width>150</width>
+        <height>30</height>
+       </size>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>9</pointsize>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">
+        QDateEdit {
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+	QCalendarWidget {
+        font-size: 14px;       
+        min-width: 350px;      
+        min-height: 300px;    
+        selection-background-color: #1E90FF; 
+    }
+    QCalendarWidget QWidget#qt_calendar_navigationbar {
+        min-height: 40px;      
+        font-size: 16px;      
+    }
+    QCalendarWidget QWidget#qt_calendar_navigationbar {
+        min-height: 40px;      
+        font-size: 16px;       
+        background-color: #f8f9fa; 
+    }
+    QCalendarWidget QToolButton {
+        color: #333;           
+        font-size: 16px;       
+        border: none;          
+        background: transparent; 
+        min-width: 40px;       
+    }
+    QCalendarWidget QHeaderView::section {
+        min-height: 35px;      
+        font-size: 14px;       
+        font-weight: bold;
+    }
+    QCalendarWidget QTableView::item {
+        min-height: 35px;      
+        min-width: 35px;     
+        font-size: 14px;       
+    }
+    QCalendarWidget QTableView::item:hover {
+        background-color: #e6f7ff;
+        border-radius: 4px;
+    }
+       </string>
+      </property>
+      <property name="calendarPopup">
+       <bool>true</bool>
+      </property>
+      <property name="timeSpec">
+       <enum>Qt::TimeSpec::UTC</enum>
+      </property>
+      <property name="date">
+       <date>
+        <year>2025</year>
+        <month>11</month>
+        <day>13</day>
+       </date>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QPushButton" name="btn_queryFlight">
+      <property name="minimumSize">
+       <size>
+        <width>100</width>
+        <height>30</height>
+       </size>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QPushButton {
+    background-color: #1E90FF;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    padding: 6px 20px;
+}
+QPushButton:hover {
+    background-color: #4169E1;
+}</string>
+      </property>
+      <property name="text">
+       <string> 查询航班 </string>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QPushButton" name="btn_showAllFlights">
+      <property name="minimumSize">
+       <size>
+        <width>100</width>
+        <height>30</height>
+       </size>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QPushButton {
+    background-color: #2ECC71;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    padding: 6px 20px;
+    margin-left: 10px;
+}
+QPushButton:hover {
+    background-color: #27AE60;
+}</string>
+      </property>
+      <property name="text">
+       <string> 显示所有航班 </string>
+      </property>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QWidget" name="flightListWidget" native="true">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>80</y>
+     <width>1071</width>
+     <height>361</height>
+    </rect>
+   </property>
+   <layout class="QVBoxLayout" name="verticalLayout_flight">
+    <property name="leftMargin">
+     <number>10</number>
+    </property>
+    <property name="topMargin">
+     <number>10</number>
+    </property>
+    <property name="rightMargin">
+     <number>10</number>
+    </property>
+    <item>
+     <widget class="QTableWidget" name="flightTable">
+      <property name="minimumSize">
+       <size>
+        <width>0</width>
+        <height>220</height>
+       </size>
+      </property>
+      <property name="styleSheet">
+       <string notr="true"> QTableWidget {
+        background-color: #ffffff;
+        border: 1px solid #e0e0e0;
+        border-radius: 8px;
+        padding: 5px;
+        gridline-color: #f0f0f0;
+    }
+    QHeaderView::section {
+        background-color: #f8f9fa;
+        font-weight: bold;
+        color: #333333;
+        padding: 8px;
+        border: none;
+        border-bottom: 1px solid #e0e0e0;
+    }
+    QTableWidget::item:even {
+        background-color: #fcfcfc;
+    }
+    QTableWidget::item:odd {
+        background-color: #f9f9f9;
+    }
+    QTableWidget::item:hover {
+        background-color: #e6f7ff;
+    }
+    QTableWidget::item {
+        padding: 6px;
+        color: #333333;
+    }</string>
+      </property>
+      <property name="editTriggers">
+       <set>QAbstractItemView::EditTrigger::NoEditTriggers</set>
+      </property>
+      <property name="alternatingRowColors">
+       <bool>false</bool>
+      </property>
+      <property name="selectionMode">
+       <enum>QAbstractItemView::SelectionMode::SingleSelection</enum>
+      </property>
+      <property name="selectionBehavior">
+       <enum>QAbstractItemView::SelectionBehavior::SelectRows</enum>
+      </property>
+      <property name="columnCount">
+       <number>13</number>
+      </property>
+      <attribute name="horizontalHeaderVisible">
+       <bool>true</bool>
+      </attribute>
+      <attribute name="verticalHeaderVisible">
+       <bool>false</bool>
+      </attribute>
+      <column>
+       <property name="text">
+        <string>航班ID</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>航班号</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>航空公司</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>出发城市</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>出发机场</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>起飞时间</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>到达城市</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>到达机场</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>到达时间</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>机型</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>飞行时长(分钟)</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>总座位数</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>剩余座位数</string>
+       </property>
+      </column>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QLabel" name="label">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>440</y>
+     <width>201</width>
+     <height>21</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>tips:双击可查看航班详情</string>
+   </property>
+  </widget>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
