@@ -1,4 +1,4 @@
-E:/QtProject/PersonCenter/build/Desktop_Qt_6_10_0_MinGW_64_bit-Debug/PersonCenter_autogen/EWIEGA46WW/moc_mainwindow.cpp: E:/QtProject/PersonCenter/mainwindow.h \
+E:/QtProject/PersonCenter/build/Desktop_Qt_6_10_0_MinGW_64_bit-Debug/PersonCenter_autogen/EWIEGA46WW/moc_MainWindow.cpp: E:/QtProject/PersonCenter/MainWindow.h \
   E:/QtProject/PersonCenter/build/Desktop_Qt_6_10_0_MinGW_64_bit-Debug/PersonCenter_autogen/moc_predefs.h \
   C:/Qt/6.10.0/mingw_64/include/QtCore/q17memory.h \
   C:/Qt/6.10.0/mingw_64/include/QtCore/q20functional.h \

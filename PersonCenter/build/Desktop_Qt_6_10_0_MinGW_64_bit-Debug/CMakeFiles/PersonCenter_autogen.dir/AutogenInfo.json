@@ -364,9 +364,15 @@
 	"HEADERS" : 
 	[
 		[
-			"E:/QtProject/PersonCenter/mainwindow.h",
+			"E:/QtProject/PersonCenter/PersonCenterWindow.h",
 			"MU",
-			"EWIEGA46WW/moc_mainwindow.cpp",
+			"EWIEGA46WW/moc_PersonCenterWindow.cpp",
+			null
+		],
+		[
+			"E:/QtProject/PersonCenter/mymsgdialog.h",
+			"MU",
+			"EWIEGA46WW/moc_mymsgdialog.cpp",
 			null
 		],
 		[
@@ -385,6 +391,12 @@
 			"E:/QtProject/PersonCenter/pointsdialog.h",
 			"MU",
 			"EWIEGA46WW/moc_pointsdialog.cpp",
+			null
+		],
+		[
+			"E:/QtProject/PersonCenter/profileeditwidget.h",
+			"MU",
+			"EWIEGA46WW/moc_profileeditwidget.cpp",
 			null
 		]
 	],
@@ -460,11 +472,13 @@
 	"SETTINGS_FILE" : "E:/QtProject/PersonCenter/build/Desktop_Qt_6_10_0_MinGW_64_bit-Debug/CMakeFiles/PersonCenter_autogen.dir/AutogenUsed.txt",
 	"SOURCES" : 
 	[
+		[ "E:/QtProject/PersonCenter/PersonCenterWindow.cpp", "MU", null ],
 		[ "E:/QtProject/PersonCenter/main.cpp", "MU", null ],
-		[ "E:/QtProject/PersonCenter/mainwindow.cpp", "MU", null ],
+		[ "E:/QtProject/PersonCenter/mymsgdialog.cpp", "MU", null ],
 		[ "E:/QtProject/PersonCenter/myorderdialog.cpp", "MU", null ],
 		[ "E:/QtProject/PersonCenter/passengerdialog.cpp", "MU", null ],
-		[ "E:/QtProject/PersonCenter/pointsdialog.cpp", "MU", null ]
+		[ "E:/QtProject/PersonCenter/pointsdialog.cpp", "MU", null ],
+		[ "E:/QtProject/PersonCenter/profileeditwidget.cpp", "MU", null ]
 	],
 	"UIC_OPTIONS" : [],
 	"UIC_SEARCH_PATHS" : [],

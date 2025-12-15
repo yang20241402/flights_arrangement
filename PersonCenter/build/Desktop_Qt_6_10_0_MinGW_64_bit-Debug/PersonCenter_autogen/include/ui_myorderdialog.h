@@ -37,7 +37,7 @@ public:
     {
         if (MyOrderDialog->objectName().isEmpty())
             MyOrderDialog->setObjectName("MyOrderDialog");
-        MyOrderDialog->resize(450, 299);
+        MyOrderDialog->resize(462, 299);
         verticalLayout = new QVBoxLayout(MyOrderDialog);
         verticalLayout->setObjectName("verticalLayout");
         menuWidget = new QWidget(MyOrderDialog);
@@ -99,6 +99,7 @@ public:
         QTableWidgetItem *__qtablewidgetitem5 = new QTableWidgetItem();
         orderTable->setHorizontalHeaderItem(5, __qtablewidgetitem5);
         orderTable->setObjectName("orderTable");
+        orderTable->setEditTriggers(QAbstractItemView::EditTrigger::NoEditTriggers);
         orderTable->setColumnCount(6);
 
         verticalLayout->addWidget(orderTable);
