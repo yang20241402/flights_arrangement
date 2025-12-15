@@ -1,5 +1,6 @@
 #include "myorderdialog.h"
 #include "ui_myorderdialog.h"
+#include "databasemanager.h"
 #include <QTableWidgetItem>
 #include <QPushButton>
 #include <QMessageBox>
@@ -16,18 +17,11 @@ MyOrderDialog::MyOrderDialog(int userId, QWidget *parent) :
     resize(800, 500);
     m_userId = userId;
 
-    QSqlDatabase db = QSqlDatabase::addDatabase("QODBC");
-    db.setDatabaseName("flightmanagesystem;CHARSET=utf8mb4;UID=root;PWD=20241402Ywl@");
-    db.setConnectOptions("SQL_ATTR_ODBC_VERSION=SQL_OV_ODBC3;CHARSET=utf8mb4");
-
-    if (!db.open()) {
-        QMessageBox::warning(this, "Error", "ODBC connect failed: " + db.lastError().text());
+    DatabaseManager* dbManager = DatabaseManager::instance();
+    if (!dbManager->isDatabaseConnected(DatabaseManager::PersonCenterDB)) {
+        QMessageBox::warning(this, "Error", "个人中心数据库未连接");
         return;
     }
-
-    QSqlQuery query;
-    query.exec("SET NAMES utf8mb4;");
-    query.exec("SET CHARACTER_SET_RESULTS=utf8mb4;");
 
     initLayout();
     on_allOrderBtn_clicked();
@@ -134,7 +128,8 @@ void MyOrderDialog::loadOrderData(const QString &status)
 {
     ui->orderTable->setRowCount(0);
 
-    QSqlQuery query;
+    DatabaseManager* dbManager = DatabaseManager::instance();
+    QSqlQuery query = dbManager->createQuery(DatabaseManager::PersonCenterDB);
     QString sql = "SELECT order_id, flight_num, depart_time, HEX(destination) AS dest_hex, HEX(status) AS status_hex FROM `order` WHERE user_id=?";
 
     if (status != "全部订单") {
@@ -210,7 +205,8 @@ void MyOrderDialog::onCancelOrderClicked()
         return;
     }
 
-    QSqlQuery query;
+    DatabaseManager* dbManager = DatabaseManager::instance();
+    QSqlQuery query = dbManager->createQuery(DatabaseManager::PersonCenterDB);
     QString newStatus = "已取消";
     QByteArray statusUtf8 = newStatus.toUtf8();
 

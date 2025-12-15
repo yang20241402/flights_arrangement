@@ -1,5 +1,6 @@
 #include "FlightQueryWidget.h"
 #include "ui_FlightQueryWidget.h"
+#include "databasemanager.h"
 #include <QSqlDatabase>
 #include <QSqlQuery>
 #include <QSqlError>
@@ -15,7 +16,6 @@ FlightQueryWidget::FlightQueryWidget(int userId, QWidget *parent)
     , m_userId(userId)
 {
     ui->setupUi(this);
-    initDB();
     loadAllFlights();
     this->setFixedSize(1050,519);
     connect(ui->flightTable, &QTableWidget::cellDoubleClicked,
@@ -24,41 +24,20 @@ FlightQueryWidget::FlightQueryWidget(int userId, QWidget *parent)
 
 FlightQueryWidget::~FlightQueryWidget()
 {
-    QSqlDatabase db = QSqlDatabase::database("flight_query_connection");
-    if (db.isOpen()) {
-        db.close();
-    }
-    QString connName = db.connectionName();
-    QSqlDatabase::removeDatabase(connName);
     delete ui;
-}
-
-void FlightQueryWidget::initDB()
-{
-    if (QSqlDatabase::contains("flight_query_connection")) {
-        QSqlDatabase::removeDatabase("flight_query_connection");
-    }
-
-    QSqlDatabase db = QSqlDatabase::addDatabase("QMYSQL", "flight_query_connection");
-    db.setHostName("localhost");
-    db.setDatabaseName("flight_db");
-    db.setUserName("root");
-    db.setPassword("WSYF2598174725");
-    db.setPort(3306);
-
 }
 
 void FlightQueryWidget::loadFlightData(const QString &depart, const QString &dest, const QDate &date)
 {
     ui->flightTable->setRowCount(0);
 
-    QSqlDatabase db = QSqlDatabase::database("flight_query_connection");
-    if (!db.isOpen()) {
-        initDB();
-        if (!db.isOpen()) return;
+    DatabaseManager* dbManager = DatabaseManager::instance();
+    if (!dbManager->isDatabaseConnected(DatabaseManager::FlightDB)) {
+        QMessageBox::critical(this, "数据库错误", "航班数据库未连接");
+        return;
     }
 
-    QSqlQuery query(db);
+    QSqlQuery query = dbManager->createQuery(DatabaseManager::FlightDB);
     QString sql = "SELECT id, 航班号, 航空公司, 出发城市, 出发机场, "
                   "起飞时间, 到达城市, 到达机场, 到达时间, "
                   "机型, 飞行时长, 总座位数, 剩余座位数 "

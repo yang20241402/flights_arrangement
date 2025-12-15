@@ -3,6 +3,7 @@
 #include "form.h"
 #include "formpwd.h"
 #include "mainwindow.h"
+#include "databasemanager.h"
 
 
 Widget::Widget(QWidget *parent)
@@ -11,26 +12,14 @@ Widget::Widget(QWidget *parent)
 {
     ui->setupUi(this);
 
-    db=QSqlDatabase::addDatabase("QODBC","plane_db_conn");
-
-    QString connStr = QString(
-        "DRIVER={MySQL ODBC 8.0 Unicode Driver};"
-        "SERVER=127.0.0.1;"
-        "PORT=3306;"
-        "DATABASE=plane;"
-        "UID=root;"
-        "PWD=20051014;"
-        "CHARSET=utf8mb4;"
-        "OPTION=3;" // 解决部分兼容问题
-        );
-    db.setDatabaseName(connStr);
-
-
-    if(db.open()){
-        QMessageBox::information(this,"连接提示","连接成功");
-
+    // 使用统一的数据库管理器
+    DatabaseManager* dbManager = DatabaseManager::instance();
+    
+    // 检查用户数据库连接
+    if(dbManager->isDatabaseConnected(DatabaseManager::PlaneDB)){
+        qDebug() << "用户数据库连接成功";
     }else{
-        QMessageBox::warning(this,"连接提示","连接失败");
+        QMessageBox::warning(this,"连接提示","用户数据库连接失败");
     }
 
     ui->tip1Label->setVisible(false);
@@ -103,7 +92,8 @@ void Widget::on_pushButton_clicked()
 
     QString sql = "SELECT userpwd FROM uesr_info1 WHERE username = :uname OR phone = :uname OR email = :uname OR card = :uname LIMIT 1";
 
-    QSqlQuery query(db);
+    DatabaseManager* dbManager = DatabaseManager::instance();
+    QSqlQuery query = dbManager->createQuery(DatabaseManager::PlaneDB);
     query.prepare(sql);
     // 2. 绑定命名占位符（所有条件都绑定同一个 username）
     query.bindValue(":uname", username);  // 只绑定一次即可，因为所有占位符都是 :uname
@@ -189,7 +179,8 @@ void Widget::on_getCode_clicked()
     }
 
     QString sql = "SELECT userpwd FROM uesr_info1 WHERE phone = :phone LIMIT 1";
-    QSqlQuery query(db);
+    DatabaseManager* dbManager = DatabaseManager::instance();
+    QSqlQuery query = dbManager->createQuery(DatabaseManager::PlaneDB);
     query.prepare(sql);
     query.bindValue(":phone", phone);
 

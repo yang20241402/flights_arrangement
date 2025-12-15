@@ -23,9 +23,7 @@ public:
 private:
     Ui::FlightDetailWidget *ui;
     int m_flightId;
-    QSqlDatabase m_db;
 
-    void initDB();
     void loadFlightDetail();
     void initStyle();
 };

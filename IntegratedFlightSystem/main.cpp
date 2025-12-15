@@ -1,12 +1,25 @@
 #include "login/widget.h"
+#include "databasemanager.h"
 #include <QApplication>
 #include <QStyleFactory>
 #include <QPalette>
 #include <QColor>
+#include <QMessageBox>
+#include<QDebug>
+#include<QSqlDatabase>
 
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
+    qDebug() << "Available SQL drivers:" << QSqlDatabase::drivers();
+    // 初始化数据库连接
+    DatabaseManager* dbManager = DatabaseManager::instance();
+    if (!dbManager->initializeAllDatabases()) {
+        QMessageBox::critical(nullptr, "数据库错误", 
+            "数据库连接失败，请检查MySQL服务是否启动以及配置是否正确。\n错误信息: " + 
+            dbManager->getLastError());
+        return -1;
+    }
     
     // 设置浅色主题样式
     QStyle *lightStyle = QStyleFactory::create("Fusion");

@@ -26,10 +26,8 @@ private slots:
 private:
     Ui::PassengerDialog *ui;
     int m_userId;
-    QSqlDatabase m_db;
 
     void loadPassengerData();
-    void initDatabase();
     void setupLayout();
 };
 

@@ -1,6 +1,7 @@
 #include "form.h"
 #include "qregularexpression.h"
 #include "ui_form.h"
+#include "databasemanager.h"
 
 Form::Form(QWidget *parent)
     : QWidget(parent)
@@ -9,15 +10,11 @@ Form::Form(QWidget *parent)
     ui->setupUi(this);
     this->setAttribute(Qt::WA_DeleteOnClose, true);
 
-    db = QSqlDatabase::database("plane_db_conn"); // 传入之前定义的连接名
-
-    // 检查连接是否有效（可选，避免连接意外断开）
-    if (!db.isOpen()) {
-        QMessageBox::warning(this, "连接提示", "数据库连接失败，正在尝试重新连接……");
-        if (!db.open()) { // 尝试重新打开
-            QMessageBox::critical(this, "连接失败", "重连数据库失败：" + db.lastError().text());
-            return;
-        }
+    // 使用统一的数据库管理器
+    DatabaseManager* dbManager = DatabaseManager::instance();
+    if (!dbManager->isDatabaseConnected(DatabaseManager::PlaneDB)) {
+        QMessageBox::critical(this, "连接失败", "用户数据库连接失败");
+        return;
     }
 
     ui->registerstackedWidget->setCurrentIndex(0);
@@ -128,7 +125,8 @@ void Form::on_pushButton_3_clicked()
         QString phone = ui->phoneEdit->text().trimmed();
         QString sql = "INSERT INTO uesr_info1 (username,userpwd, phone) "
                       "VALUES (:username, :userpwd, :phone)";
-        QSqlQuery query(db);
+        DatabaseManager* dbManager = DatabaseManager::instance();
+        QSqlQuery query = dbManager->createQuery(DatabaseManager::PlaneDB);
         query.prepare(sql);
 
         query.bindValue(":username", phone);

@@ -44,7 +44,6 @@ private:
 
     QString generateVerifyCode();
     QString m_verifyCode;
-    QSqlDatabase db;
 };
 
 #endif // FORM_H

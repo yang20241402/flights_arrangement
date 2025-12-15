@@ -24,6 +24,9 @@ set(CMAKE_AUTOUIC_SEARCH_PATHS
 # 源文件
 set(PROJECT_SOURCES
     main.cpp
+    # 数据库管理模块
+    database/databasemanager.cpp
+    database/databasemanager.h
     # 登录模块
     login/widget.cpp
     login/widget.h
@@ -95,6 +98,7 @@ endif()
 
 # 包含目录
 target_include_directories(IntegratedFlightSystem PRIVATE
+    ${CMAKE_CURRENT_SOURCE_DIR}/database
     ${CMAKE_CURRENT_SOURCE_DIR}/login
     ${CMAKE_CURRENT_SOURCE_DIR}/flight
     ${CMAKE_CURRENT_SOURCE_DIR}/person

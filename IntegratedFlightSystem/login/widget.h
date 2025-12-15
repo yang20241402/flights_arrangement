@@ -47,7 +47,6 @@ private slots:
 
 private:
     Ui::Widget *ui;
-    QSqlDatabase db;
     QString g_verifyCode;
     QTimer *g_countdownTimer;
 

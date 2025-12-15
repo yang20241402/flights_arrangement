@@ -1,5 +1,6 @@
 #include "FlightDetailWidget.h"
 #include "ui_FlightDetailWidget.h"
+#include "databasemanager.h"
 #include <QFont>
 #include <QColor>
 #include <QLabel>
@@ -16,37 +17,13 @@ FlightDetailWidget::FlightDetailWidget(int flightId, QWidget *parent)
     ui->setupUi(this);
     this->setWindowTitle("航班详情");
     this->setFixedSize(850, 700);
-    initDB();
     initStyle();
     loadFlightDetail();
 }
 
 FlightDetailWidget::~FlightDetailWidget()
 {
-    if (m_db.isOpen()) {
-        m_db.close();
-    }
-    QString connName = m_db.connectionName();
-    QSqlDatabase::removeDatabase(connName);
     delete ui;
-}
-
-void FlightDetailWidget::initDB()
-{
-    m_db = QSqlDatabase::addDatabase("QMYSQL", QString("flight_detail_conn_%1").arg(m_flightId));
-    m_db.setHostName("localhost");
-    m_db.setDatabaseName("flight_db");
-    m_db.setUserName("root");
-    m_db.setPassword("123456");
-    m_db.setPort(3306);
-
-    if (!m_db.open()) {
-        QMessageBox::critical(this, "数据库错误", "连接失败：" + m_db.lastError().text());
-        return;
-    }
-
-    QSqlQuery query(m_db);
-    query.exec("SET NAMES utf8mb4");
 }
 
 void FlightDetailWidget::initStyle()
@@ -108,11 +85,13 @@ void FlightDetailWidget::initStyle()
 
 void FlightDetailWidget::loadFlightDetail()
 {
-    if (!m_db.isOpen()) {
+    DatabaseManager* dbManager = DatabaseManager::instance();
+    if (!dbManager->isDatabaseConnected(DatabaseManager::FlightDB)) {
+        QMessageBox::critical(this, "错误", "航班数据库未连接");
         return;
     }
 
-    QSqlQuery query(m_db);
+    QSqlQuery query = dbManager->createQuery(DatabaseManager::FlightDB);
     QString sql = R"(
         SELECT id, 航段序号, 航空公司代码, 航空公司, 飞行时长, 航班号,
                出发城市, 出发机场, 出发航站楼, 起飞时间, 到达城市, 到达机场,

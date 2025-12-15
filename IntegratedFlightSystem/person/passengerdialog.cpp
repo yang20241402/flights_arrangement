@@ -1,5 +1,6 @@
 #include "passengerdialog.h"
 #include "ui_passengerdialog.h"
+#include "databasemanager.h"
 #include <QTableWidgetItem>
 #include <QMessageBox>
 #include <QInputDialog>
@@ -16,7 +17,6 @@ PassengerDialog::PassengerDialog(int userId, QWidget *parent) :
     resize(800, 600);
     m_userId = userId;
 
-    initDatabase();
     setupLayout();
     loadPassengerData();
 }
@@ -24,23 +24,6 @@ PassengerDialog::PassengerDialog(int userId, QWidget *parent) :
 PassengerDialog::~PassengerDialog()
 {
     delete ui;
-}
-
-void PassengerDialog::initDatabase()
-{
-    m_db = QSqlDatabase::addDatabase("QODBC", "PassengerDialogConnection");
-    m_db.setDatabaseName("flightmanagesystem;CHARSET=utf8mb4;UID=root;PWD=20241402Ywl@");
-    m_db.setConnectOptions("SQL_ATTR_ODBC_VERSION=SQL_OV_ODBC3;CHARSET=utf8mb4");
-
-    if (!m_db.open())
-    {
-        QMessageBox::warning(this, "Error", "ODBC connect failed: " + m_db.lastError().text());
-        return;
-    }
-
-    QSqlQuery query(m_db);
-    query.exec("SET NAMES utf8mb4;");
-    query.exec("SET CHARACTER_SET_RESULTS=utf8mb4;");
 }
 
 void PassengerDialog::setupLayout()
@@ -107,7 +90,8 @@ void PassengerDialog::loadPassengerData()
 {
     ui->passengerTable->setRowCount(0);
 
-    QSqlQuery createQuery(m_db);
+    DatabaseManager* dbManager = DatabaseManager::instance();
+    QSqlQuery createQuery = dbManager->createQuery(DatabaseManager::PersonCenterDB);
     const QString createSql = "CREATE TABLE IF NOT EXISTS passenger ("
                               "id INT PRIMARY KEY AUTO_INCREMENT,"
                               "user_id INT NOT NULL,"
@@ -122,7 +106,7 @@ void PassengerDialog::loadPassengerData()
         return;
     }
 
-    QSqlQuery query(m_db);
+    QSqlQuery query = dbManager->createQuery(DatabaseManager::PersonCenterDB);
     const QString sql = "SELECT HEX(name) AS name_hex, id_card, phone FROM passenger WHERE user_id=?";
     query.prepare(sql);
     query.addBindValue(m_userId);
@@ -182,7 +166,8 @@ void PassengerDialog::on_addBtn_clicked()
         return;
     }
 
-    QSqlQuery query(m_db);
+    DatabaseManager* dbManager = DatabaseManager::instance();
+    QSqlQuery query = dbManager->createQuery(DatabaseManager::PersonCenterDB);
     const QString sql = "INSERT INTO passenger (user_id, name, id_card, phone) VALUES (?, UNHEX(?), ?, ?)";
     query.prepare(sql);
     query.addBindValue(m_userId);
@@ -230,7 +215,8 @@ void PassengerDialog::on_editBtn_clicked()
         return;
     }
 
-    QSqlQuery query(m_db);
+    DatabaseManager* dbManager = DatabaseManager::instance();
+    QSqlQuery query = dbManager->createQuery(DatabaseManager::PersonCenterDB);
     const QString sql = "UPDATE passenger SET name=UNHEX(?), phone=? WHERE id_card=? AND user_id=?";
     query.prepare(sql);
     query.addBindValue(newName.toUtf8().toHex());
@@ -273,7 +259,8 @@ void PassengerDialog::on_deleteBtn_clicked()
         return;
     }
 
-    QSqlQuery query(m_db);
+    DatabaseManager* dbManager = DatabaseManager::instance();
+    QSqlQuery query = dbManager->createQuery(DatabaseManager::PersonCenterDB);
     const QString sql = "DELETE FROM passenger WHERE id_card=? AND user_id=?";
     query.prepare(sql);
     query.addBindValue(idCard);
