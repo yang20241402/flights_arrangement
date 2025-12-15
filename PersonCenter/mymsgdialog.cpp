@@ -15,14 +15,13 @@
 mymsgdialog::mymsgdialog(int userId, QWidget *parent) :
     QDialog(parent),
     ui(new Ui::mymsgdialog),
-    m_userId(userId) // 初始化用户ID
+    m_userId(userId)
 {
     ui->setupUi(this);
     setWindowTitle("我的消息");
     resize(800, 550);
-    setMinimumSize(600, 400); // 设置最小尺寸，避免挤压
+    setMinimumSize(600, 400);
 
-    // ========== 修复数据库连接（避免重复创建） ==========
     if (QSqlDatabase::contains("MsgDialogConnection")) {
         m_db = QSqlDatabase::database("MsgDialogConnection");
     } else {
@@ -40,51 +39,40 @@ mymsgdialog::mymsgdialog(int userId, QWidget *parent) :
     query.exec("SET NAMES utf8mb4;");
     query.exec("SET CHARACTER_SET_RESULTS=utf8mb4;");
 
-    // ========== 重构布局（核心自适应配置） ==========
-    // 清空原有布局（安全方式）
     QLayout *oldLayout = this->layout();
     if (oldLayout) {
         oldLayout->deleteLater();
     }
 
-    // 主布局：垂直布局，无内边距，控件间距5px
     QVBoxLayout *mainLayout = new QVBoxLayout(this);
     mainLayout->setContentsMargins(0, 0, 0, 0); // 窗口无留白
     mainLayout->setSpacing(5);
 
-    // 1. 筛选按钮栏
     QWidget *filterBar = new QWidget();
     QHBoxLayout *filterLayout = new QHBoxLayout(filterBar);
     filterLayout->setContentsMargins(10, 5, 10, 5); // 少量内边距
     filterLayout->setSpacing(10);
     filterLayout->addWidget(ui->allMsgBtn);
     filterLayout->addWidget(ui->unreadMsgBtn);
-    filterLayout->addStretch(); // 按钮左对齐
-    // 筛选栏固定高度，不拉伸
+    filterLayout->addStretch();
     filterBar->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Fixed);
     filterBar->setFixedHeight(40);
     mainLayout->addWidget(filterBar);
 
-    // 2. 表格区域（核心：自适应占满剩余空间）
-    // 表格尺寸策略：水平+垂直都扩展
     ui->msgTable->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
-    // 伸缩因子=1，优先占满剩余空间
     mainLayout->addWidget(ui->msgTable, 1);
 
-    // 3. 功能按钮栏
     QWidget *funcBar = new QWidget();
     QHBoxLayout *funcLayout = new QHBoxLayout(funcBar);
     funcLayout->setContentsMargins(10, 5, 10, 5);
     funcLayout->setSpacing(10);
-    funcLayout->addStretch(); // 按钮右对齐
+    funcLayout->addStretch();
     funcLayout->addWidget(ui->markReadBtn);
     funcLayout->addWidget(ui->deleteBtn);
-    // 功能栏固定高度，不拉伸
     funcBar->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Fixed);
     funcBar->setFixedHeight(40);
     mainLayout->addWidget(funcBar);
 
-    // 初始化表格和数据
     initDatabase();
     initTableConfig();
     on_allMsgBtn_clicked();
@@ -92,21 +80,17 @@ mymsgdialog::mymsgdialog(int userId, QWidget *parent) :
 
 mymsgdialog::~mymsgdialog()
 {
-    // 关闭数据库连接
     if (m_db.isOpen()) {
         m_db.close();
     }
     delete ui;
 }
 
-// ========== 移除错误的resizeEvent（不再手动调整表格尺寸） ==========
 void mymsgdialog::resizeEvent(QResizeEvent *event)
 {
     QDialog::resizeEvent(event);
-    // 移除 ui->msgTable->adjustSize(); 避免干扰布局
 }
 
-// 初始化数据库（创建消息表）
 void mymsgdialog::initDatabase()
 {
     QSqlQuery query(m_db);
@@ -124,7 +108,7 @@ void mymsgdialog::initDatabase()
     }
 }
 
-// 初始化表格（优化自适应配置，移除无效的省略号代码）
+
 void mymsgdialog::initTableConfig()
 {
     QStringList headers;
@@ -132,28 +116,23 @@ void mymsgdialog::initTableConfig()
     ui->msgTable->setColumnCount(4);
     ui->msgTable->setHorizontalHeaderLabels(headers);
 
-    // 1. 表格基础配置
     ui->msgTable->setEditTriggers(QAbstractItemView::NoEditTriggers);
     ui->msgTable->setSelectionBehavior(QAbstractItemView::SelectRows);
     ui->msgTable->setWordWrap(false);
     ui->msgTable->setShowGrid(false);
     ui->msgTable->verticalHeader()->setVisible(false);
 
-    // 2. 行高固定40px，列宽自适应拉伸
     ui->msgTable->verticalHeader()->setSectionResizeMode(QHeaderView::Fixed);
     ui->msgTable->verticalHeader()->setDefaultSectionSize(40);
     ui->msgTable->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch); // 列宽铺满
 
-    // 3. 表格自适应核心配置
     ui->msgTable->setContentsMargins(0, 0, 0, 0);
-    ui->msgTable->setMinimumSize(0, 0); // 无最小尺寸限制
-    ui->msgTable->setMaximumSize(QWIDGETSIZE_MAX, QWIDGETSIZE_MAX); // 无最大限制
+    ui->msgTable->setMinimumSize(0, 0);
+    ui->msgTable->setMaximumSize(QWIDGETSIZE_MAX, QWIDGETSIZE_MAX);
 
-    // 4. 双击查看详情
     connect(ui->msgTable, &QTableWidget::cellDoubleClicked, this, &mymsgdialog::onMsgCellDoubleClicked);
 }
 
-// 按钮样式切换
 void mymsgdialog::updateBtnStyle(QPushButton *selectedBtn)
 {
     QString defaultStyle = "background:transparent;color:#333;border:none;padding:4px 12px;";
@@ -164,7 +143,6 @@ void mymsgdialog::updateBtnStyle(QPushButton *selectedBtn)
     selectedBtn->setStyleSheet(selectedStyle);
 }
 
-// 加载消息数据（移除单元格省略号代码）
 void mymsgdialog::loadMsgData(const QString &status)
 {
     ui->msgTable->setRowCount(0);
@@ -198,7 +176,6 @@ void mymsgdialog::loadMsgData(const QString &status)
         const QString createTime = query.value("create_time").toDateTime().toString("yyyy-MM-dd HH:mm");
         const bool isRead = query.value("is_read").toBool();
 
-        // HEX解码中文字段
         QString titleHex = query.value("title_hex").toString();
         QByteArray titleBytes = QByteArray::fromHex(titleHex.toUtf8());
         QString title = QString::fromUtf8(titleBytes);
@@ -207,7 +184,6 @@ void mymsgdialog::loadMsgData(const QString &status)
         QByteArray contentBytes = QByteArray::fromHex(contentHex.toUtf8());
         QString content = QString::fromUtf8(contentBytes);
 
-        // 填充表格（移除setTextElideMode）
         QTableWidgetItem *titleItem = new QTableWidgetItem(title);
         titleItem->setData(Qt::UserRole, msgId);
         titleItem->setData(Qt::UserRole+1, title);
@@ -228,7 +204,6 @@ void mymsgdialog::loadMsgData(const QString &status)
         statusItem->setTextAlignment(Qt::AlignCenter);
         ui->msgTable->setItem(row, 3, statusItem);
 
-        // 未读消息标题加粗
         if (!isRead) {
             QFont font = titleItem->font();
             font.setBold(true);
@@ -238,7 +213,6 @@ void mymsgdialog::loadMsgData(const QString &status)
         row++;
     }
 
-    // 空数据提示
     if (row == 0) {
         ui->msgTable->setRowCount(1);
         QTableWidgetItem *emptyItem = new QTableWidgetItem(status == "未读消息" ? "暂无未读消息" : "暂无消息通知");
@@ -249,7 +223,6 @@ void mymsgdialog::loadMsgData(const QString &status)
     }
 }
 
-// 双击查看消息详情
 void mymsgdialog::onMsgCellDoubleClicked(int row, int column)
 {
     Q_UNUSED(column);
@@ -292,21 +265,19 @@ void mymsgdialog::onMsgCellDoubleClicked(int row, int column)
     delete detailDialog;
 }
 
-// 全部消息按钮
+
 void mymsgdialog::on_allMsgBtn_clicked()
 {
     updateBtnStyle(ui->allMsgBtn);
     loadMsgData("全部消息");
 }
 
-// 未读消息按钮
 void mymsgdialog::on_unreadMsgBtn_clicked()
 {
     updateBtnStyle(ui->unreadMsgBtn);
     loadMsgData("未读消息");
 }
 
-// 标记已读按钮
 void mymsgdialog::on_markReadBtn_clicked()
 {
     int currentRow = ui->msgTable->currentRow();
@@ -350,7 +321,6 @@ void mymsgdialog::on_markReadBtn_clicked()
     }
 }
 
-// 删除消息按钮（修复QMessageBox::question废弃警告）
 void mymsgdialog::on_deleteBtn_clicked()
 {
     int currentRow = ui->msgTable->currentRow();
@@ -372,7 +342,6 @@ void mymsgdialog::on_deleteBtn_clicked()
         return;
     }
 
-    // 修复废弃警告：使用StandardButtons重载
     QMessageBox::StandardButton ret = QMessageBox::question(
         this,
         "确认删除",

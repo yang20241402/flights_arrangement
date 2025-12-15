@@ -9,7 +9,6 @@
 #include <QStyleOptionViewItem>
 #include <QModelIndex>
 
-// 文本省略号委托
 class EllipsisDelegate : public QStyledItemDelegate
 {
     Q_OBJECT

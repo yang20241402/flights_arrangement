@@ -15,7 +15,7 @@ class PersonCenterWindow : public QMainWindow
 public:
     PersonCenterWindow(QWidget *parent = nullptr);
     ~PersonCenterWindow();
-    int m_currentUserId; // 登录后的用户ID（需在登录时赋值）
+    int m_currentUserId;
     void loadUserInfo();
 
 private slots:

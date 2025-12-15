@@ -16,16 +16,12 @@ ProfileEditWidget::ProfileEditWidget(int userId, QWidget *parent) :
     resize(500, 300);
     m_userId = userId;
 
-    // 1. 初始化数据库
     initDatabase();
-    // 2. 初始化布局
     initLayout();
-    // 3. 设置表单验证
     QRegularExpression phoneRegex("^1[3-9]\\d{9}$");
     ui->lePhone->setValidator(new QRegularExpressionValidator(phoneRegex, this));
     QRegularExpression emailRegex("^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$");
     ui->leEmail->setValidator(new QRegularExpressionValidator(emailRegex, this));
-    // 4. 加载用户资料（复用消息功能的HEX解码方案）
     loadUserProfile();
 }
 
@@ -35,7 +31,6 @@ ProfileEditWidget::~ProfileEditWidget()
     delete ui;
 }
 
-// 初始化数据库连接（复用消息功能的配置）
 void ProfileEditWidget::initDatabase()
 {
     m_db = QSqlDatabase::addDatabase("QODBC", "ProfileEditConnection");
@@ -47,13 +42,11 @@ void ProfileEditWidget::initDatabase()
         return;
     }
 
-    // 强制设置数据库编码（和消息功能保持一致）
     QSqlQuery query(m_db);
     query.exec("SET NAMES utf8mb4;");
     query.exec("SET CHARACTER_SET_RESULTS=utf8mb4;");
 }
 
-// 布局调整
 void ProfileEditWidget::initLayout()
 {
     if (this->layout()) delete this->layout();
@@ -62,7 +55,6 @@ void ProfileEditWidget::initLayout()
     mainLayout->setContentsMargins(20, 20, 20, 20);
     mainLayout->setSpacing(15);
 
-    // 表单区域
     QWidget *formWidget = new QWidget();
     QGridLayout *formLayout = new QGridLayout(formWidget);
     formLayout->setSpacing(10);
@@ -75,7 +67,6 @@ void ProfileEditWidget::initLayout()
     formLayout->addWidget(ui->labEmail, 3, 0, Qt::AlignRight | Qt::AlignVCenter);
     formLayout->addWidget(ui->leEmail, 3, 1);
 
-    // 按钮区域
     QWidget *btnWidget = new QWidget();
     QHBoxLayout *btnLayout = new QHBoxLayout(btnWidget);
     btnLayout->addStretch();
@@ -87,7 +78,6 @@ void ProfileEditWidget::initLayout()
     mainLayout->addWidget(btnWidget);
 }
 
-// 加载用户资料（完全复用消息功能的HEX解码方案）
 void ProfileEditWidget::loadUserProfile()
 {
     if (!m_db.isOpen()) {
@@ -96,7 +86,6 @@ void ProfileEditWidget::loadUserProfile()
     }
 
     QSqlQuery query(m_db);
-    // 关键：用HEX()函数将中文字段转为十六进制字符串（避免编码转换错误）
     QString sql = "SELECT "
                   "HEX(username) AS username_hex, "
                   "HEX(nickname) AS nickname_hex, "
@@ -107,27 +96,22 @@ void ProfileEditWidget::loadUserProfile()
     query.addBindValue(m_userId);
 
     if (query.exec() && query.next()) {
-        // 1. HEX解码用户名
         QString usernameHex = query.value("username_hex").toString();
         QByteArray usernameBytes = QByteArray::fromHex(usernameHex.toUtf8());
         QString username = QString::fromUtf8(usernameBytes);
 
-        // 2. HEX解码昵称（中文核心处理）
         QString nicknameHex = query.value("nickname_hex").toString();
         QByteArray nicknameBytes = QByteArray::fromHex(nicknameHex.toUtf8());
         QString nickname = QString::fromUtf8(nicknameBytes);
 
-        // 3. HEX解码手机号
         QString phoneHex = query.value("phone_hex").toString();
         QByteArray phoneBytes = QByteArray::fromHex(phoneHex.toUtf8());
         QString phone = QString::fromUtf8(phoneBytes);
 
-        // 4. HEX解码邮箱
         QString emailHex = query.value("email_hex").toString();
         QByteArray emailBytes = QByteArray::fromHex(emailHex.toUtf8());
         QString email = QString::fromUtf8(emailBytes);
 
-        // 显示到控件
         ui->leUsername->setText(username);
         ui->leNickname->setText(nickname);
         ui->lePhone->setText(phone);
@@ -137,7 +121,6 @@ void ProfileEditWidget::loadUserProfile()
     }
 }
 
-// 表单验证
 bool ProfileEditWidget::validateForm()
 {
     if (ui->leUsername->text().trimmed().isEmpty()) {
@@ -164,13 +147,11 @@ bool ProfileEditWidget::validateForm()
     return true;
 }
 
-// 更新用户资料（复用消息功能的UNHEX保存方案）
 bool ProfileEditWidget::updateUserProfile()
 {
     if (!m_db.isOpen()) return false;
 
     QSqlQuery query(m_db);
-    // 关键：用UNHEX()函数将UTF-8字节转为数据库存储的字符串
     QString sql = "UPDATE user SET "
                   "username=UNHEX(?), "
                   "nickname=UNHEX(?), "
@@ -179,7 +160,6 @@ bool ProfileEditWidget::updateUserProfile()
                   "WHERE id=?";
     query.prepare(sql);
 
-    // 转为十六进制字符串后绑定参数（和消息功能保持一致）
     query.addBindValue(ui->leUsername->text().toUtf8().toHex());
     query.addBindValue(ui->leNickname->text().toUtf8().toHex()); // 中文核心处理
     query.addBindValue(ui->lePhone->text().toUtf8().toHex());
@@ -193,7 +173,6 @@ bool ProfileEditWidget::updateUserProfile()
     return true;
 }
 
-// 保存修改
 void ProfileEditWidget::on_btnSave_clicked()
 {
     if (!validateForm()) return;
@@ -210,7 +189,6 @@ void ProfileEditWidget::on_btnSave_clicked()
     }
 }
 
-// 取消操作
 void ProfileEditWidget::on_btnCancel_clicked()
 {
     this->close();

@@ -19,12 +19,10 @@ PersonCenterWindow::PersonCenterWindow(QWidget *parent)
     m_currentUserId = 1;
     loadUserInfo();
 
-    // ========== 1. 初始化centralwidget主布局（修正析构警告） ==========
     QWidget *central = ui->centralwidget;
-    // 先获取布局指针，再删除（避免直接delete不完整类型）
     QLayout *oldLayout = central->layout();
     if (oldLayout) {
-        oldLayout->deleteLater(); // 改用deleteLater，安全析构QLayout
+        oldLayout->deleteLater();
     }
     QVBoxLayout *mainLayout = new QVBoxLayout(central);
     mainLayout->setContentsMargins(0, 0, 0, 0);
@@ -32,14 +30,11 @@ PersonCenterWindow::PersonCenterWindow(QWidget *parent)
     central->setStyleSheet("background:#FFFFFF;");
 
 
-    // ========== 2. 顶部用户信息区（固定高度） ==========
-    ui->topUserWidget->setFixedHeight(100); // 根据你的UI调整高度
+    ui->topUserWidget->setFixedHeight(100);
     mainLayout->addWidget(ui->topUserWidget);
 
 
-    // ========== 3. 四行长按钮（自适应拉伸） ==========
     auto setupFuncButton = [&](QPushButton *btn, const QString &text) {
-        // 按钮文字左对齐 + 自适应拉伸
         btn->setText(text);
         btn->setStyleSheet(R"(
             QPushButton {
@@ -56,19 +51,16 @@ PersonCenterWindow::PersonCenterWindow(QWidget *parent)
                 background:#F5F7FA;
             }
         )");
-        // 核心：自适应尺寸策略
         btn->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
         mainLayout->addWidget(btn);
     };
 
-    // 配置四个功能按钮
     setupFuncButton(ui->myOrderBtn, "我的订单");
     setupFuncButton(ui->commonInfoBtn, "常用信息");
     setupFuncButton(ui->myPointsBtn, "我的积分");
     setupFuncButton(ui->myMsgBtn, "我的信息");
 
 
-    // ========== 4. 窗口配置 ==========
     resize(400, 600);
     setMinimumSize(800, 600);
     setWindowTitle("个人中心");
@@ -118,7 +110,6 @@ void PersonCenterWindow::on_editBtn_clicked()
 
 void PersonCenterWindow::loadUserInfo()
 {
-    // 1. 连接数据库（复用项目中的数据库连接，或单独创建）
     QSqlDatabase db = QSqlDatabase::database("ProfileEditConnection"); // 复用编辑资料的连接
     if (!db.isOpen()) {
         db = QSqlDatabase::addDatabase("QODBC");
@@ -130,7 +121,6 @@ void PersonCenterWindow::loadUserInfo()
         }
     }
 
-    // 2. 用HEX查询用户信息（和编辑资料页面完全一致）
     QSqlQuery query(db);
     QString sql = "SELECT "
                   "HEX(username) AS username_hex, "
@@ -142,12 +132,9 @@ void PersonCenterWindow::loadUserInfo()
     query.addBindValue(m_currentUserId); // 登录后保存的用户ID
 
     if (query.exec() && query.next()) {
-        // 3. HEX解码（和编辑资料页面逻辑一致）
         QString nicknameHex = query.value("nickname_hex").toString();
         QString nickname = QString::fromUtf8(QByteArray::fromHex(nicknameHex.toUtf8()));
 
-        // 4. 更新主页控件（示例：更新昵称标签）
         ui->labNickname->setText(nickname + "（普通会员）"); // 对应主页的“张三（普通会员）”区域
-        // 若主页有其他信息（手机号、邮箱），同理解码后更新对应控件
     }
 }
