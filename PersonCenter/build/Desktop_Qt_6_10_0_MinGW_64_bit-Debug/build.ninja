@@ -65,9 +65,9 @@ build CMakeFiles/PersonCenter.dir/main.cpp.obj: CXX_COMPILER__PersonCenter_unsca
   OBJECT_DIR = CMakeFiles\PersonCenter.dir
   OBJECT_FILE_DIR = CMakeFiles\PersonCenter.dir
 
-build CMakeFiles/PersonCenter.dir/mainwindow.cpp.obj: CXX_COMPILER__PersonCenter_unscanned_Debug E$:/QtProject/PersonCenter/mainwindow.cpp || cmake_object_order_depends_target_PersonCenter
+build CMakeFiles/PersonCenter.dir/PersonCenterWindow.cpp.obj: CXX_COMPILER__PersonCenter_unscanned_Debug E$:/QtProject/PersonCenter/PersonCenterWindow.cpp || cmake_object_order_depends_target_PersonCenter
   DEFINES = -DMINGW_HAS_SECURE_API=1 -DQT_CORE_LIB -DQT_GUI_LIB -DQT_NEEDS_QMAIN -DQT_SQL_LIB -DQT_WIDGETS_LIB -DUNICODE -DWIN32 -DWIN64 -D_ENABLE_EXTENDED_ALIGNED_STORAGE -D_UNICODE -D_WIN64
-  DEP_FILE = CMakeFiles\PersonCenter.dir\mainwindow.cpp.obj.d
+  DEP_FILE = CMakeFiles\PersonCenter.dir\PersonCenterWindow.cpp.obj.d
   FLAGS = -DQT_QML_DEBUG -g -fdiagnostics-color=always
   INCLUDES = -IE:/QtProject/PersonCenter/build/Desktop_Qt_6_10_0_MinGW_64_bit-Debug/PersonCenter_autogen/include -isystem C:/Qt/6.10.0/mingw_64/include/QtCore -isystem C:/Qt/6.10.0/mingw_64/include -isystem C:/Qt/6.10.0/mingw_64/mkspecs/win32-g++ -isystem C:/Qt/6.10.0/mingw_64/include/QtWidgets -isystem C:/Qt/6.10.0/mingw_64/include/QtGui -isystem C:/Qt/6.10.0/mingw_64/include/QtSql
   OBJECT_DIR = CMakeFiles\PersonCenter.dir
@@ -97,6 +97,22 @@ build CMakeFiles/PersonCenter.dir/pointsdialog.cpp.obj: CXX_COMPILER__PersonCent
   OBJECT_DIR = CMakeFiles\PersonCenter.dir
   OBJECT_FILE_DIR = CMakeFiles\PersonCenter.dir
 
+build CMakeFiles/PersonCenter.dir/mymsgdialog.cpp.obj: CXX_COMPILER__PersonCenter_unscanned_Debug E$:/QtProject/PersonCenter/mymsgdialog.cpp || cmake_object_order_depends_target_PersonCenter
+  DEFINES = -DMINGW_HAS_SECURE_API=1 -DQT_CORE_LIB -DQT_GUI_LIB -DQT_NEEDS_QMAIN -DQT_SQL_LIB -DQT_WIDGETS_LIB -DUNICODE -DWIN32 -DWIN64 -D_ENABLE_EXTENDED_ALIGNED_STORAGE -D_UNICODE -D_WIN64
+  DEP_FILE = CMakeFiles\PersonCenter.dir\mymsgdialog.cpp.obj.d
+  FLAGS = -DQT_QML_DEBUG -g -fdiagnostics-color=always
+  INCLUDES = -IE:/QtProject/PersonCenter/build/Desktop_Qt_6_10_0_MinGW_64_bit-Debug/PersonCenter_autogen/include -isystem C:/Qt/6.10.0/mingw_64/include/QtCore -isystem C:/Qt/6.10.0/mingw_64/include -isystem C:/Qt/6.10.0/mingw_64/mkspecs/win32-g++ -isystem C:/Qt/6.10.0/mingw_64/include/QtWidgets -isystem C:/Qt/6.10.0/mingw_64/include/QtGui -isystem C:/Qt/6.10.0/mingw_64/include/QtSql
+  OBJECT_DIR = CMakeFiles\PersonCenter.dir
+  OBJECT_FILE_DIR = CMakeFiles\PersonCenter.dir
+
+build CMakeFiles/PersonCenter.dir/profileeditwidget.cpp.obj: CXX_COMPILER__PersonCenter_unscanned_Debug E$:/QtProject/PersonCenter/profileeditwidget.cpp || cmake_object_order_depends_target_PersonCenter
+  DEFINES = -DMINGW_HAS_SECURE_API=1 -DQT_CORE_LIB -DQT_GUI_LIB -DQT_NEEDS_QMAIN -DQT_SQL_LIB -DQT_WIDGETS_LIB -DUNICODE -DWIN32 -DWIN64 -D_ENABLE_EXTENDED_ALIGNED_STORAGE -D_UNICODE -D_WIN64
+  DEP_FILE = CMakeFiles\PersonCenter.dir\profileeditwidget.cpp.obj.d
+  FLAGS = -DQT_QML_DEBUG -g -fdiagnostics-color=always
+  INCLUDES = -IE:/QtProject/PersonCenter/build/Desktop_Qt_6_10_0_MinGW_64_bit-Debug/PersonCenter_autogen/include -isystem C:/Qt/6.10.0/mingw_64/include/QtCore -isystem C:/Qt/6.10.0/mingw_64/include -isystem C:/Qt/6.10.0/mingw_64/mkspecs/win32-g++ -isystem C:/Qt/6.10.0/mingw_64/include/QtWidgets -isystem C:/Qt/6.10.0/mingw_64/include/QtGui -isystem C:/Qt/6.10.0/mingw_64/include/QtSql
+  OBJECT_DIR = CMakeFiles\PersonCenter.dir
+  OBJECT_FILE_DIR = CMakeFiles\PersonCenter.dir
+
 
 # =============================================================================
 # Link build statements for EXECUTABLE target PersonCenter
@@ -105,7 +121,7 @@ build CMakeFiles/PersonCenter.dir/pointsdialog.cpp.obj: CXX_COMPILER__PersonCent
 #############################################
 # Link the executable PersonCenter.exe
 
-build PersonCenter.exe: CXX_EXECUTABLE_LINKER__PersonCenter_Debug CMakeFiles/PersonCenter.dir/PersonCenter_autogen/mocs_compilation.cpp.obj CMakeFiles/PersonCenter.dir/main.cpp.obj CMakeFiles/PersonCenter.dir/mainwindow.cpp.obj CMakeFiles/PersonCenter.dir/myorderdialog.cpp.obj CMakeFiles/PersonCenter.dir/passengerdialog.cpp.obj CMakeFiles/PersonCenter.dir/pointsdialog.cpp.obj | C$:/Qt/6.10.0/mingw_64/lib/libQt6Widgets.a C$:/Qt/6.10.0/mingw_64/lib/libQt6Sql.a C$:/Qt/6.10.0/mingw_64/lib/libQt6Gui.a C$:/Qt/6.10.0/mingw_64/lib/libQt6Core.a C$:/Qt/6.10.0/mingw_64/lib/libQt6EntryPoint.a || PersonCenter_autogen PersonCenter_autogen_timestamp_deps
+build PersonCenter.exe: CXX_EXECUTABLE_LINKER__PersonCenter_Debug CMakeFiles/PersonCenter.dir/PersonCenter_autogen/mocs_compilation.cpp.obj CMakeFiles/PersonCenter.dir/main.cpp.obj CMakeFiles/PersonCenter.dir/PersonCenterWindow.cpp.obj CMakeFiles/PersonCenter.dir/myorderdialog.cpp.obj CMakeFiles/PersonCenter.dir/passengerdialog.cpp.obj CMakeFiles/PersonCenter.dir/pointsdialog.cpp.obj CMakeFiles/PersonCenter.dir/mymsgdialog.cpp.obj CMakeFiles/PersonCenter.dir/profileeditwidget.cpp.obj | C$:/Qt/6.10.0/mingw_64/lib/libQt6Widgets.a C$:/Qt/6.10.0/mingw_64/lib/libQt6Sql.a C$:/Qt/6.10.0/mingw_64/lib/libQt6Gui.a C$:/Qt/6.10.0/mingw_64/lib/libQt6Core.a C$:/Qt/6.10.0/mingw_64/lib/libQt6EntryPoint.a || PersonCenter_autogen PersonCenter_autogen_timestamp_deps
   FLAGS = -DQT_QML_DEBUG -g
   LINK_FLAGS = -mwindows
   LINK_LIBRARIES = C:/Qt/6.10.0/mingw_64/lib/libQt6Widgets.a  C:/Qt/6.10.0/mingw_64/lib/libQt6Sql.a  C:/Qt/6.10.0/mingw_64/lib/libQt6Gui.a  -ld3d11  -ldxgi  -ldxguid  -ld3d12  C:/Qt/6.10.0/mingw_64/lib/libQt6Core.a  -lmpr  -luserenv  -lmingw32  C:/Qt/6.10.0/mingw_64/lib/libQt6EntryPoint.a  -lshell32  -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
@@ -192,7 +208,7 @@ build PersonCenter_autogen_timestamp_deps: phony
 #############################################
 # Utility command for PersonCenter_autogen
 
-build PersonCenter_autogen: phony CMakeFiles/PersonCenter_autogen PersonCenter_autogen/include/ui_mainwindow.h PersonCenter_autogen/include/ui_myorderdialog.h PersonCenter_autogen/include/ui_passengerdialog.h PersonCenter_autogen/include/ui_pointsdialog.h PersonCenter_autogen/timestamp PersonCenter_autogen/mocs_compilation.cpp PersonCenter_autogen_timestamp_deps
+build PersonCenter_autogen: phony CMakeFiles/PersonCenter_autogen PersonCenter_autogen/include/ui_PersonCenterWindow.h PersonCenter_autogen/include/ui_myorderdialog.h PersonCenter_autogen/include/ui_passengerdialog.h PersonCenter_autogen/include/ui_pointsdialog.h PersonCenter_autogen/include/ui_mymsgdialog.h PersonCenter_autogen/include/ui_profileeditwidget.h PersonCenter_autogen/timestamp PersonCenter_autogen/mocs_compilation.cpp PersonCenter_autogen_timestamp_deps
 
 
 #############################################
@@ -209,7 +225,7 @@ build PersonCenter_autogen/timestamp PersonCenter_autogen/mocs_compilation.cpp |
 #############################################
 # Phony custom command for CMakeFiles\PersonCenter_autogen
 
-build CMakeFiles/PersonCenter_autogen PersonCenter_autogen/include/ui_mainwindow.h PersonCenter_autogen/include/ui_myorderdialog.h PersonCenter_autogen/include/ui_passengerdialog.h PersonCenter_autogen/include/ui_pointsdialog.h | ${cmake_ninja_workdir}CMakeFiles/PersonCenter_autogen ${cmake_ninja_workdir}PersonCenter_autogen/include/ui_mainwindow.h ${cmake_ninja_workdir}PersonCenter_autogen/include/ui_myorderdialog.h ${cmake_ninja_workdir}PersonCenter_autogen/include/ui_passengerdialog.h ${cmake_ninja_workdir}PersonCenter_autogen/include/ui_pointsdialog.h: phony PersonCenter_autogen/timestamp || PersonCenter_autogen_timestamp_deps
+build CMakeFiles/PersonCenter_autogen PersonCenter_autogen/include/ui_PersonCenterWindow.h PersonCenter_autogen/include/ui_myorderdialog.h PersonCenter_autogen/include/ui_passengerdialog.h PersonCenter_autogen/include/ui_pointsdialog.h PersonCenter_autogen/include/ui_mymsgdialog.h PersonCenter_autogen/include/ui_profileeditwidget.h | ${cmake_ninja_workdir}CMakeFiles/PersonCenter_autogen ${cmake_ninja_workdir}PersonCenter_autogen/include/ui_PersonCenterWindow.h ${cmake_ninja_workdir}PersonCenter_autogen/include/ui_myorderdialog.h ${cmake_ninja_workdir}PersonCenter_autogen/include/ui_passengerdialog.h ${cmake_ninja_workdir}PersonCenter_autogen/include/ui_pointsdialog.h ${cmake_ninja_workdir}PersonCenter_autogen/include/ui_mymsgdialog.h ${cmake_ninja_workdir}PersonCenter_autogen/include/ui_profileeditwidget.h: phony PersonCenter_autogen/timestamp || PersonCenter_autogen_timestamp_deps
 
 # =============================================================================
 # Target aliases.

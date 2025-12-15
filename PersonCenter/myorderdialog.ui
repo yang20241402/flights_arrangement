@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>450</width>
+    <width>462</width>
     <height>299</height>
    </rect>
   </property>
@@ -110,6 +110,9 @@
    </item>
    <item>
     <widget class="QTableWidget" name="orderTable">
+     <property name="editTriggers">
+      <set>QAbstractItemView::EditTrigger::NoEditTriggers</set>
+     </property>
      <property name="columnCount">
       <number>6</number>
      </property>

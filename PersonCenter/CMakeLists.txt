@@ -8,12 +8,15 @@ qt_standard_project_setup()
 qt_add_executable(PersonCenter
     WIN32 MACOSX_BUNDLE
     main.cpp
-    mainwindow.cpp
-    mainwindow.h
-    mainwindow.ui
+    PersonCenterWindow.cpp
+    PersonCenterWindow.h
+    PersonCenterWindow.ui
     myorderdialog.h myorderdialog.cpp myorderdialog.ui
     passengerdialog.h passengerdialog.cpp passengerdialog.ui
     pointsdialog.h pointsdialog.cpp pointsdialog.ui
+    mymsgdialog.h mymsgdialog.cpp mymsgdialog.ui
+    profileeditwidget.h profileeditwidget.cpp profileeditwidget.ui
+
 )
 
 target_link_libraries(PersonCenter
