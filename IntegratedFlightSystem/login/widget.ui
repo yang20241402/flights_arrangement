@@ -545,10 +545,38 @@ QPushButton:disabled {
    <zorder>registerLabel</zorder>
    <zorder>checkBox</zorder>
   </widget>
+  <widget class="QPushButton" name="pushButton_3">
+   <property name="geometry">
+    <rect>
+     <x>190</x>
+     <y>50</y>
+     <width>75</width>
+     <height>23</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>1</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="pushButton_4">
+   <property name="geometry">
+    <rect>
+     <x>310</x>
+     <y>50</y>
+     <width>75</width>
+     <height>23</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>2</string>
+   </property>
+  </widget>
   <zorder>bottomImgLabel_2</zorder>
   <zorder>loginDialogWidget</zorder>
   <zorder>label_2</zorder>
   <zorder>label</zorder>
+  <zorder>pushButton_3</zorder>
+  <zorder>pushButton_4</zorder>
  </widget>
  <customwidgets>
   <customwidget>

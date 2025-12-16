@@ -3,6 +3,7 @@
 #include "myorderdialog.h"  // 包含订单窗口头文件
 #include "passengerdialog.h"
 #include "pointsdialog.h"
+#include"flightquerywidget.h"
 PersonCenterWindow::PersonCenterWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::PersonCenterWindow)
@@ -34,3 +35,12 @@ void PersonCenterWindow::on_myPointsBtn_clicked()
     PointsDialog dialog(currentUserId, this);
     dialog.exec();
 }
+
+void PersonCenterWindow::on_flightStatusBtn_clicked()
+{
+
+    int currentUserId = 1;
+    FlightQueryWidget dialog(currentUserId, this);
+    dialog.exec();
+}
+

@@ -54,6 +54,8 @@ public:
     QLabel *tip3Label;
     QLabel *tip5Label;
     QCheckBox *checkBox;
+    QPushButton *pushButton_3;
+    QPushButton *pushButton_4;
 
     void setupUi(QWidget *Widget)
     {
@@ -282,10 +284,18 @@ public:
         tip4Label->raise();
         registerLabel->raise();
         checkBox->raise();
+        pushButton_3 = new QPushButton(Widget);
+        pushButton_3->setObjectName("pushButton_3");
+        pushButton_3->setGeometry(QRect(190, 50, 75, 23));
+        pushButton_4 = new QPushButton(Widget);
+        pushButton_4->setObjectName("pushButton_4");
+        pushButton_4->setGeometry(QRect(310, 50, 75, 23));
         bottomImgLabel_2->raise();
         loginDialogWidget->raise();
         label_2->raise();
         label->raise();
+        pushButton_3->raise();
+        pushButton_4->raise();
 
         retranslateUi(Widget);
 
@@ -323,6 +333,8 @@ public:
         tip3Label->setText(QCoreApplication::translate("Widget", "\350\257\267\350\276\223\345\205\245\346\211\213\346\234\272\345\217\267", nullptr));
         tip5Label->setText(QCoreApplication::translate("Widget", "\346\211\213\346\234\272\345\217\267\346\240\274\345\274\217\351\224\231\350\257\257\357\274\21011\344\275\215\346\234\211\346\225\210\345\217\267\347\240\201\357\274\211", nullptr));
         checkBox->setText(QCoreApplication::translate("Widget", "\347\256\241\347\220\206\345\221\230\347\231\273\345\275\225", nullptr));
+        pushButton_3->setText(QCoreApplication::translate("Widget", "1", nullptr));
+        pushButton_4->setText(QCoreApplication::translate("Widget", "2", nullptr));
     } // retranslateUi
 
 };

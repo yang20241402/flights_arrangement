@@ -4,8 +4,8 @@
 #include "formpwd.h"
 #include "mainwindow.h"
 #include "databasemanager.h"
-
-
+#include "personcenterwindow.h"
+#include"flightquerywidget.h"
 Widget::Widget(QWidget *parent)
     : QWidget(parent)
     , ui(new Ui::Widget)
@@ -229,5 +229,24 @@ void Widget::on_label_2_clicked()
     this->hide();
     connect(mainwindow, &QWidget::destroyed, this, &Widget::show);
     mainwindow->show();
+}
+
+
+void Widget::on_pushButton_3_clicked()
+{
+    PersonCenterWindow *w = new PersonCenterWindow(this);
+    w->show();
+
+    this->hide();
+}
+
+
+
+void Widget::on_pushButton_4_clicked()
+{
+    FlightQueryWidget dialog(1,this);
+    dialog.exec();
+
+
 }
 

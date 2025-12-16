@@ -21,6 +21,8 @@ private slots:
     void on_myOrderBtn_clicked();
     void on_commonInfoBtn_clicked();
     void on_myPointsBtn_clicked();
+    void on_flightStatusBtn_clicked();
+
 private:
     Ui::PersonCenterWindow *ui;
     int m_currentUserId=1;
