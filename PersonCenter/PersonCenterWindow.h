@@ -1,4 +1,4 @@
-#ifndef PERSONCENTERWINDOW_H
+  #ifndef PERSONCENTERWINDOW_H
 #define PERSONCENTERWINDOW_H
 
 #include <QMainWindow>

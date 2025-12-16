@@ -19,11 +19,13 @@ public:
 
 private slots:
     void on_allOrderBtn_clicked();
+    void onPayOrderClicked();
     void on_upcomingOrderBtn_clicked();
     void on_finishedOrderBtn_clicked();
     void on_cancelledOrderBtn_clicked();
     void onCancelOrderClicked();
-
+    void on_unpaidOrderBtn_clicked();
+    void onChangeOrderClicked();
 private:
     Ui::MyOrderDialog *ui;
     int m_userId;
