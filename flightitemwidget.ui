@@ -1,0 +1,264 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>FlightItemWidget</class>
+ <widget class="QWidget" name="FlightItemWidget">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>959</width>
+    <height>55</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Form</string>
+  </property>
+  <widget class="QLabel" name="labelLogo">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>10</y>
+     <width>41</width>
+     <height>41</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+  </widget>
+  <widget class="QLabel" name="labelAirline">
+   <property name="geometry">
+    <rect>
+     <x>80</x>
+     <y>10</y>
+     <width>131</width>
+     <height>21</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>12</pointsize>
+     <bold>false</bold>
+    </font>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+  </widget>
+  <widget class="QLabel" name="Airname">
+   <property name="geometry">
+    <rect>
+     <x>80</x>
+     <y>40</y>
+     <width>191</width>
+     <height>16</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; color:#4186ea;&quot;&gt;&lt;br/&gt;&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="labelDepartTime">
+   <property name="geometry">
+    <rect>
+     <x>260</x>
+     <y>10</y>
+     <width>91</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>16</pointsize>
+     <bold>true</bold>
+    </font>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+  </widget>
+  <widget class="QLabel" name="labelDepartAirport">
+   <property name="geometry">
+    <rect>
+     <x>260</x>
+     <y>40</y>
+     <width>131</width>
+     <height>16</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+  </widget>
+  <widget class="QLabel" name="labelArriveTime">
+   <property name="geometry">
+    <rect>
+     <x>570</x>
+     <y>10</y>
+     <width>101</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>16</pointsize>
+     <bold>true</bold>
+    </font>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+  </widget>
+  <widget class="QLabel" name="labelArriveAirport">
+   <property name="geometry">
+    <rect>
+     <x>570</x>
+     <y>40</y>
+     <width>131</width>
+     <height>16</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+  </widget>
+  <widget class="QLabel" name="labelPrice">
+   <property name="geometry">
+    <rect>
+     <x>730</x>
+     <y>10</y>
+     <width>101</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>16</pointsize>
+     <bold>true</bold>
+    </font>
+   </property>
+   <property name="text">
+    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; color:#3a84ee;&quot;&gt;&lt;br/&gt;&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_31">
+   <property name="geometry">
+    <rect>
+     <x>710</x>
+     <y>30</y>
+     <width>61</width>
+     <height>16</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="btnSelect">
+   <property name="geometry">
+    <rect>
+     <x>870</x>
+     <y>20</y>
+     <width>61</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">/* 登录按钮基础样式（橙色边框+橙色背景，搭配白色文字） */
+QPushButton {
+    /* 橙色边框：#ff7d00 是常用登录页橙色，可替换为 #ff9900（浅橙）、#ff6600（深橙） */
+    border: 2px solid #ff7d00; 
+    border-radius: 4px; /* 圆角（和输入框保持一致，更协调） */
+    background-color: #ff7d00; /* 按钮背景色（和边框同色，一体化效果） */
+    color: white; /* 文字白色 */
+    font-size: 14px; /* 文字大小 */
+    height: 44px; /* 按钮高度（和输入框呼应） */
+}
+
+/* 悬浮状态（边框加深+背景色变深，更有交互感） */
+QPushButton:hover {
+    border-color: #ff6600; /* 悬浮时边框深橙色 */
+    background-color: #ff6600; /* 悬浮时背景深橙色 */
+}
+
+/* 点击状态（边框再加深+背景色压暗，模拟按压效果） */
+QPushButton:pressed {
+    border-color: #e65c00; /* 点击时边框更深橙色 */
+    background-color: #e65c00; /* 点击时背景更深橙色 */
+}
+
+/* 禁用状态（可选：如果按钮需要禁用，边框和背景变灰色） */
+QPushButton:disabled {
+    border-color: #cccccc;
+    background-color: #cccccc;
+    color: #ffffff;
+}</string>
+   </property>
+   <property name="text">
+    <string>订票</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="labelNextDay">
+   <property name="geometry">
+    <rect>
+     <x>670</x>
+     <y>10</y>
+     <width>51</width>
+     <height>16</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:700; color:#00aaff;&quot;&gt;+1&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label">
+   <property name="geometry">
+    <rect>
+     <x>400</x>
+     <y>20</y>
+     <width>121</width>
+     <height>20</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+   <property name="pixmap">
+    <pixmap resource="new_resources.qrc">:/newimages/newimages/arrow.jpg</pixmap>
+   </property>
+   <property name="scaledContents">
+    <bool>true</bool>
+   </property>
+  </widget>
+  <widget class="QLabel" name="duration">
+   <property name="geometry">
+    <rect>
+     <x>430</x>
+     <y>10</y>
+     <width>71</width>
+     <height>16</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>TextLabel</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="labelremain">
+   <property name="geometry">
+    <rect>
+     <x>760</x>
+     <y>40</y>
+     <width>81</width>
+     <height>16</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;remain&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+   </property>
+  </widget>
+ </widget>
+ <resources>
+  <include location="new_resources.qrc"/>
+ </resources>
+ <connections/>
+</ui>
