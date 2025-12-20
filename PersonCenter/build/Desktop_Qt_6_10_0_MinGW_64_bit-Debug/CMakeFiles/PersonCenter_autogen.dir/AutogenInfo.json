@@ -461,7 +461,16 @@
 	],
 	"MOC_PREDEFS_FILE" : "E:/QtProject/PersonCenter/build/Desktop_Qt_6_10_0_MinGW_64_bit-Debug/PersonCenter_autogen/moc_predefs.h",
 	"MOC_RELAXED_MODE" : false,
-	"MOC_SKIP" : [],
+	"MOC_SKIP" : 
+	[
+		"E:/QtProject/PersonCenter/build/Desktop_Qt_6_10_0_MinGW_64_bit-Debug/PassengerLib_autogen/include/ui_PersonCenterWindow.h",
+		"E:/QtProject/PersonCenter/build/Desktop_Qt_6_10_0_MinGW_64_bit-Debug/PassengerLib_autogen/include/ui_mymsgdialog.h",
+		"E:/QtProject/PersonCenter/build/Desktop_Qt_6_10_0_MinGW_64_bit-Debug/PassengerLib_autogen/include/ui_myorderdialog.h",
+		"E:/QtProject/PersonCenter/build/Desktop_Qt_6_10_0_MinGW_64_bit-Debug/PassengerLib_autogen/include/ui_passengerdialog.h",
+		"E:/QtProject/PersonCenter/build/Desktop_Qt_6_10_0_MinGW_64_bit-Debug/PassengerLib_autogen/include/ui_pointsdialog.h",
+		"E:/QtProject/PersonCenter/build/Desktop_Qt_6_10_0_MinGW_64_bit-Debug/PassengerLib_autogen/include/ui_profileeditwidget.h",
+		"E:/QtProject/PersonCenter/build/Desktop_Qt_6_10_0_MinGW_64_bit-Debug/PassengerLib_autogen/mocs_compilation.cpp"
+	],
 	"MULTI_CONFIG" : false,
 	"PARALLEL" : 14,
 	"PARSE_CACHE_FILE" : "E:/QtProject/PersonCenter/build/Desktop_Qt_6_10_0_MinGW_64_bit-Debug/CMakeFiles/PersonCenter_autogen.dir/ParseCache.txt",
@@ -482,7 +491,16 @@
 	],
 	"UIC_OPTIONS" : [],
 	"UIC_SEARCH_PATHS" : [],
-	"UIC_SKIP" : [],
+	"UIC_SKIP" : 
+	[
+		"E:/QtProject/PersonCenter/build/Desktop_Qt_6_10_0_MinGW_64_bit-Debug/PassengerLib_autogen/include/ui_PersonCenterWindow.h",
+		"E:/QtProject/PersonCenter/build/Desktop_Qt_6_10_0_MinGW_64_bit-Debug/PassengerLib_autogen/include/ui_mymsgdialog.h",
+		"E:/QtProject/PersonCenter/build/Desktop_Qt_6_10_0_MinGW_64_bit-Debug/PassengerLib_autogen/include/ui_myorderdialog.h",
+		"E:/QtProject/PersonCenter/build/Desktop_Qt_6_10_0_MinGW_64_bit-Debug/PassengerLib_autogen/include/ui_passengerdialog.h",
+		"E:/QtProject/PersonCenter/build/Desktop_Qt_6_10_0_MinGW_64_bit-Debug/PassengerLib_autogen/include/ui_pointsdialog.h",
+		"E:/QtProject/PersonCenter/build/Desktop_Qt_6_10_0_MinGW_64_bit-Debug/PassengerLib_autogen/include/ui_profileeditwidget.h",
+		"E:/QtProject/PersonCenter/build/Desktop_Qt_6_10_0_MinGW_64_bit-Debug/PassengerLib_autogen/mocs_compilation.cpp"
+	],
 	"UIC_UI_FILES" : [],
 	"USE_BETTER_GRAPH" : true,
 	"VERBOSITY" : 0

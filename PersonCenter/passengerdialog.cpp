@@ -19,6 +19,7 @@ PassengerDialog::PassengerDialog(int userId, QWidget *parent) :
     initDatabase();
     setupLayout();
     loadPassengerData();
+
 }
 
 PassengerDialog::~PassengerDialog()
@@ -106,6 +107,8 @@ void PassengerDialog::setupLayout()
 void PassengerDialog::loadPassengerData()
 {
     ui->passengerTable->setRowCount(0);
+    m_rowSelectBtnMap.clear();
+    m_rowSelectedMap.clear();
 
     QSqlQuery createQuery(m_db);
     const QString createSql = "CREATE TABLE IF NOT EXISTS passenger ("
@@ -148,7 +151,15 @@ void PassengerDialog::loadPassengerData()
         ui->passengerTable->setItem(row, 0, new QTableWidgetItem(name));
         ui->passengerTable->setItem(row, 1, new QTableWidgetItem(idCard));
         ui->passengerTable->setItem(row, 2, new QTableWidgetItem(phone));
-        ui->passengerTable->setItem(row, 3, new QTableWidgetItem("--"));
+
+        if (m_isBuyTicketMode) {
+            QPushButton *selectBtn = createSelectButton(row);
+            ui->passengerTable->setCellWidget(row, 3, selectBtn);
+            m_rowSelectBtnMap[row] = selectBtn;
+            m_rowSelectedMap[row] = false;
+        } else {
+            ui->passengerTable->setItem(row, 3, new QTableWidgetItem("--"));
+        }
 
         row++;
     }
@@ -156,7 +167,8 @@ void PassengerDialog::loadPassengerData()
     if (row == 0)
     {
         ui->passengerTable->setRowCount(1);
-        QTableWidgetItem *emptyItem = new QTableWidgetItem("暂无常用乘机人，点击「添加」按钮新增");
+        QString emptyTip = m_isBuyTicketMode ? "暂无乘机人，点击「添加」按钮新增" : "暂无常用乘机人，点击「添加」按钮新增";
+        QTableWidgetItem *emptyItem = new QTableWidgetItem(emptyTip);
         emptyItem->setTextAlignment(Qt::AlignCenter);
         ui->passengerTable->setSpan(0, 0, 1, 4);
         ui->passengerTable->setItem(0, 0, emptyItem);
@@ -289,4 +301,60 @@ void PassengerDialog::on_deleteBtn_clicked()
     {
         QMessageBox::warning(this, "Error", "Delete failed: " + query.lastError().text());
     }
+}
+
+void PassengerDialog::setBuyTicketMode(bool isBuyMode)
+{
+    m_isBuyTicketMode = isBuyMode;
+    setWindowTitle(isBuyMode ? "选择乘机人" : "常用乘机人管理");
+    ui->deleteBtn->setVisible(!isBuyMode);
+    loadPassengerData();
+}
+QPushButton* PassengerDialog::createSelectButton(int row)
+{
+    QPushButton *btn = new QPushButton("选择", this);
+    btn->setStyleSheet("QPushButton { background:#4CAF50; color:white; border:none; border-radius:4px; padding:4px 8px; font-size:12px; }"
+                       "QPushButton:hover { background:#45a049; }");
+    btn->setFixedSize(60, 24);
+    btn->setProperty("row", row);
+    connect(btn, &QPushButton::clicked, this, &PassengerDialog::on_selectBtn_clicked);
+    return btn;
+}
+void PassengerDialog::on_selectBtn_clicked()
+{
+    QPushButton *senderBtn = qobject_cast<QPushButton*>(sender());
+    if (!senderBtn) return;
+
+    int row = senderBtn->property("row").toInt();
+    if (row < 0 || row >= ui->passengerTable->rowCount()) return;
+
+    bool isSelected = !m_rowSelectedMap.value(row, false);
+    m_rowSelectedMap[row] = isSelected;
+
+    if (isSelected) {
+        senderBtn->setText("取消选择");
+        senderBtn->setStyleSheet("QPushButton { background:#f44336; color:white; border:none; border-radius:4px; padding:4px 8px; font-size:12px; }"
+                                 "QPushButton:hover { background:#d32f2f; }");
+    } else {
+        senderBtn->setText("选择");
+        senderBtn->setStyleSheet("QPushButton { background:#4CAF50; color:white; border:none; border-radius:4px; padding:4px 8px; font-size:12px; }"
+                                 "QPushButton:hover { background:#45a049; }");
+    }
+
+    emit passengerSelected(getSelectedPassenger(row));
+}
+PassengerInfo PassengerDialog::getSelectedPassenger(int row)
+{
+    PassengerInfo info;
+    if (row == -1) row = ui->passengerTable->currentRow();
+    if (row < 0 || row >= ui->passengerTable->rowCount() ||
+        ui->passengerTable->item(row, 0)->text().contains("暂无")) {
+        return info;
+    }
+
+    info.name = ui->passengerTable->item(row, 0)->text();
+    info.idCard = ui->passengerTable->item(row, 1)->text();
+    info.phone = ui->passengerTable->item(row, 2)->text();
+    info.isValid = m_rowSelectedMap.value(row, false);
+    return info;
 }

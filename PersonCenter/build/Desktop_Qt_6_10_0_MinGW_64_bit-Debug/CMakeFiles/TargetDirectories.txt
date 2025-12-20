@@ -1,3 +1,4 @@
+E:/QtProject/PersonCenter/build/Desktop_Qt_6_10_0_MinGW_64_bit-Debug/CMakeFiles/PassengerLib.dir
 E:/QtProject/PersonCenter/build/Desktop_Qt_6_10_0_MinGW_64_bit-Debug/CMakeFiles/PersonCenter.dir
 E:/QtProject/PersonCenter/build/Desktop_Qt_6_10_0_MinGW_64_bit-Debug/CMakeFiles/edit_cache.dir
 E:/QtProject/PersonCenter/build/Desktop_Qt_6_10_0_MinGW_64_bit-Debug/CMakeFiles/rebuild_cache.dir
@@ -5,5 +6,7 @@ E:/QtProject/PersonCenter/build/Desktop_Qt_6_10_0_MinGW_64_bit-Debug/CMakeFiles/
 E:/QtProject/PersonCenter/build/Desktop_Qt_6_10_0_MinGW_64_bit-Debug/CMakeFiles/install.dir
 E:/QtProject/PersonCenter/build/Desktop_Qt_6_10_0_MinGW_64_bit-Debug/CMakeFiles/install/local.dir
 E:/QtProject/PersonCenter/build/Desktop_Qt_6_10_0_MinGW_64_bit-Debug/CMakeFiles/install/strip.dir
+E:/QtProject/PersonCenter/build/Desktop_Qt_6_10_0_MinGW_64_bit-Debug/CMakeFiles/PassengerLib_autogen_timestamp_deps.dir
+E:/QtProject/PersonCenter/build/Desktop_Qt_6_10_0_MinGW_64_bit-Debug/CMakeFiles/PassengerLib_autogen.dir
 E:/QtProject/PersonCenter/build/Desktop_Qt_6_10_0_MinGW_64_bit-Debug/CMakeFiles/PersonCenter_autogen_timestamp_deps.dir
 E:/QtProject/PersonCenter/build/Desktop_Qt_6_10_0_MinGW_64_bit-Debug/CMakeFiles/PersonCenter_autogen.dir

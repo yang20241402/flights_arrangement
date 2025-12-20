@@ -1,4 +1,5 @@
 PersonCenter_autogen/timestamp: \
+	C:/Qt/6.10.0/mingw_64/include/QtCore/QMap \
 	C:/Qt/6.10.0/mingw_64/include/QtCore/QModelIndex \
 	C:/Qt/6.10.0/mingw_64/include/QtCore/QRegularExpression \
 	C:/Qt/6.10.0/mingw_64/include/QtCore/QStringLiteral \
@@ -53,6 +54,7 @@ PersonCenter_autogen/timestamp: \
 	C:/Qt/6.10.0/mingw_64/include/QtCore/qhash.h \
 	C:/Qt/6.10.0/mingw_64/include/QtCore/qhashfunctions.h \
 	C:/Qt/6.10.0/mingw_64/include/QtCore/qiodevicebase.h \
+	C:/Qt/6.10.0/mingw_64/include/QtCore/qitemselectionmodel.h \
 	C:/Qt/6.10.0/mingw_64/include/QtCore/qiterable.h \
 	C:/Qt/6.10.0/mingw_64/include/QtCore/qiterator.h \
 	C:/Qt/6.10.0/mingw_64/include/QtCore/qlatin1stringview.h \
@@ -179,9 +181,12 @@ PersonCenter_autogen/timestamp: \
 	C:/Qt/6.10.0/mingw_64/include/QtWidgets/QPushButton \
 	C:/Qt/6.10.0/mingw_64/include/QtWidgets/QStyleOptionViewItem \
 	C:/Qt/6.10.0/mingw_64/include/QtWidgets/QStyledItemDelegate \
+	C:/Qt/6.10.0/mingw_64/include/QtWidgets/QTableWidget \
 	C:/Qt/6.10.0/mingw_64/include/QtWidgets/QWidget \
 	C:/Qt/6.10.0/mingw_64/include/QtWidgets/qabstractbutton.h \
 	C:/Qt/6.10.0/mingw_64/include/QtWidgets/qabstractitemdelegate.h \
+	C:/Qt/6.10.0/mingw_64/include/QtWidgets/qabstractitemview.h \
+	C:/Qt/6.10.0/mingw_64/include/QtWidgets/qabstractscrollarea.h \
 	C:/Qt/6.10.0/mingw_64/include/QtWidgets/qabstractslider.h \
 	C:/Qt/6.10.0/mingw_64/include/QtWidgets/qabstractspinbox.h \
 	C:/Qt/6.10.0/mingw_64/include/QtWidgets/qdialog.h \
@@ -197,6 +202,8 @@ PersonCenter_autogen/timestamp: \
 	C:/Qt/6.10.0/mingw_64/include/QtWidgets/qstyleditemdelegate.h \
 	C:/Qt/6.10.0/mingw_64/include/QtWidgets/qstyleoption.h \
 	C:/Qt/6.10.0/mingw_64/include/QtWidgets/qtabbar.h \
+	C:/Qt/6.10.0/mingw_64/include/QtWidgets/qtableview.h \
+	C:/Qt/6.10.0/mingw_64/include/QtWidgets/qtablewidget.h \
 	C:/Qt/6.10.0/mingw_64/include/QtWidgets/qtabwidget.h \
 	C:/Qt/6.10.0/mingw_64/include/QtWidgets/qtwidgets-config.h \
 	C:/Qt/6.10.0/mingw_64/include/QtWidgets/qtwidgetsexports.h \

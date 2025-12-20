@@ -48,6 +48,10 @@ if(CMAKE_INSTALL_COMPONENT STREQUAL "Unspecified" OR NOT CMAKE_INSTALL_COMPONENT
 endif()
 
 if(CMAKE_INSTALL_COMPONENT STREQUAL "Unspecified" OR NOT CMAKE_INSTALL_COMPONENT)
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib" TYPE STATIC_LIBRARY FILES "E:/QtProject/PersonCenter/build/Desktop_Qt_6_10_0_MinGW_64_bit-Debug/lib/libPassengerLib.a")
+endif()
+
+if(CMAKE_INSTALL_COMPONENT STREQUAL "Unspecified" OR NOT CMAKE_INSTALL_COMPONENT)
   include("E:/QtProject/PersonCenter/build/Desktop_Qt_6_10_0_MinGW_64_bit-Debug/.qt/deploy_PersonCenter_3825f4ae1a.cmake")
 endif()
 

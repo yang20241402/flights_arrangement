@@ -41,13 +41,54 @@ include CMakeFiles/rules.ninja
 
 cmake_ninja_workdir = E$:/QtProject/PersonCenter/build/Desktop_Qt_6_10_0_MinGW_64_bit-Debug/
 # =============================================================================
+# Object build statements for STATIC_LIBRARY target PassengerLib
+
+
+#############################################
+# Order-only phony target for PassengerLib
+
+build cmake_object_order_depends_target_PassengerLib: phony || PassengerLib_autogen PassengerLib_autogen/mocs_compilation.cpp PassengerLib_autogen/timestamp PassengerLib_autogen_timestamp_deps meta_types/PassengerLib_json_file_list.txt meta_types/PassengerLib_json_file_list.txt.timestamp meta_types/qt6passengerlib_metatypes.json meta_types/qt6passengerlib_metatypes.json.gen
+
+build CMakeFiles/PassengerLib.dir/PassengerLib_autogen/mocs_compilation.cpp.obj: CXX_COMPILER__PassengerLib_unscanned_Debug E$:/QtProject/PersonCenter/build/Desktop_Qt_6_10_0_MinGW_64_bit-Debug/PassengerLib_autogen/mocs_compilation.cpp || cmake_object_order_depends_target_PassengerLib
+  DEFINES = -DMINGW_HAS_SECURE_API=1 -DQT_CORE_LIB -DQT_GUI_LIB -DQT_SQL_LIB -DQT_WIDGETS_LIB -DUNICODE -DWIN32 -DWIN64 -D_ENABLE_EXTENDED_ALIGNED_STORAGE -D_UNICODE -D_WIN64
+  DEP_FILE = CMakeFiles\PassengerLib.dir\PassengerLib_autogen\mocs_compilation.cpp.obj.d
+  FLAGS = -DQT_QML_DEBUG -g -fdiagnostics-color=always
+  INCLUDES = -IE:/QtProject/PersonCenter/build/Desktop_Qt_6_10_0_MinGW_64_bit-Debug/PassengerLib_autogen/include -isystem C:/Qt/6.10.0/mingw_64/include/QtCore -isystem C:/Qt/6.10.0/mingw_64/include -isystem C:/Qt/6.10.0/mingw_64/mkspecs/win32-g++ -isystem C:/Qt/6.10.0/mingw_64/include/QtWidgets -isystem C:/Qt/6.10.0/mingw_64/include/QtGui -isystem C:/Qt/6.10.0/mingw_64/include/QtSql
+  OBJECT_DIR = CMakeFiles\PassengerLib.dir
+  OBJECT_FILE_DIR = CMakeFiles\PassengerLib.dir\PassengerLib_autogen
+
+build CMakeFiles/PassengerLib.dir/passengerdialog.cpp.obj: CXX_COMPILER__PassengerLib_unscanned_Debug E$:/QtProject/PersonCenter/passengerdialog.cpp || cmake_object_order_depends_target_PassengerLib
+  DEFINES = -DMINGW_HAS_SECURE_API=1 -DQT_CORE_LIB -DQT_GUI_LIB -DQT_SQL_LIB -DQT_WIDGETS_LIB -DUNICODE -DWIN32 -DWIN64 -D_ENABLE_EXTENDED_ALIGNED_STORAGE -D_UNICODE -D_WIN64
+  DEP_FILE = CMakeFiles\PassengerLib.dir\passengerdialog.cpp.obj.d
+  FLAGS = -DQT_QML_DEBUG -g -fdiagnostics-color=always
+  INCLUDES = -IE:/QtProject/PersonCenter/build/Desktop_Qt_6_10_0_MinGW_64_bit-Debug/PassengerLib_autogen/include -isystem C:/Qt/6.10.0/mingw_64/include/QtCore -isystem C:/Qt/6.10.0/mingw_64/include -isystem C:/Qt/6.10.0/mingw_64/mkspecs/win32-g++ -isystem C:/Qt/6.10.0/mingw_64/include/QtWidgets -isystem C:/Qt/6.10.0/mingw_64/include/QtGui -isystem C:/Qt/6.10.0/mingw_64/include/QtSql
+  OBJECT_DIR = CMakeFiles\PassengerLib.dir
+  OBJECT_FILE_DIR = CMakeFiles\PassengerLib.dir
+
+
+# =============================================================================
+# Link build statements for STATIC_LIBRARY target PassengerLib
+
+
+#############################################
+# Link the static library lib\libPassengerLib.a
+
+build lib/libPassengerLib.a: CXX_STATIC_LIBRARY_LINKER__PassengerLib_Debug CMakeFiles/PassengerLib.dir/PassengerLib_autogen/mocs_compilation.cpp.obj CMakeFiles/PassengerLib.dir/passengerdialog.cpp.obj || PassengerLib_autogen PassengerLib_autogen_timestamp_deps
+  LANGUAGE_COMPILE_FLAGS = -DQT_QML_DEBUG -g
+  OBJECT_DIR = CMakeFiles\PassengerLib.dir
+  POST_BUILD = cd .
+  PRE_LINK = cd .
+  TARGET_FILE = lib\libPassengerLib.a
+  TARGET_PDB = PassengerLib.a.dbg
+
+# =============================================================================
 # Object build statements for EXECUTABLE target PersonCenter
 
 
 #############################################
 # Order-only phony target for PersonCenter
 
-build cmake_object_order_depends_target_PersonCenter: phony || PersonCenter_autogen PersonCenter_autogen/mocs_compilation.cpp PersonCenter_autogen/timestamp PersonCenter_autogen_timestamp_deps
+build cmake_object_order_depends_target_PersonCenter: phony || PersonCenter_autogen PersonCenter_autogen/mocs_compilation.cpp PersonCenter_autogen/timestamp PersonCenter_autogen_timestamp_deps cmake_object_order_depends_target_PassengerLib
 
 build CMakeFiles/PersonCenter.dir/PersonCenter_autogen/mocs_compilation.cpp.obj: CXX_COMPILER__PersonCenter_unscanned_Debug E$:/QtProject/PersonCenter/build/Desktop_Qt_6_10_0_MinGW_64_bit-Debug/PersonCenter_autogen/mocs_compilation.cpp || cmake_object_order_depends_target_PersonCenter
   DEFINES = -DMINGW_HAS_SECURE_API=1 -DQT_CORE_LIB -DQT_GUI_LIB -DQT_NEEDS_QMAIN -DQT_SQL_LIB -DQT_WIDGETS_LIB -DUNICODE -DWIN32 -DWIN64 -D_ENABLE_EXTENDED_ALIGNED_STORAGE -D_UNICODE -D_WIN64
@@ -121,10 +162,10 @@ build CMakeFiles/PersonCenter.dir/profileeditwidget.cpp.obj: CXX_COMPILER__Perso
 #############################################
 # Link the executable PersonCenter.exe
 
-build PersonCenter.exe: CXX_EXECUTABLE_LINKER__PersonCenter_Debug CMakeFiles/PersonCenter.dir/PersonCenter_autogen/mocs_compilation.cpp.obj CMakeFiles/PersonCenter.dir/main.cpp.obj CMakeFiles/PersonCenter.dir/PersonCenterWindow.cpp.obj CMakeFiles/PersonCenter.dir/myorderdialog.cpp.obj CMakeFiles/PersonCenter.dir/passengerdialog.cpp.obj CMakeFiles/PersonCenter.dir/pointsdialog.cpp.obj CMakeFiles/PersonCenter.dir/mymsgdialog.cpp.obj CMakeFiles/PersonCenter.dir/profileeditwidget.cpp.obj | C$:/Qt/6.10.0/mingw_64/lib/libQt6Widgets.a C$:/Qt/6.10.0/mingw_64/lib/libQt6Sql.a C$:/Qt/6.10.0/mingw_64/lib/libQt6Gui.a C$:/Qt/6.10.0/mingw_64/lib/libQt6Core.a C$:/Qt/6.10.0/mingw_64/lib/libQt6EntryPoint.a || PersonCenter_autogen PersonCenter_autogen_timestamp_deps
+build PersonCenter.exe: CXX_EXECUTABLE_LINKER__PersonCenter_Debug CMakeFiles/PersonCenter.dir/PersonCenter_autogen/mocs_compilation.cpp.obj CMakeFiles/PersonCenter.dir/main.cpp.obj CMakeFiles/PersonCenter.dir/PersonCenterWindow.cpp.obj CMakeFiles/PersonCenter.dir/myorderdialog.cpp.obj CMakeFiles/PersonCenter.dir/passengerdialog.cpp.obj CMakeFiles/PersonCenter.dir/pointsdialog.cpp.obj CMakeFiles/PersonCenter.dir/mymsgdialog.cpp.obj CMakeFiles/PersonCenter.dir/profileeditwidget.cpp.obj | lib/libPassengerLib.a C$:/Qt/6.10.0/mingw_64/lib/libQt6Widgets.a C$:/Qt/6.10.0/mingw_64/lib/libQt6Gui.a C$:/Qt/6.10.0/mingw_64/lib/libQt6Sql.a C$:/Qt/6.10.0/mingw_64/lib/libQt6Core.a C$:/Qt/6.10.0/mingw_64/lib/libQt6EntryPoint.a || PersonCenter_autogen PersonCenter_autogen_timestamp_deps lib/libPassengerLib.a
   FLAGS = -DQT_QML_DEBUG -g
   LINK_FLAGS = -mwindows
-  LINK_LIBRARIES = C:/Qt/6.10.0/mingw_64/lib/libQt6Widgets.a  C:/Qt/6.10.0/mingw_64/lib/libQt6Sql.a  C:/Qt/6.10.0/mingw_64/lib/libQt6Gui.a  -ld3d11  -ldxgi  -ldxguid  -ld3d12  C:/Qt/6.10.0/mingw_64/lib/libQt6Core.a  -lmpr  -luserenv  -lmingw32  C:/Qt/6.10.0/mingw_64/lib/libQt6EntryPoint.a  -lshell32  -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
+  LINK_LIBRARIES = lib/libPassengerLib.a  C:/Qt/6.10.0/mingw_64/lib/libQt6Widgets.a  C:/Qt/6.10.0/mingw_64/lib/libQt6Gui.a  -ld3d11  -ldxgi  -ldxguid  -ld3d12  C:/Qt/6.10.0/mingw_64/lib/libQt6Sql.a  C:/Qt/6.10.0/mingw_64/lib/libQt6Core.a  -lmpr  -luserenv  -lmingw32  C:/Qt/6.10.0/mingw_64/lib/libQt6EntryPoint.a  -lshell32  -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
   OBJECT_DIR = CMakeFiles\PersonCenter.dir
   POST_BUILD = cd .
   PRE_LINK = cd .
@@ -200,21 +241,62 @@ build install/strip: phony CMakeFiles/install/strip.util
 
 
 #############################################
+# Utility command for PassengerLib_autogen_timestamp_deps
+
+build PassengerLib_autogen_timestamp_deps: phony
+
+
+#############################################
+# Utility command for PassengerLib_autogen
+
+build PassengerLib_autogen: phony CMakeFiles/PassengerLib_autogen PassengerLib_autogen/include/ui_passengerdialog.h PassengerLib_autogen/include/ui_PersonCenterWindow.h PassengerLib_autogen/include/ui_myorderdialog.h PassengerLib_autogen/include/ui_pointsdialog.h PassengerLib_autogen/include/ui_mymsgdialog.h PassengerLib_autogen/include/ui_profileeditwidget.h PassengerLib_autogen/timestamp PassengerLib_autogen/mocs_compilation.cpp PassengerLib_autogen_timestamp_deps
+
+
+#############################################
 # Utility command for PersonCenter_autogen_timestamp_deps
 
-build PersonCenter_autogen_timestamp_deps: phony
+build PersonCenter_autogen_timestamp_deps: phony lib/libPassengerLib.a
 
 
 #############################################
 # Utility command for PersonCenter_autogen
 
-build PersonCenter_autogen: phony CMakeFiles/PersonCenter_autogen PersonCenter_autogen/include/ui_PersonCenterWindow.h PersonCenter_autogen/include/ui_myorderdialog.h PersonCenter_autogen/include/ui_passengerdialog.h PersonCenter_autogen/include/ui_pointsdialog.h PersonCenter_autogen/include/ui_mymsgdialog.h PersonCenter_autogen/include/ui_profileeditwidget.h PersonCenter_autogen/timestamp PersonCenter_autogen/mocs_compilation.cpp PersonCenter_autogen_timestamp_deps
+build PersonCenter_autogen: phony CMakeFiles/PersonCenter_autogen PersonCenter_autogen/include/ui_passengerdialog.h PersonCenter_autogen/include/ui_PersonCenterWindow.h PersonCenter_autogen/include/ui_myorderdialog.h PersonCenter_autogen/include/ui_pointsdialog.h PersonCenter_autogen/include/ui_mymsgdialog.h PersonCenter_autogen/include/ui_profileeditwidget.h PersonCenter_autogen/timestamp PersonCenter_autogen/mocs_compilation.cpp PersonCenter_autogen_timestamp_deps
+
+
+#############################################
+# Custom command for meta_types\qt6passengerlib_metatypes.json.gen
+
+build meta_types/qt6passengerlib_metatypes.json.gen meta_types/qt6passengerlib_metatypes.json | ${cmake_ninja_workdir}meta_types/qt6passengerlib_metatypes.json.gen ${cmake_ninja_workdir}meta_types/qt6passengerlib_metatypes.json: CUSTOM_COMMAND C$:/Qt/6.10.0/mingw_64/bin/moc.exe meta_types/PassengerLib_json_file_list.txt || PassengerLib_autogen PassengerLib_autogen_timestamp_deps
+  COMMAND = C:\WINDOWS\system32\cmd.exe /C "cd /D E:\QtProject\PersonCenter\build\Desktop_Qt_6_10_0_MinGW_64_bit-Debug && C:\Qt\6.10.0\mingw_64\bin\moc.exe -o E:/QtProject/PersonCenter/build/Desktop_Qt_6_10_0_MinGW_64_bit-Debug/meta_types/qt6passengerlib_metatypes.json.gen --collect-json @E:/QtProject/PersonCenter/build/Desktop_Qt_6_10_0_MinGW_64_bit-Debug/meta_types/PassengerLib_json_file_list.txt && C:\Qt\Tools\CMake_64\bin\cmake.exe -E copy_if_different E:/QtProject/PersonCenter/build/Desktop_Qt_6_10_0_MinGW_64_bit-Debug/meta_types/qt6passengerlib_metatypes.json.gen E:/QtProject/PersonCenter/build/Desktop_Qt_6_10_0_MinGW_64_bit-Debug/meta_types/qt6passengerlib_metatypes.json"
+  DESC = Running moc --collect-json for target PassengerLib
+  restat = 1
+
+
+#############################################
+# Custom command for PassengerLib_autogen\timestamp
+
+build PassengerLib_autogen/timestamp PassengerLib_autogen/mocs_compilation.cpp | ${cmake_ninja_workdir}PassengerLib_autogen/timestamp ${cmake_ninja_workdir}PassengerLib_autogen/mocs_compilation.cpp: CUSTOM_COMMAND C$:/Qt/6.10.0/mingw_64/bin/moc.exe C$:/Qt/6.10.0/mingw_64/bin/uic.exe || PassengerLib_autogen_timestamp_deps
+  COMMAND = C:\WINDOWS\system32\cmd.exe /C "cd /D E:\QtProject\PersonCenter\build\Desktop_Qt_6_10_0_MinGW_64_bit-Debug && C:\Qt\Tools\CMake_64\bin\cmake.exe -E cmake_autogen E:/QtProject/PersonCenter/build/Desktop_Qt_6_10_0_MinGW_64_bit-Debug/CMakeFiles/PassengerLib_autogen.dir/AutogenInfo.json Debug && C:\Qt\Tools\CMake_64\bin\cmake.exe -E touch E:/QtProject/PersonCenter/build/Desktop_Qt_6_10_0_MinGW_64_bit-Debug/PassengerLib_autogen/timestamp && C:\Qt\Tools\CMake_64\bin\cmake.exe -E cmake_transform_depfile Ninja gccdepfile E:/QtProject/PersonCenter E:/QtProject/PersonCenter E:/QtProject/PersonCenter/build/Desktop_Qt_6_10_0_MinGW_64_bit-Debug E:/QtProject/PersonCenter/build/Desktop_Qt_6_10_0_MinGW_64_bit-Debug E:/QtProject/PersonCenter/build/Desktop_Qt_6_10_0_MinGW_64_bit-Debug/PassengerLib_autogen/deps E:/QtProject/PersonCenter/build/Desktop_Qt_6_10_0_MinGW_64_bit-Debug/CMakeFiles/d/5dd61d6e39b4f99c8eb6d986f954d3469c3214e289ae63e1f6d669f18db74aef.d"
+  DESC = Automatic MOC and UIC for target PassengerLib
+  depfile = CMakeFiles\d\5dd61d6e39b4f99c8eb6d986f954d3469c3214e289ae63e1f6d669f18db74aef.d
+  deps = gcc
+  restat = 1
+
+
+#############################################
+# Custom command for meta_types\PassengerLib_json_file_list.txt
+
+build meta_types/PassengerLib_json_file_list.txt meta_types/PassengerLib_json_file_list.txt.timestamp | ${cmake_ninja_workdir}meta_types/PassengerLib_json_file_list.txt ${cmake_ninja_workdir}meta_types/PassengerLib_json_file_list.txt.timestamp: CUSTOM_COMMAND C$:/Qt/6.10.0/mingw_64/bin/cmake_automoc_parser.exe PassengerLib_autogen/timestamp || PassengerLib_autogen PassengerLib_autogen_timestamp_deps
+  COMMAND = C:\WINDOWS\system32\cmd.exe /C "cd /D E:\QtProject\PersonCenter\build\Desktop_Qt_6_10_0_MinGW_64_bit-Debug && C:\Qt\6.10.0\mingw_64\bin\cmake_automoc_parser.exe --cmake-autogen-cache-file E:/QtProject/PersonCenter/build/Desktop_Qt_6_10_0_MinGW_64_bit-Debug/CMakeFiles/PassengerLib_autogen.dir/ParseCache.txt --cmake-autogen-info-file E:/QtProject/PersonCenter/build/Desktop_Qt_6_10_0_MinGW_64_bit-Debug/CMakeFiles/PassengerLib_autogen.dir/AutogenInfo.json --output-file-path E:/QtProject/PersonCenter/build/Desktop_Qt_6_10_0_MinGW_64_bit-Debug/meta_types/PassengerLib_json_file_list.txt --timestamp-file-path E:/QtProject/PersonCenter/build/Desktop_Qt_6_10_0_MinGW_64_bit-Debug/meta_types/PassengerLib_json_file_list.txt.timestamp --cmake-autogen-include-dir-path E:/QtProject/PersonCenter/build/Desktop_Qt_6_10_0_MinGW_64_bit-Debug/PassengerLib_autogen/include"
+  DESC = Running AUTOMOC file extraction for target PassengerLib
+  restat = 1
 
 
 #############################################
 # Custom command for PersonCenter_autogen\timestamp
 
-build PersonCenter_autogen/timestamp PersonCenter_autogen/mocs_compilation.cpp | ${cmake_ninja_workdir}PersonCenter_autogen/timestamp ${cmake_ninja_workdir}PersonCenter_autogen/mocs_compilation.cpp: CUSTOM_COMMAND C$:/Qt/6.10.0/mingw_64/bin/moc.exe C$:/Qt/6.10.0/mingw_64/bin/uic.exe || PersonCenter_autogen_timestamp_deps
+build PersonCenter_autogen/timestamp PersonCenter_autogen/mocs_compilation.cpp | ${cmake_ninja_workdir}PersonCenter_autogen/timestamp ${cmake_ninja_workdir}PersonCenter_autogen/mocs_compilation.cpp: CUSTOM_COMMAND C$:/Qt/6.10.0/mingw_64/bin/moc.exe C$:/Qt/6.10.0/mingw_64/bin/uic.exe || PassengerLib_autogen PassengerLib_autogen_timestamp_deps PersonCenter_autogen_timestamp_deps lib/libPassengerLib.a
   COMMAND = C:\WINDOWS\system32\cmd.exe /C "cd /D E:\QtProject\PersonCenter\build\Desktop_Qt_6_10_0_MinGW_64_bit-Debug && C:\Qt\Tools\CMake_64\bin\cmake.exe -E cmake_autogen E:/QtProject/PersonCenter/build/Desktop_Qt_6_10_0_MinGW_64_bit-Debug/CMakeFiles/PersonCenter_autogen.dir/AutogenInfo.json Debug && C:\Qt\Tools\CMake_64\bin\cmake.exe -E touch E:/QtProject/PersonCenter/build/Desktop_Qt_6_10_0_MinGW_64_bit-Debug/PersonCenter_autogen/timestamp && C:\Qt\Tools\CMake_64\bin\cmake.exe -E cmake_transform_depfile Ninja gccdepfile E:/QtProject/PersonCenter E:/QtProject/PersonCenter E:/QtProject/PersonCenter/build/Desktop_Qt_6_10_0_MinGW_64_bit-Debug E:/QtProject/PersonCenter/build/Desktop_Qt_6_10_0_MinGW_64_bit-Debug E:/QtProject/PersonCenter/build/Desktop_Qt_6_10_0_MinGW_64_bit-Debug/PersonCenter_autogen/deps E:/QtProject/PersonCenter/build/Desktop_Qt_6_10_0_MinGW_64_bit-Debug/CMakeFiles/d/048a54ca3fb6b5f5cd686b81af1c12aad000c49da58f3c891aa86d995950ea69.d"
   DESC = Automatic MOC and UIC for target PersonCenter
   depfile = CMakeFiles\d\048a54ca3fb6b5f5cd686b81af1c12aad000c49da58f3c891aa86d995950ea69.d
@@ -223,14 +305,24 @@ build PersonCenter_autogen/timestamp PersonCenter_autogen/mocs_compilation.cpp |
 
 
 #############################################
+# Phony custom command for CMakeFiles\PassengerLib_autogen
+
+build CMakeFiles/PassengerLib_autogen PassengerLib_autogen/include/ui_passengerdialog.h PassengerLib_autogen/include/ui_PersonCenterWindow.h PassengerLib_autogen/include/ui_myorderdialog.h PassengerLib_autogen/include/ui_pointsdialog.h PassengerLib_autogen/include/ui_mymsgdialog.h PassengerLib_autogen/include/ui_profileeditwidget.h | ${cmake_ninja_workdir}CMakeFiles/PassengerLib_autogen ${cmake_ninja_workdir}PassengerLib_autogen/include/ui_passengerdialog.h ${cmake_ninja_workdir}PassengerLib_autogen/include/ui_PersonCenterWindow.h ${cmake_ninja_workdir}PassengerLib_autogen/include/ui_myorderdialog.h ${cmake_ninja_workdir}PassengerLib_autogen/include/ui_pointsdialog.h ${cmake_ninja_workdir}PassengerLib_autogen/include/ui_mymsgdialog.h ${cmake_ninja_workdir}PassengerLib_autogen/include/ui_profileeditwidget.h: phony PassengerLib_autogen/timestamp || PassengerLib_autogen_timestamp_deps
+
+
+#############################################
 # Phony custom command for CMakeFiles\PersonCenter_autogen
 
-build CMakeFiles/PersonCenter_autogen PersonCenter_autogen/include/ui_PersonCenterWindow.h PersonCenter_autogen/include/ui_myorderdialog.h PersonCenter_autogen/include/ui_passengerdialog.h PersonCenter_autogen/include/ui_pointsdialog.h PersonCenter_autogen/include/ui_mymsgdialog.h PersonCenter_autogen/include/ui_profileeditwidget.h | ${cmake_ninja_workdir}CMakeFiles/PersonCenter_autogen ${cmake_ninja_workdir}PersonCenter_autogen/include/ui_PersonCenterWindow.h ${cmake_ninja_workdir}PersonCenter_autogen/include/ui_myorderdialog.h ${cmake_ninja_workdir}PersonCenter_autogen/include/ui_passengerdialog.h ${cmake_ninja_workdir}PersonCenter_autogen/include/ui_pointsdialog.h ${cmake_ninja_workdir}PersonCenter_autogen/include/ui_mymsgdialog.h ${cmake_ninja_workdir}PersonCenter_autogen/include/ui_profileeditwidget.h: phony PersonCenter_autogen/timestamp || PersonCenter_autogen_timestamp_deps
+build CMakeFiles/PersonCenter_autogen PersonCenter_autogen/include/ui_passengerdialog.h PersonCenter_autogen/include/ui_PersonCenterWindow.h PersonCenter_autogen/include/ui_myorderdialog.h PersonCenter_autogen/include/ui_pointsdialog.h PersonCenter_autogen/include/ui_mymsgdialog.h PersonCenter_autogen/include/ui_profileeditwidget.h | ${cmake_ninja_workdir}CMakeFiles/PersonCenter_autogen ${cmake_ninja_workdir}PersonCenter_autogen/include/ui_passengerdialog.h ${cmake_ninja_workdir}PersonCenter_autogen/include/ui_PersonCenterWindow.h ${cmake_ninja_workdir}PersonCenter_autogen/include/ui_myorderdialog.h ${cmake_ninja_workdir}PersonCenter_autogen/include/ui_pointsdialog.h ${cmake_ninja_workdir}PersonCenter_autogen/include/ui_mymsgdialog.h ${cmake_ninja_workdir}PersonCenter_autogen/include/ui_profileeditwidget.h: phony PersonCenter_autogen/timestamp || PassengerLib_autogen PassengerLib_autogen_timestamp_deps PersonCenter_autogen_timestamp_deps lib/libPassengerLib.a
 
 # =============================================================================
 # Target aliases.
 
+build PassengerLib: phony lib/libPassengerLib.a
+
 build PersonCenter: phony PersonCenter.exe
+
+build libPassengerLib.a: phony lib/libPassengerLib.a
 
 # =============================================================================
 # Folder targets.
@@ -240,7 +332,7 @@ build PersonCenter: phony PersonCenter.exe
 #############################################
 # Folder: E:/QtProject/PersonCenter/build/Desktop_Qt_6_10_0_MinGW_64_bit-Debug
 
-build all: phony PersonCenter.exe
+build all: phony lib/libPassengerLib.a PersonCenter.exe
 
 # =============================================================================
 # Built-in targets

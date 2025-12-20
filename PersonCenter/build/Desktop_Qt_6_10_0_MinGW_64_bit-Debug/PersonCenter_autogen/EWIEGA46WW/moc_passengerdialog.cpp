@@ -39,19 +39,29 @@ template <> constexpr inline auto PassengerDialog::qt_create_metaobjectdata<qt_m
     namespace QMC = QtMocConstants;
     QtMocHelpers::StringRefStorage qt_stringData {
         "PassengerDialog",
-        "on_addBtn_clicked",
+        "passengerSelected",
         "",
+        "PassengerInfo",
+        "info",
+        "on_addBtn_clicked",
         "on_editBtn_clicked",
-        "on_deleteBtn_clicked"
+        "on_deleteBtn_clicked",
+        "on_selectBtn_clicked"
     };
 
     QtMocHelpers::UintData qt_methods {
+        // Signal 'passengerSelected'
+        QtMocHelpers::SignalData<void(const PassengerInfo &)>(1, 2, QMC::AccessPublic, QMetaType::Void, {{
+            { 0x80000000 | 3, 4 },
+        }}),
         // Slot 'on_addBtn_clicked'
-        QtMocHelpers::SlotData<void()>(1, 2, QMC::AccessPrivate, QMetaType::Void),
+        QtMocHelpers::SlotData<void()>(5, 2, QMC::AccessPrivate, QMetaType::Void),
         // Slot 'on_editBtn_clicked'
-        QtMocHelpers::SlotData<void()>(3, 2, QMC::AccessPrivate, QMetaType::Void),
+        QtMocHelpers::SlotData<void()>(6, 2, QMC::AccessPrivate, QMetaType::Void),
         // Slot 'on_deleteBtn_clicked'
-        QtMocHelpers::SlotData<void()>(4, 2, QMC::AccessPrivate, QMetaType::Void),
+        QtMocHelpers::SlotData<void()>(7, 2, QMC::AccessPrivate, QMetaType::Void),
+        // Slot 'on_selectBtn_clicked'
+        QtMocHelpers::SlotData<void()>(8, 2, QMC::AccessPrivate, QMetaType::Void),
     };
     QtMocHelpers::UintData qt_properties {
     };
@@ -75,13 +85,18 @@ void PassengerDialog::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int 
     auto *_t = static_cast<PassengerDialog *>(_o);
     if (_c == QMetaObject::InvokeMetaMethod) {
         switch (_id) {
-        case 0: _t->on_addBtn_clicked(); break;
-        case 1: _t->on_editBtn_clicked(); break;
-        case 2: _t->on_deleteBtn_clicked(); break;
+        case 0: _t->passengerSelected((*reinterpret_cast<std::add_pointer_t<PassengerInfo>>(_a[1]))); break;
+        case 1: _t->on_addBtn_clicked(); break;
+        case 2: _t->on_editBtn_clicked(); break;
+        case 3: _t->on_deleteBtn_clicked(); break;
+        case 4: _t->on_selectBtn_clicked(); break;
         default: ;
         }
     }
-    (void)_a;
+    if (_c == QMetaObject::IndexOfMethod) {
+        if (QtMocHelpers::indexOfMethod<void (PassengerDialog::*)(const PassengerInfo & )>(_a, &PassengerDialog::passengerSelected, 0))
+            return;
+    }
 }
 
 const QMetaObject *PassengerDialog::metaObject() const
@@ -103,15 +118,21 @@ int PassengerDialog::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 3)
+        if (_id < 5)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 3;
+        _id -= 5;
     }
     if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 3)
+        if (_id < 5)
             *reinterpret_cast<QMetaType *>(_a[0]) = QMetaType();
-        _id -= 3;
+        _id -= 5;
     }
     return _id;
+}
+
+// SIGNAL 0
+void PassengerDialog::passengerSelected(const PassengerInfo & _t1)
+{
+    QMetaObject::activate<void>(this, &staticMetaObject, 0, nullptr, _t1);
 }
 QT_WARNING_POP
