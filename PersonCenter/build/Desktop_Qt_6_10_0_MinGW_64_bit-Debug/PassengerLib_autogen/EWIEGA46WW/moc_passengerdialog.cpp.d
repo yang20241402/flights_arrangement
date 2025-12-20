@@ -1,5 +1,6 @@
 E:/QtProject/PersonCenter/build/Desktop_Qt_6_10_0_MinGW_64_bit-Debug/PassengerLib_autogen/EWIEGA46WW/moc_passengerdialog.cpp: E:/QtProject/PersonCenter/passengerdialog.h \
   E:/QtProject/PersonCenter/build/Desktop_Qt_6_10_0_MinGW_64_bit-Debug/PassengerLib_autogen/moc_predefs.h \
+  C:/Qt/6.10.0/mingw_64/include/QtCore/QList \
   C:/Qt/6.10.0/mingw_64/include/QtCore/QMap \
   C:/Qt/6.10.0/mingw_64/include/QtCore/QStringLiteral \
   C:/Qt/6.10.0/mingw_64/include/QtCore/q17memory.h \

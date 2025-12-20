@@ -6,49 +6,93 @@
 #include <QHeaderView>
 #include <QVBoxLayout>
 #include <QHBoxLayout>
+#include <QDebug>
+#include <QSqlError>
 
-PassengerDialog::PassengerDialog(int userId, QWidget *parent) :
-    QDialog(parent),
-    ui(new Ui::PassengerDialog)
+PassengerDialog::PassengerDialog(int userId, QWidget *parent)
+    : QDialog(parent)
+    , ui(new Ui::PassengerDialog)
+    , m_userId(userId)
+    , m_isBuyTicketMode(false)
 {
-    ui->setupUi(this);
-    setWindowTitle("常用乘机人管理");
-    resize(800, 600);
-    m_userId = userId;
+    initialize();
+}
 
-    initDatabase();
-    setupLayout();
-    loadPassengerData();
-
+PassengerDialog::PassengerDialog(int userId, bool isBuyTicketMode, QWidget *parent)
+    : QDialog(parent)
+    , ui(new Ui::PassengerDialog)
+    , m_userId(userId)
+    , m_isBuyTicketMode(isBuyTicketMode)
+{
+    initialize();
 }
 
 PassengerDialog::~PassengerDialog()
 {
+    closeDatabase();
     delete ui;
 }
 
-void PassengerDialog::initDatabase()
+void PassengerDialog::initialize()
 {
-    m_db = QSqlDatabase::addDatabase("QODBC", "PassengerDialogConnection");
-    m_db.setDatabaseName("flightmanagesystem;CHARSET=utf8mb4;UID=root;PWD=20241402Ywl@");
-    m_db.setConnectOptions("SQL_ATTR_ODBC_VERSION=SQL_OV_ODBC3;CHARSET=utf8mb4");
+    ui->setupUi(this);
 
-    if (!m_db.open())
-    {
-        QMessageBox::warning(this, "Error", "ODBC connect failed: " + m_db.lastError().text());
+    if (m_isBuyTicketMode) {
+        setWindowTitle("选择乘机人（购票模式）");
+    } else {
+        setWindowTitle("常用乘机人管理");
+    }
+
+    resize(950, 600);
+
+    if (!openDatabase()) {
+        QMessageBox::warning(this, "错误", "数据库连接失败");
         return;
     }
 
-    QSqlQuery query(m_db);
-    query.exec("SET NAMES utf8mb4;");
-    query.exec("SET CHARACTER_SET_RESULTS=utf8mb4;");
+    setupLayout();
+    loadPassengerData();
+}
+
+bool PassengerDialog::openDatabase()
+{
+    if (m_connectionName.isEmpty()) {
+        m_connectionName = QString("PassengerDialog_%1").arg((quintptr)this);
+    }
+
+    if (QSqlDatabase::contains(m_connectionName)) {
+        m_db = QSqlDatabase::database(m_connectionName);
+    } else {
+        m_db = QSqlDatabase::addDatabase("QODBC", m_connectionName);
+        m_db.setDatabaseName("flightmanagesystem;CHARSET=utf8mb4;UID=root;PWD=20241402Ywl@");
+        m_db.setConnectOptions("SQL_ATTR_ODBC_VERSION=SQL_OV_ODBC3;CHARSET=utf8mb4");
+    }
+
+    if (!m_db.isOpen()) {
+        if (!m_db.open()) {
+            return false;
+        }
+
+        QSqlQuery query(m_db);
+        query.exec("SET NAMES utf8mb4;");
+        query.exec("SET CHARACTER_SET_RESULTS=utf8mb4;");
+    }
+
+    return true;
+}
+
+void PassengerDialog::closeDatabase()
+{
+    if (m_db.isOpen()) {
+        m_db.close();
+    }
+    QSqlDatabase::removeDatabase(m_connectionName);
 }
 
 void PassengerDialog::setupLayout()
 {
     QVBoxLayout *mainLayout = qobject_cast<QVBoxLayout*>(layout());
-    if (!mainLayout)
-    {
+    if (!mainLayout) {
         mainLayout = new QVBoxLayout(this);
         setLayout(mainLayout);
     }
@@ -69,7 +113,7 @@ void PassengerDialog::setupLayout()
 
     QWidget *btnWidget = new QWidget();
     QHBoxLayout *btnLayout = new QHBoxLayout(btnWidget);
-    btnLayout->setSpacing(20);
+    btnLayout->setSpacing(15);
     btnLayout->setAlignment(Qt::AlignCenter);
 
     ui->addBtn->setFixedSize(120, 36);
@@ -85,9 +129,7 @@ void PassengerDialog::setupLayout()
     btnLayout->addWidget(ui->editBtn);
 
     ui->deleteBtn->setFixedSize(120, 36);
-    ui->deleteBtn->setStyleSheet("QPushButton { background:#FF4757; color:white; border:none; border-radius:6px; font-size:14px; }"
-                                 "QPushButton:hover { background:#ff6b81; }"
-                                 "QPushButton:pressed { background:#e03140; }");
+    updateButtonStyle();
     btnLayout->addWidget(ui->deleteBtn);
 
     mainLayout->addWidget(btnWidget);
@@ -102,6 +144,21 @@ void PassengerDialog::setupLayout()
     ui->passengerTable->horizontalHeader()->setSectionResizeMode(3, QHeaderView::Fixed);
     ui->passengerTable->setColumnWidth(3, 80);
     ui->passengerTable->setHorizontalScrollBarPolicy(Qt::ScrollBarAsNeeded);
+}
+
+void PassengerDialog::updateButtonStyle()
+{
+    if (m_isBuyTicketMode) {
+        ui->deleteBtn->setText("支付");
+        ui->deleteBtn->setStyleSheet("QPushButton { background:green; color:white; border:none; border-radius:6px; font-size:14px; font-weight:bold; }"
+                                     "QPushButton:hover { background:rgb(0, 200, 0); }"
+                                     "QPushButton:pressed { background:rgb(0, 180, 0); }");
+    } else {
+        ui->deleteBtn->setText("删除");
+        ui->deleteBtn->setStyleSheet("QPushButton { background:#FF4757; color:white; border:none; border-radius:6px; font-size:14px; }"
+                                     "QPushButton:hover { background:#ff6b81; }"
+                                     "QPushButton:pressed { background:#e03140; }");
+    }
 }
 
 void PassengerDialog::loadPassengerData()
@@ -119,9 +176,7 @@ void PassengerDialog::loadPassengerData()
                               "phone VARCHAR(20) NOT NULL,"
                               "FOREIGN KEY (user_id) REFERENCES user(id)"
                               ") ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci";
-    if (!createQuery.exec(createSql))
-    {
-        QMessageBox::warning(this, "Error", "Table create failed: " + createQuery.lastError().text());
+    if (!createQuery.exec(createSql)) {
         return;
     }
 
@@ -130,15 +185,12 @@ void PassengerDialog::loadPassengerData()
     query.prepare(sql);
     query.addBindValue(m_userId);
 
-    if (!query.exec())
-    {
-        QMessageBox::warning(this, "Error", "Query failed: " + query.lastError().text());
+    if (!query.exec()) {
         return;
     }
 
     int row = 0;
-    while (query.next())
-    {
+    while (query.next()) {
         ui->passengerTable->insertRow(row);
 
         const QString nameHex = query.value("name_hex").toString();
@@ -158,14 +210,15 @@ void PassengerDialog::loadPassengerData()
             m_rowSelectBtnMap[row] = selectBtn;
             m_rowSelectedMap[row] = false;
         } else {
-            ui->passengerTable->setItem(row, 3, new QTableWidgetItem("--"));
+            QTableWidgetItem *manageItem = new QTableWidgetItem("管理");
+            manageItem->setTextAlignment(Qt::AlignCenter);
+            ui->passengerTable->setItem(row, 3, manageItem);
         }
 
         row++;
     }
 
-    if (row == 0)
-    {
+    if (row == 0) {
         ui->passengerTable->setRowCount(1);
         QString emptyTip = m_isBuyTicketMode ? "暂无乘机人，点击「添加」按钮新增" : "暂无常用乘机人，点击「添加」按钮新增";
         QTableWidgetItem *emptyItem = new QTableWidgetItem(emptyTip);
@@ -181,16 +234,14 @@ void PassengerDialog::on_addBtn_clicked()
     if (name.isEmpty()) return;
 
     QString idCard = QInputDialog::getText(this, "添加乘机人", "请输入身份证号：");
-    if (idCard.isEmpty() || idCard.length() != 18)
-    {
-        QMessageBox::warning(this, "Error", "ID card must be 18 characters!");
+    if (idCard.isEmpty() || idCard.length() != 18) {
+        QMessageBox::warning(this, "错误", "身份证号必须为18位！");
         return;
     }
 
     QString phone = QInputDialog::getText(this, "添加乘机人", "请输入手机号：");
-    if (phone.isEmpty() || phone.length() != 11)
-    {
-        QMessageBox::warning(this, "Error", "Phone number must be 11 characters!");
+    if (phone.isEmpty() || phone.length() != 11) {
+        QMessageBox::warning(this, "错误", "手机号必须为11位！");
         return;
     }
 
@@ -202,30 +253,26 @@ void PassengerDialog::on_addBtn_clicked()
     query.addBindValue(idCard);
     query.addBindValue(phone);
 
-    if (query.exec())
-    {
-        QMessageBox::information(this, "Success", "Passenger added successfully!");
+    if (query.exec()) {
+        QMessageBox::information(this, "成功", "乘机人添加成功！");
         loadPassengerData();
-    }
-    else
-    {
-        QMessageBox::warning(this, "Error", "Add failed: " + query.lastError().text());
+        emit dataChanged();
+    } else {
+        QMessageBox::warning(this, "错误", "添加失败：" + query.lastError().text());
     }
 }
 
 void PassengerDialog::on_editBtn_clicked()
 {
     QTableWidgetItem *selectedItem = ui->passengerTable->currentItem();
-    if (!selectedItem)
-    {
-        QMessageBox::warning(this, "Tips", "Please select a passenger to edit!");
+    if (!selectedItem) {
+        QMessageBox::warning(this, "提示", "请选择要编辑的乘机人！");
         return;
     }
 
     const int row = selectedItem->row();
-    if (ui->passengerTable->item(row, 0)->text() == "暂无常用乘机人，点击「添加」按钮新增")
-    {
-        QMessageBox::warning(this, "Tips", "No passenger available for editing!");
+    if (ui->passengerTable->item(row, 0)->text().contains("暂无")) {
+        QMessageBox::warning(this, "提示", "没有可编辑的乘机人！");
         return;
     }
 
@@ -233,12 +280,11 @@ void PassengerDialog::on_editBtn_clicked()
     const QString oldName = ui->passengerTable->item(row, 0)->text();
     const QString oldPhone = ui->passengerTable->item(row, 2)->text();
 
-    const QString newName = QInputDialog::getText(this, "修改乘机人", "Enter new name：", QLineEdit::Normal, oldName);
-    const QString newPhone = QInputDialog::getText(this, "修改乘机人", "Enter new phone：", QLineEdit::Normal, oldPhone);
+    const QString newName = QInputDialog::getText(this, "修改乘机人", "请输入新姓名：", QLineEdit::Normal, oldName);
+    const QString newPhone = QInputDialog::getText(this, "修改乘机人", "请输入新手机号：", QLineEdit::Normal, oldPhone);
 
-    if (newName.isEmpty() || newPhone.isEmpty())
-    {
-        QMessageBox::warning(this, "Error", "Name and phone cannot be empty!");
+    if (newName.isEmpty() || newPhone.isEmpty()) {
+        QMessageBox::warning(this, "错误", "姓名和手机号不能为空！");
         return;
     }
 
@@ -250,38 +296,65 @@ void PassengerDialog::on_editBtn_clicked()
     query.addBindValue(oldIdCard);
     query.addBindValue(m_userId);
 
-    if (query.exec())
-    {
-        QMessageBox::information(this, "Success", "Passenger updated successfully!");
+    if (query.exec()) {
+        QMessageBox::information(this, "成功", "乘机人修改成功！");
         loadPassengerData();
-    }
-    else
-    {
-        QMessageBox::warning(this, "Error", "Update failed: " + query.lastError().text());
+        emit dataChanged();
+    } else {
+        QMessageBox::warning(this, "错误", "修改失败：" + query.lastError().text());
     }
 }
 
 void PassengerDialog::on_deleteBtn_clicked()
 {
+    if (m_isBuyTicketMode) {
+        QList<PassengerInfo> selectedPassengers = getAllSelectedPassengers();
+
+        if (selectedPassengers.isEmpty()) {
+            QMessageBox::warning(this, "提示", "请先选择乘机人再进行支付！");
+            return;
+        }
+
+        QString paymentInfo = "🎉 支付完成！\n\n";
+        for (int i = 0; i < selectedPassengers.size(); i++) {
+            const PassengerInfo &info = selectedPassengers[i];
+            paymentInfo += QString("乘机人%1：%2\n身份证号：%3\n\n")
+                               .arg(i + 1)
+                               .arg(info.name)
+                               .arg(info.idCard);
+        }
+        paymentInfo += "状态：虚拟支付成功（无需实际付款）";
+
+        QMessageBox::information(
+            this,
+            "支付成功",
+            paymentInfo,
+            QMessageBox::Ok
+            );
+
+        for (const PassengerInfo &info : selectedPassengers) {
+            emit paymentCompleted(info);
+        }
+        accept();
+        return;
+    }
+
     QTableWidgetItem *selectedItem = ui->passengerTable->currentItem();
-    if (!selectedItem)
-    {
-        QMessageBox::warning(this, "Tips", "Please select a passenger to delete!");
+    if (!selectedItem) {
+        QMessageBox::warning(this, "提示", "请选择要删除的乘机人！");
         return;
     }
 
     const int row = selectedItem->row();
-    if (ui->passengerTable->item(row, 0)->text() == "暂无常用乘机人，点击「添加」按钮新增")
-    {
-        QMessageBox::warning(this, "Tips", "No passenger available for deletion!");
+    if (ui->passengerTable->item(row, 0)->text().contains("暂无")) {
+        QMessageBox::warning(this, "提示", "没有可删除的乘机人！");
         return;
     }
 
     const QString idCard = ui->passengerTable->item(row, 1)->text();
     const QString name = ui->passengerTable->item(row, 0)->text();
 
-    if (QMessageBox::question(this, "Confirm", "Delete passenger " + name + "?") != QMessageBox::Yes)
-    {
+    if (QMessageBox::question(this, "确认", "确定要删除乘机人 " + name + " 吗？") != QMessageBox::Yes) {
         return;
     }
 
@@ -291,25 +364,92 @@ void PassengerDialog::on_deleteBtn_clicked()
     query.addBindValue(idCard);
     query.addBindValue(m_userId);
 
-    if (query.exec())
-    {
-        QMessageBox::information(this, "Success", "Passenger deleted successfully!");
+    if (query.exec()) {
+        QMessageBox::information(this, "成功", "乘机人删除成功！");
         ui->passengerTable->removeRow(row);
         if (ui->passengerTable->rowCount() == 0) loadPassengerData();
-    }
-    else
-    {
-        QMessageBox::warning(this, "Error", "Delete failed: " + query.lastError().text());
+        emit dataChanged();
+    } else {
+        QMessageBox::warning(this, "错误", "删除失败：" + query.lastError().text());
     }
 }
 
-void PassengerDialog::setBuyTicketMode(bool isBuyMode)
+void PassengerDialog::setMode(bool isBuyTicketMode)
 {
-    m_isBuyTicketMode = isBuyMode;
-    setWindowTitle(isBuyMode ? "选择乘机人" : "常用乘机人管理");
-    ui->deleteBtn->setVisible(!isBuyMode);
+    m_isBuyTicketMode = isBuyTicketMode;
+
+    if (m_isBuyTicketMode) {
+        setWindowTitle("选择乘机人（购票模式）");
+    } else {
+        setWindowTitle("常用乘机人管理");
+    }
+
+    updateButtonStyle();
     loadPassengerData();
 }
+
+void PassengerDialog::setDatabaseConnection(const QString &connectionName)
+{
+    m_connectionName = connectionName;
+    if (m_db.isOpen()) {
+        m_db.close();
+    }
+    openDatabase();
+}
+
+void PassengerDialog::refreshData()
+{
+    loadPassengerData();
+}
+
+PassengerInfo PassengerDialog::getSelectedPassenger() const
+{
+    PassengerInfo info;
+
+    for (auto it = m_rowSelectedMap.constBegin(); it != m_rowSelectedMap.constEnd(); ++it) {
+        if (it.value()) {
+            return getPassengerAtRow(it.key());
+        }
+    }
+
+    return info;
+}
+
+QList<PassengerInfo> PassengerDialog::getAllSelectedPassengers() const
+{
+    QList<PassengerInfo> passengers;
+
+    for (auto it = m_rowSelectedMap.constBegin(); it != m_rowSelectedMap.constEnd(); ++it) {
+        if (it.value()) {
+            passengers.append(getPassengerAtRow(it.key()));
+        }
+    }
+
+    return passengers;
+}
+
+PassengerInfo PassengerDialog::getPassengerAtRow(int row) const
+{
+    PassengerInfo info;
+
+    if (row < 0 || row >= ui->passengerTable->rowCount()) {
+        return info;
+    }
+
+    QTableWidgetItem *nameItem = ui->passengerTable->item(row, 0);
+    QTableWidgetItem *idItem = ui->passengerTable->item(row, 1);
+    QTableWidgetItem *phoneItem = ui->passengerTable->item(row, 2);
+
+    if (nameItem && idItem && phoneItem) {
+        info.name = nameItem->text();
+        info.idCard = idItem->text();
+        info.phone = phoneItem->text();
+        info.isValid = m_rowSelectedMap.value(row, false);
+    }
+
+    return info;
+}
+
 QPushButton* PassengerDialog::createSelectButton(int row)
 {
     QPushButton *btn = new QPushButton("选择", this);
@@ -320,6 +460,7 @@ QPushButton* PassengerDialog::createSelectButton(int row)
     connect(btn, &QPushButton::clicked, this, &PassengerDialog::on_selectBtn_clicked);
     return btn;
 }
+
 void PassengerDialog::on_selectBtn_clicked()
 {
     QPushButton *senderBtn = qobject_cast<QPushButton*>(sender());
@@ -341,20 +482,153 @@ void PassengerDialog::on_selectBtn_clicked()
                                  "QPushButton:hover { background:#45a049; }");
     }
 
-    emit passengerSelected(getSelectedPassenger(row));
+    PassengerInfo info = getPassengerAtRow(row);
+    info.isValid = isSelected;
+    emit passengerSelected(info);
 }
-PassengerInfo PassengerDialog::getSelectedPassenger(int row)
+
+QList<PassengerInfo> PassengerDialog::getAllPassengers(int userId, const QString &connectionName)
 {
-    PassengerInfo info;
-    if (row == -1) row = ui->passengerTable->currentRow();
-    if (row < 0 || row >= ui->passengerTable->rowCount() ||
-        ui->passengerTable->item(row, 0)->text().contains("暂无")) {
-        return info;
+    QList<PassengerInfo> passengers;
+
+    QSqlDatabase db;
+    QString connName = connectionName.isEmpty() ? "PassengerDialog_Static" : connectionName;
+
+    if (QSqlDatabase::contains(connName)) {
+        db = QSqlDatabase::database(connName);
+    } else {
+        db = QSqlDatabase::addDatabase("QODBC", connName);
+        db.setDatabaseName("flightmanagesystem;CHARSET=utf8mb4;UID=root;PWD=20241402Ywl@");
+        db.setConnectOptions("SQL_ATTR_ODBC_VERSION=SQL_OV_ODBC3;CHARSET=utf8mb4");
     }
 
-    info.name = ui->passengerTable->item(row, 0)->text();
-    info.idCard = ui->passengerTable->item(row, 1)->text();
-    info.phone = ui->passengerTable->item(row, 2)->text();
-    info.isValid = m_rowSelectedMap.value(row, false);
-    return info;
+    if (!db.open()) {
+        return passengers;
+    }
+
+    QSqlQuery query(db);
+    const QString sql = "SELECT HEX(name) AS name_hex, id_card, phone FROM passenger WHERE user_id=?";
+    query.prepare(sql);
+    query.addBindValue(userId);
+
+    if (!query.exec()) {
+        db.close();
+        QSqlDatabase::removeDatabase(connName);
+        return passengers;
+    }
+
+    while (query.next()) {
+        PassengerInfo info;
+        const QString nameHex = query.value("name_hex").toString();
+        const QByteArray nameBytes = QByteArray::fromHex(nameHex.toUtf8());
+        info.name = QString::fromUtf8(nameBytes);
+        info.idCard = query.value("id_card").toString();
+        info.phone = query.value("phone").toString();
+        passengers.append(info);
+    }
+
+    db.close();
+    QSqlDatabase::removeDatabase(connName);
+
+    return passengers;
+}
+
+bool PassengerDialog::addPassenger(int userId, const PassengerInfo &info, const QString &connectionName)
+{
+    if (info.name.isEmpty() || info.idCard.isEmpty() || info.phone.isEmpty()) {
+        return false;
+    }
+
+    QSqlDatabase db;
+    QString connName = connectionName.isEmpty() ? "PassengerDialog_Static" : connectionName;
+
+    if (QSqlDatabase::contains(connName)) {
+        db = QSqlDatabase::database(connName);
+    } else {
+        db = QSqlDatabase::addDatabase("QODBC", connName);
+        db.setDatabaseName("flightmanagesystem;CHARSET=utf8mb4;UID=root;PWD=20241402Ywl@");
+        db.setConnectOptions("SQL_ATTR_ODBC_VERSION=SQL_OV_ODBC3;CHARSET=utf8mb4");
+    }
+
+    if (!db.open()) {
+        return false;
+    }
+
+    QSqlQuery createQuery(db);
+    const QString createSql = "CREATE TABLE IF NOT EXISTS passenger ("
+                              "id INT PRIMARY KEY AUTO_INCREMENT,"
+                              "user_id INT NOT NULL,"
+                              "name VARCHAR(50) NOT NULL,"
+                              "id_card VARCHAR(20) NOT NULL UNIQUE,"
+                              "phone VARCHAR(20) NOT NULL,"
+                              "FOREIGN KEY (user_id) REFERENCES user(id)"
+                              ") ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci";
+    createQuery.exec(createSql);
+
+    QSqlQuery query(db);
+    const QString sql = "INSERT INTO passenger (user_id, name, id_card, phone) VALUES (?, UNHEX(?), ?, ?)";
+    query.prepare(sql);
+    query.addBindValue(userId);
+    query.addBindValue(info.name.toUtf8().toHex());
+    query.addBindValue(info.idCard);
+    query.addBindValue(info.phone);
+
+    bool success = query.exec();
+
+    db.close();
+    QSqlDatabase::removeDatabase(connName);
+
+    return success;
+}
+
+bool PassengerDialog::deletePassenger(int userId, const QString &idCard, const QString &connectionName)
+{
+    if (idCard.isEmpty()) {
+        return false;
+    }
+
+    QSqlDatabase db;
+    QString connName = connectionName.isEmpty() ? "PassengerDialog_Static" : connectionName;
+
+    if (QSqlDatabase::contains(connName)) {
+        db = QSqlDatabase::database(connName);
+    } else {
+        db = QSqlDatabase::addDatabase("QODBC", connName);
+        db.setDatabaseName("flightmanagesystem;CHARSET=utf8mb4;UID=root;PWD=20241402Ywl@");
+        db.setConnectOptions("SQL_ATTR_ODBC_VERSION=SQL_OV_ODBC3;CHARSET=utf8mb4");
+    }
+
+    if (!db.open()) {
+        return false;
+    }
+
+    QSqlQuery query(db);
+    const QString sql = "DELETE FROM passenger WHERE id_card=? AND user_id=?";
+    query.prepare(sql);
+    query.addBindValue(idCard);
+    query.addBindValue(userId);
+
+    bool success = query.exec();
+
+    db.close();
+    QSqlDatabase::removeDatabase(connName);
+
+    return success;
+}
+
+PassengerInfo PassengerDialog::selectPassenger(int userId, QWidget *parent)
+{
+    PassengerDialog dialog(userId, true, parent);
+
+    PassengerInfo selectedInfo;
+
+    QObject::connect(&dialog, &PassengerDialog::passengerSelected, [&](const PassengerInfo &info) {
+        if (info.isValid) {
+            selectedInfo = info;
+        }
+    });
+
+    dialog.exec();
+
+    return selectedInfo;
 }
