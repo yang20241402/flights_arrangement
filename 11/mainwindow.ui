@@ -780,7 +780,7 @@ background-color: transparent;</string>
       <string/>
      </property>
      <property name="pixmap">
-      <pixmap resource="new_resources.qrc">:/newimages/newimages/1.png</pixmap>
+      <pixmap>:/newimages/newimages/1.png</pixmap>
      </property>
      <property name="scaledContents">
       <bool>true</bool>
@@ -799,7 +799,7 @@ background-color: transparent;</string>
       <string/>
      </property>
      <property name="pixmap">
-      <pixmap resource="new_resources.qrc">:/newimages/newimages/3.png</pixmap>
+      <pixmap>:/newimages/newimages/3.png</pixmap>
      </property>
      <property name="scaledContents">
       <bool>true</bool>
@@ -818,7 +818,7 @@ background-color: transparent;</string>
       <string/>
      </property>
      <property name="pixmap">
-      <pixmap resource="new_resources.qrc">:/newimages/newimages/2.png</pixmap>
+      <pixmap>:/newimages/newimages/2.png</pixmap>
      </property>
      <property name="scaledContents">
       <bool>true</bool>
@@ -1279,8 +1279,6 @@ setSpacing(8)；
    </slots>
   </customwidget>
  </customwidgets>
- <resources>
-  <include location="new_resources.qrc"/>
- </resources>
+ <resources/>
  <connections/>
 </ui>

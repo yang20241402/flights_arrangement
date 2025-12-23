@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>AdminSystemWidget</class>
+ <widget class="QWidget" name="AdminSystemWidget">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>657</width>
+    <height>415</height>
+   </rect>
+  </property>
+  <property name="styleSheet">
+   <string>
+QWidget {
+    font-family: &quot;Microsoft YaHei&quot;;
+    font-size: 14px;
+}
+#headerWidget {
+    background-color: #1f2d3d;
+}
+#titleLabel {
+    color: white;
+    font-size: 20px;
+    font-weight: bold;
+}
+#adminLabel {
+    color: #cfd9df;
+    font-size: 14px;
+}
+QTabWidget::pane {
+    border: none;
+}
+QTabBar::tab {
+    background: #f0f2f5;
+    padding: 10px 20px;
+    margin-right: 2px;
+    border-top-left-radius: 6px;
+    border-top-right-radius: 6px;
+}
+QTabBar::tab:selected {
+    background: white;
+    font-weight: bold;
+}
+QTableView {
+    border: none;
+    gridline-color: #e0e0e0;
+    selection-background-color: #cce5ff;
+}
+   </string>
+  </property>
+  <layout class="QVBoxLayout" stretch="0,1">
+   <item>
+    <layout class="QHBoxLayout">
+     <item>
+      <widget class="QLabel" name="titleLabel">
+       <property name="text">
+        <string>管理员系统</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <spacer name="horizontalSpacer">
+       <property name="orientation">
+        <enum>Qt::Orientation::Horizontal</enum>
+       </property>
+       <property name="sizeHint" stdset="0">
+        <size>
+         <width>40</width>
+         <height>20</height>
+        </size>
+       </property>
+      </spacer>
+     </item>
+     <item>
+      <widget class="QLabel" name="adminLabel">
+       <property name="text">
+        <string>当前管理员：admin</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </item>
+   <item>
+    <widget class="QTabWidget" name="tabWidget">
+     <property name="currentIndex">
+      <number>1</number>
+     </property>
+     <widget class="QWidget" name="userTab">
+      <attribute name="title">
+       <string>用户管理</string>
+      </attribute>
+      <layout class="QVBoxLayout">
+       <item>
+        <widget class="QTableView" name="userTableView"/>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QWidget" name="orderTab">
+      <attribute name="title">
+       <string>用户订单</string>
+      </attribute>
+      <layout class="QVBoxLayout">
+       <item>
+        <widget class="QTableView" name="orderTableView"/>
+       </item>
+      </layout>
+     </widget>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

@@ -1,0 +1,19 @@
+<RCC>
+    <qresource prefix="/images">
+        <file>images/1.png</file>
+        <file>images/2.png</file>
+        <file>images/3.png</file>
+        <file>images/11.png</file>
+        <file>images/background.png</file>
+        <file>images/logo1.png</file>
+        <file>images/airchina.jpg</file>
+        <file>images/arrow.jpg</file>
+        <file>images/chunqiu.jpg</file>
+        <file>images/eastern.jpg</file>
+        <file>images/hainan.jpg</file>
+        <file>images/jixiang.jpg</file>
+        <file>images/shenzhen.jpg</file>
+        <file>images/southern.jpg</file>
+        <file>images/xiamen.jpg</file>
+    </qresource>
+</RCC>

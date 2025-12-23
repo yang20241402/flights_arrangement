@@ -1,0 +1,106 @@
+{
+	"configurations" : 
+	[
+		{
+			"directories" : 
+			[
+				{
+					"build" : ".",
+					"hasInstallRule" : true,
+					"jsonFile" : "directory-.-Debug-41266c411621747a42f8.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.16"
+					},
+					"projectIndex" : 0,
+					"source" : ".",
+					"targetIndexes" : 
+					[
+						0,
+						1,
+						2,
+						3,
+						4,
+						5
+					]
+				}
+			],
+			"name" : "Debug",
+			"projects" : 
+			[
+				{
+					"directoryIndexes" : 
+					[
+						0
+					],
+					"name" : "PersonCenter",
+					"targetIndexes" : 
+					[
+						0,
+						1,
+						2,
+						3,
+						4,
+						5
+					]
+				}
+			],
+			"targets" : 
+			[
+				{
+					"directoryIndex" : 0,
+					"id" : "PassengerLib::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-PassengerLib-Debug-0201f89c252aedb7892c.json",
+					"name" : "PassengerLib",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "PassengerLib_autogen::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-PassengerLib_autogen-Debug-8c0480c754ca6fb2a1ab.json",
+					"name" : "PassengerLib_autogen",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "PassengerLib_autogen_timestamp_deps::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-PassengerLib_autogen_timestamp_deps-Debug-2ba2108e76970ac48449.json",
+					"name" : "PassengerLib_autogen_timestamp_deps",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "PersonCenter::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-PersonCenter-Debug-545c5a3ea8684669f45e.json",
+					"name" : "PersonCenter",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "PersonCenter_autogen::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-PersonCenter_autogen-Debug-18073e3b89ae3d0e0338.json",
+					"name" : "PersonCenter_autogen",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "PersonCenter_autogen_timestamp_deps::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-PersonCenter_autogen_timestamp_deps-Debug-a88b5f4284ecd7d4f606.json",
+					"name" : "PersonCenter_autogen_timestamp_deps",
+					"projectIndex" : 0
+				}
+			]
+		}
+	],
+	"kind" : "codemodel",
+	"paths" : 
+	{
+		"build" : "D:/QT/gitqt/flights_arrangement/PersonCenter/build/Desktop_Qt_6_9_3_MinGW_64_bit-Debug",
+		"source" : "D:/QT/gitqt/flights_arrangement/PersonCenter"
+	},
+	"version" : 
+	{
+		"major" : 2,
+		"minor" : 7
+	}
+}

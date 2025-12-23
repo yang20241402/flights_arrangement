@@ -28,6 +28,7 @@ public:
     QWidget *menuWidget;
     QHBoxLayout *horizontalLayout;
     QPushButton *allOrderBtn;
+    QPushButton *unpaidOrderBtn;
     QPushButton *upcomingOrderBtn;
     QPushButton *finishedOrderBtn;
     QPushButton *cancelledOrderBtn;
@@ -37,7 +38,7 @@ public:
     {
         if (MyOrderDialog->objectName().isEmpty())
             MyOrderDialog->setObjectName("MyOrderDialog");
-        MyOrderDialog->resize(450, 299);
+        MyOrderDialog->resize(462, 299);
         verticalLayout = new QVBoxLayout(MyOrderDialog);
         verticalLayout->setObjectName("verticalLayout");
         menuWidget = new QWidget(MyOrderDialog);
@@ -46,9 +47,7 @@ public:
         menuWidget->setMaximumSize(QSize(450, 40));
         menuWidget->setStyleSheet(QString::fromUtf8("color:#FF6700"));
         horizontalLayout = new QHBoxLayout(menuWidget);
-        horizontalLayout->setSpacing(4);
         horizontalLayout->setObjectName("horizontalLayout");
-        horizontalLayout->setContentsMargins(-1, 4, -1, 4);
         allOrderBtn = new QPushButton(menuWidget);
         allOrderBtn->setObjectName("allOrderBtn");
         QFont font;
@@ -58,6 +57,13 @@ public:
         allOrderBtn->setStyleSheet(QString::fromUtf8("background:transparent;color:#333;border:none;padding:4px 12px;"));
 
         horizontalLayout->addWidget(allOrderBtn);
+
+        unpaidOrderBtn = new QPushButton(menuWidget);
+        unpaidOrderBtn->setObjectName("unpaidOrderBtn");
+        unpaidOrderBtn->setFont(font);
+        unpaidOrderBtn->setStyleSheet(QString::fromUtf8("background:transparent;color:#333;border:none;padding:4px 12px;"));
+
+        horizontalLayout->addWidget(unpaidOrderBtn);
 
         upcomingOrderBtn = new QPushButton(menuWidget);
         upcomingOrderBtn->setObjectName("upcomingOrderBtn");
@@ -99,6 +105,7 @@ public:
         QTableWidgetItem *__qtablewidgetitem5 = new QTableWidgetItem();
         orderTable->setHorizontalHeaderItem(5, __qtablewidgetitem5);
         orderTable->setObjectName("orderTable");
+        orderTable->setEditTriggers(QAbstractItemView::EditTrigger::NoEditTriggers);
         orderTable->setColumnCount(6);
 
         verticalLayout->addWidget(orderTable);
@@ -113,6 +120,7 @@ public:
     {
         MyOrderDialog->setWindowTitle(QCoreApplication::translate("MyOrderDialog", "Dialog", nullptr));
         allOrderBtn->setText(QCoreApplication::translate("MyOrderDialog", "\345\205\250\351\203\250\350\256\242\345\215\225", nullptr));
+        unpaidOrderBtn->setText(QCoreApplication::translate("MyOrderDialog", "\346\234\252\346\224\257\344\273\230", nullptr));
         upcomingOrderBtn->setText(QCoreApplication::translate("MyOrderDialog", "\345\276\205\345\207\272\350\241\214", nullptr));
         finishedOrderBtn->setText(QCoreApplication::translate("MyOrderDialog", "\345\267\262\345\256\214\346\210\220", nullptr));
         cancelledOrderBtn->setText(QCoreApplication::translate("MyOrderDialog", "\345\267\262\345\217\226\346\266\210", nullptr));
