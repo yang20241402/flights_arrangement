@@ -14,6 +14,8 @@ class PersonCenterWindow;
 class FlightDetailWidget;
 class FlightSearchWidget;
 class ChangeTicketWidget;
+class AdminPanel;
+class FlightAdminPanel;
 
 /**
  * @brief 简单的界面管理器
@@ -35,7 +37,9 @@ public:
         RegisterView = 1,
         PasswordResetView = 2,
         UserCenterView = 3,
-        FlightSearchView = 4  // 航班搜索界面
+        FlightSearchView = 4,  // 航班搜索界面
+        AdminPanelView = 5,    // 管理员系统 - 用户管理
+        FlightAdminPanelView = 6  // 管理员系统 - 航班管理
     };
 
     // 初始化所有界面
@@ -58,6 +62,8 @@ public slots:
     void showPasswordResetView();
     void showUserCenterView();
     void showMainView();
+    void showAdminPanel();
+    void showFlightAdminPanel();
     
     // 处理登录成功
     void onLoginSuccessful(int userId);
@@ -91,7 +97,9 @@ private:
     RegisterWidget* m_registerWidget;
     PasswordResetWidget* m_passwordResetWidget;
     PersonCenterWindow* m_userCenterWidget;
-    FlightSearchWidget* m_flightSearchWidget;  // 航班搜索界面
+    FlightSearchWidget* m_flightSearchWidget;
+    AdminPanel* m_adminPanel;
+    FlightAdminPanel* m_flightAdminPanel;
     
     // 当前状态
     ViewType m_currentViewType;

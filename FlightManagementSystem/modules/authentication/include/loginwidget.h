@@ -42,18 +42,13 @@ private slots:
     void on_pushButton_clicked();
     void on_switchLabel_clicked();
     void on_pushButton_2_clicked();
-
     void on_getCode_clicked();
-
     void on_registerLabel_clicked();
-
     void on_label_9_clicked();
-
     void on_label_2_clicked();
-
     void on_label_4_clicked();
-
     void on_label_6_clicked();
+    void on_adminLoginBtn_clicked();  // 管理员登录按钮
 
 private:
     Ui::LoginWidget *ui;

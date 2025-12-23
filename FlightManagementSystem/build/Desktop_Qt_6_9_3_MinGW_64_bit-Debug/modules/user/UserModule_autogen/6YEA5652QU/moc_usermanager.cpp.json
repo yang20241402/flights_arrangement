@@ -1,0 +1,32 @@
+{
+    "classes": [
+        {
+            "className": "UserManager",
+            "lineNumber": 6,
+            "object": true,
+            "qualifiedClassName": "UserManager",
+            "signals": [
+                {
+                    "access": "public",
+                    "index": 0,
+                    "name": "userProfileLoaded",
+                    "returnType": "void"
+                },
+                {
+                    "access": "public",
+                    "index": 1,
+                    "name": "userProfileUpdated",
+                    "returnType": "void"
+                }
+            ],
+            "superClasses": [
+                {
+                    "access": "public",
+                    "name": "QObject"
+                }
+            ]
+        }
+    ],
+    "inputFile": "usermanager.h",
+    "outputRevision": 69
+}

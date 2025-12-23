@@ -1,0 +1,396 @@
+[
+    {
+        "classes": [
+            {
+                "className": "EllipsisDelegate",
+                "lineNumber": 11,
+                "object": true,
+                "qualifiedClassName": "EllipsisDelegate",
+                "superClasses": [
+                    {
+                        "access": "public",
+                        "name": "QStyledItemDelegate"
+                    }
+                ]
+            },
+            {
+                "className": "mymsgdialog",
+                "lineNumber": 30,
+                "object": true,
+                "qualifiedClassName": "mymsgdialog",
+                "slots": [
+                    {
+                        "access": "private",
+                        "index": 0,
+                        "name": "on_allMsgBtn_clicked",
+                        "returnType": "void"
+                    },
+                    {
+                        "access": "private",
+                        "index": 1,
+                        "name": "on_unreadMsgBtn_clicked",
+                        "returnType": "void"
+                    },
+                    {
+                        "access": "private",
+                        "index": 2,
+                        "name": "on_markReadBtn_clicked",
+                        "returnType": "void"
+                    },
+                    {
+                        "access": "private",
+                        "index": 3,
+                        "name": "on_deleteBtn_clicked",
+                        "returnType": "void"
+                    },
+                    {
+                        "access": "private",
+                        "arguments": [
+                            {
+                                "name": "row",
+                                "type": "int"
+                            },
+                            {
+                                "name": "column",
+                                "type": "int"
+                            }
+                        ],
+                        "index": 4,
+                        "name": "onMsgCellDoubleClicked",
+                        "returnType": "void"
+                    }
+                ],
+                "superClasses": [
+                    {
+                        "access": "public",
+                        "name": "QDialog"
+                    }
+                ]
+            }
+        ],
+        "inputFile": "mymsgdialog.h",
+        "outputRevision": 69
+    },
+    {
+        "classes": [
+            {
+                "className": "MyOrderDialog",
+                "lineNumber": 14,
+                "object": true,
+                "qualifiedClassName": "MyOrderDialog",
+                "slots": [
+                    {
+                        "access": "private",
+                        "index": 0,
+                        "name": "on_allOrderBtn_clicked",
+                        "returnType": "void"
+                    },
+                    {
+                        "access": "private",
+                        "index": 1,
+                        "name": "onPayOrderClicked",
+                        "returnType": "void"
+                    },
+                    {
+                        "access": "private",
+                        "index": 2,
+                        "name": "on_upcomingOrderBtn_clicked",
+                        "returnType": "void"
+                    },
+                    {
+                        "access": "private",
+                        "index": 3,
+                        "name": "on_finishedOrderBtn_clicked",
+                        "returnType": "void"
+                    },
+                    {
+                        "access": "private",
+                        "index": 4,
+                        "name": "on_cancelledOrderBtn_clicked",
+                        "returnType": "void"
+                    },
+                    {
+                        "access": "private",
+                        "index": 5,
+                        "name": "onCancelOrderClicked",
+                        "returnType": "void"
+                    },
+                    {
+                        "access": "private",
+                        "index": 6,
+                        "name": "on_unpaidOrderBtn_clicked",
+                        "returnType": "void"
+                    },
+                    {
+                        "access": "private",
+                        "index": 7,
+                        "name": "onChangeOrderClicked",
+                        "returnType": "void"
+                    }
+                ],
+                "superClasses": [
+                    {
+                        "access": "public",
+                        "name": "QDialog"
+                    }
+                ]
+            }
+        ],
+        "inputFile": "myorderdialog.h",
+        "outputRevision": 69
+    },
+    {
+        "classes": [
+            {
+                "className": "PassengerDialog",
+                "lineNumber": 29,
+                "object": true,
+                "qualifiedClassName": "PassengerDialog",
+                "signals": [
+                    {
+                        "access": "public",
+                        "arguments": [
+                            {
+                                "name": "info",
+                                "type": "PassengerInfo"
+                            }
+                        ],
+                        "index": 0,
+                        "name": "passengerSelected",
+                        "returnType": "void"
+                    },
+                    {
+                        "access": "public",
+                        "index": 1,
+                        "name": "dataChanged",
+                        "returnType": "void"
+                    },
+                    {
+                        "access": "public",
+                        "arguments": [
+                            {
+                                "name": "info",
+                                "type": "PassengerInfo"
+                            }
+                        ],
+                        "index": 2,
+                        "name": "paymentCompleted",
+                        "returnType": "void"
+                    }
+                ],
+                "slots": [
+                    {
+                        "access": "private",
+                        "index": 3,
+                        "name": "on_addBtn_clicked",
+                        "returnType": "void"
+                    },
+                    {
+                        "access": "private",
+                        "index": 4,
+                        "name": "on_editBtn_clicked",
+                        "returnType": "void"
+                    },
+                    {
+                        "access": "private",
+                        "index": 5,
+                        "name": "on_deleteBtn_clicked",
+                        "returnType": "void"
+                    },
+                    {
+                        "access": "private",
+                        "index": 6,
+                        "name": "on_selectBtn_clicked",
+                        "returnType": "void"
+                    }
+                ],
+                "superClasses": [
+                    {
+                        "access": "public",
+                        "name": "QDialog"
+                    }
+                ]
+            }
+        ],
+        "inputFile": "passengerdialog.h",
+        "outputRevision": 69
+    },
+    {
+        "classes": [
+            {
+                "className": "PersonCenterWindow",
+                "lineNumber": 14,
+                "object": true,
+                "qualifiedClassName": "PersonCenterWindow",
+                "slots": [
+                    {
+                        "access": "private",
+                        "index": 0,
+                        "name": "on_myOrderBtn_clicked",
+                        "returnType": "void"
+                    },
+                    {
+                        "access": "private",
+                        "index": 1,
+                        "name": "on_commonInfoBtn_clicked",
+                        "returnType": "void"
+                    },
+                    {
+                        "access": "private",
+                        "index": 2,
+                        "name": "on_myPointsBtn_clicked",
+                        "returnType": "void"
+                    },
+                    {
+                        "access": "private",
+                        "index": 3,
+                        "name": "on_myMsgBtn_clicked",
+                        "returnType": "void"
+                    },
+                    {
+                        "access": "private",
+                        "index": 4,
+                        "name": "on_editBtn_clicked",
+                        "returnType": "void"
+                    },
+                    {
+                        "access": "private",
+                        "index": 5,
+                        "name": "showMyOrders",
+                        "returnType": "void"
+                    },
+                    {
+                        "access": "private",
+                        "index": 6,
+                        "name": "showPassengerInfo",
+                        "returnType": "void"
+                    },
+                    {
+                        "access": "private",
+                        "index": 7,
+                        "name": "showMyPoints",
+                        "returnType": "void"
+                    },
+                    {
+                        "access": "private",
+                        "index": 8,
+                        "name": "showMyMessages",
+                        "returnType": "void"
+                    },
+                    {
+                        "access": "private",
+                        "index": 9,
+                        "name": "showProfileEdit",
+                        "returnType": "void"
+                    }
+                ],
+                "superClasses": [
+                    {
+                        "access": "public",
+                        "name": "QMainWindow"
+                    }
+                ]
+            }
+        ],
+        "inputFile": "personcenterwindow.h",
+        "outputRevision": 69
+    },
+    {
+        "classes": [
+            {
+                "className": "PointsDialog",
+                "lineNumber": 13,
+                "object": true,
+                "qualifiedClassName": "PointsDialog",
+                "slots": [
+                    {
+                        "access": "private",
+                        "index": 0,
+                        "name": "on_refreshBtn_clicked",
+                        "returnType": "void"
+                    }
+                ],
+                "superClasses": [
+                    {
+                        "access": "public",
+                        "name": "QDialog"
+                    }
+                ]
+            }
+        ],
+        "inputFile": "pointsdialog.h",
+        "outputRevision": 69
+    },
+    {
+        "classes": [
+            {
+                "className": "ProfileEditWidget",
+                "lineNumber": 16,
+                "object": true,
+                "qualifiedClassName": "ProfileEditWidget",
+                "signals": [
+                    {
+                        "access": "public",
+                        "index": 0,
+                        "name": "profileUpdated",
+                        "returnType": "void"
+                    }
+                ],
+                "slots": [
+                    {
+                        "access": "private",
+                        "index": 1,
+                        "name": "on_btnSave_clicked",
+                        "returnType": "void"
+                    },
+                    {
+                        "access": "private",
+                        "index": 2,
+                        "name": "on_btnCancel_clicked",
+                        "returnType": "void"
+                    }
+                ],
+                "superClasses": [
+                    {
+                        "access": "public",
+                        "name": "QWidget"
+                    }
+                ]
+            }
+        ],
+        "inputFile": "profileeditwidget.h",
+        "outputRevision": 69
+    },
+    {
+        "classes": [
+            {
+                "className": "UserManager",
+                "lineNumber": 6,
+                "object": true,
+                "qualifiedClassName": "UserManager",
+                "signals": [
+                    {
+                        "access": "public",
+                        "index": 0,
+                        "name": "userProfileLoaded",
+                        "returnType": "void"
+                    },
+                    {
+                        "access": "public",
+                        "index": 1,
+                        "name": "userProfileUpdated",
+                        "returnType": "void"
+                    }
+                ],
+                "superClasses": [
+                    {
+                        "access": "public",
+                        "name": "QObject"
+                    }
+                ]
+            }
+        ],
+        "inputFile": "usermanager.h",
+        "outputRevision": 69
+    }
+]

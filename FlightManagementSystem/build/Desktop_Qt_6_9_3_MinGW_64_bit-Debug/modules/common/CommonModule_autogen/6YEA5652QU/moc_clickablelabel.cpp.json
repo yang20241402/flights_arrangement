@@ -1,0 +1,26 @@
+{
+    "classes": [
+        {
+            "className": "ClickableLabel",
+            "lineNumber": 7,
+            "object": true,
+            "qualifiedClassName": "ClickableLabel",
+            "signals": [
+                {
+                    "access": "public",
+                    "index": 0,
+                    "name": "clicked",
+                    "returnType": "void"
+                }
+            ],
+            "superClasses": [
+                {
+                    "access": "public",
+                    "name": "QLabel"
+                }
+            ]
+        }
+    ],
+    "inputFile": "clickablelabel.h",
+    "outputRevision": 69
+}

@@ -9,14 +9,20 @@ qt_add_executable(FlightManagementSystem
     flightsearchwidget.cpp
     flightsearchwidget.h
     flightsearchwidget.ui
+    adminpanel.cpp
+    adminpanel.h
+    flightadminpanel.cpp
+    flightadminpanel.h
 )
 
 # 添加 include 路径
 target_include_directories(FlightManagementSystem
     PRIVATE
-        ${CMAKE_CURRENT_SOURCE_DIR}/modules/flight/include
-        ${CMAKE_CURRENT_SOURCE_DIR}/modules/user/include
-        ${CMAKE_CURRENT_SOURCE_DIR}/modules/common/include
+        ${CMAKE_SOURCE_DIR}/modules/flight/include
+        ${CMAKE_SOURCE_DIR}/modules/user/include
+        ${CMAKE_SOURCE_DIR}/modules/common/include
+        ${CMAKE_SOURCE_DIR}/modules/authentication/include
+        ${CMAKE_SOURCE_DIR}/modules/database/include
 )
 
 # Add resources
@@ -31,11 +37,11 @@ target_link_libraries(FlightManagementSystem
         Qt6::Widgets
         Qt6::Sql
         Qt6::Network
+        DatabaseModule
+        CommonModule
         AuthenticationModule
         FlightModule
         UserModule
-        DatabaseModule
-        CommonModule
 )
 
 set_target_properties(FlightManagementSystem PROPERTIES

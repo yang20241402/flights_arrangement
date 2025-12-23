@@ -8,9 +8,16 @@ CREATE TABLE IF NOT EXISTS `user` (
   `id` int NOT NULL AUTO_INCREMENT COMMENT '用户ID（自增主键）',
   `username` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '用户名',
   `password` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '密码',
+  `phone` varchar(20) COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT '手机号',
+  `email` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT '邮箱',
   PRIMARY KEY (`id`),
   UNIQUE KEY `username` (`username`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='用户表';
+
+-- 如果表已存在，添加缺失的列
+ALTER TABLE `user` 
+ADD COLUMN IF NOT EXISTS `phone` varchar(20) COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT '手机号' AFTER `password`,
+ADD COLUMN IF NOT EXISTS `email` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT '邮箱' AFTER `phone`;
 
 -- 确保 admin_info 表存在且结构正确
 CREATE TABLE IF NOT EXISTS `admin_info` (

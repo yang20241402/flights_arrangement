@@ -79,7 +79,7 @@
     <string/>
    </property>
    <property name="pixmap">
-    <pixmap resource="../../../new_resources.qrc">:/newimages/newimages/background.png</pixmap>
+    <pixmap>:/newimages/newimages/background.png</pixmap>
    </property>
    <property name="scaledContents">
     <bool>true</bool>
@@ -106,7 +106,7 @@ box-shadow: 0 0 20px rgba(0,0,0,0.1); </string>
     <property name="geometry">
      <rect>
       <x>30</x>
-      <y>330</y>
+      <y>360</y>
       <width>71</width>
       <height>16</height>
      </rect>
@@ -118,82 +118,11 @@ box-shadow: 0 0 20px rgba(0,0,0,0.1); </string>
      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; color:#00aaff;&quot;&gt;验证码登录&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
     </property>
    </widget>
-   <widget class="QRadioButton" name="radioButton">
-    <property name="geometry">
-     <rect>
-      <x>30</x>
-      <y>280</y>
-      <width>124</width>
-      <height>21</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>阅读并同意 </string>
-    </property>
-   </widget>
-   <widget class="ClickableLabel" name="label_4">
-    <property name="geometry">
-     <rect>
-      <x>120</x>
-      <y>280</y>
-      <width>44</width>
-      <height>16</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:8pt; color:#00aaff;&quot;&gt;服务协议&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-    </property>
-   </widget>
-   <widget class="QLabel" name="label_5">
-    <property name="geometry">
-     <rect>
-      <x>170</x>
-      <y>280</y>
-      <width>16</width>
-      <height>16</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:8pt; color:#000000;&quot;&gt;和&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-    </property>
-   </widget>
-   <widget class="ClickableLabel" name="label_6">
-    <property name="geometry">
-     <rect>
-      <x>180</x>
-      <y>280</y>
-      <width>88</width>
-      <height>16</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:8pt; color:#00aaff;&quot;&gt;个人信息保护政策&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-    </property>
-   </widget>
-   <widget class="QLabel" name="tip4Label">
-    <property name="enabled">
-     <bool>true</bool>
-    </property>
-    <property name="geometry">
-     <rect>
-      <x>30</x>
-      <y>300</y>
-      <width>231</width>
-      <height>16</height>
-     </rect>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">color: red; font-size: 12px; visibility: hidden;</string>
-    </property>
-    <property name="text">
-     <string>请阅读并同意用户协议和隐私政策！</string>
-    </property>
-   </widget>
    <widget class="ClickableLabel" name="registerLabel">
     <property name="geometry">
      <rect>
       <x>250</x>
-      <y>330</y>
+      <y>360</y>
       <width>71</width>
       <height>16</height>
      </rect>
@@ -332,6 +261,45 @@ QPushButton:disabled {
        <string>登录</string>
       </property>
      </widget>
+     <widget class="QPushButton" name="adminLoginBtn">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>260</y>
+        <width>271</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QPushButton {
+    border: 2px solid #2196F3; 
+    border-radius: 4px;
+    background-color: #2196F3;
+    color: white;
+    font-size: 14px;
+    height: 44px;
+}
+
+QPushButton:hover {
+    border-color: #1976D2;
+    background-color: #1976D2;
+}
+
+QPushButton:pressed {
+    border-color: #0D47A1;
+    background-color: #0D47A1;
+}
+
+QPushButton:disabled {
+    border-color: #cccccc;
+    background-color: #cccccc;
+    color: #ffffff;
+}</string>
+      </property>
+      <property name="text">
+       <string>管理员登录</string>
+      </property>
+     </widget>
      <widget class="QLineEdit" name="userEdit">
       <property name="geometry">
        <rect>
@@ -369,6 +337,90 @@ QLineEdit:focus {
        <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:16pt; font-weight:700; color:#000000;&quot;&gt;账号密码登录&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
       </property>
      </widget>
+     <widget class="QRadioButton" name="radioButton">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>300</y>
+        <width>124</width>
+        <height>21</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>阅读并同意 </string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="tip4Label">
+      <property name="enabled">
+       <bool>true</bool>
+      </property>
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>200</y>
+        <width>231</width>
+        <height>16</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">color: red; font-size: 12px; visibility: hidden;</string>
+      </property>
+      <property name="text">
+       <string>请阅读并同意用户协议和隐私政策！</string>
+      </property>
+     </widget>
+     <widget class="ClickableLabel" name="label_4">
+      <property name="geometry">
+       <rect>
+        <x>90</x>
+        <y>300</y>
+        <width>44</width>
+        <height>16</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:8pt; color:#00aaff;&quot;&gt;服务协议&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+      </property>
+     </widget>
+     <widget class="ClickableLabel" name="label_6">
+      <property name="geometry">
+       <rect>
+        <x>160</x>
+        <y>300</y>
+        <width>88</width>
+        <height>16</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:8pt; color:#00aaff;&quot;&gt;个人信息保护政策&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_5">
+      <property name="geometry">
+       <rect>
+        <x>140</x>
+        <y>300</y>
+        <width>16</width>
+        <height>16</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:8pt; color:#000000;&quot;&gt;和&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+      </property>
+     </widget>
+     <zorder>tip2Label</zorder>
+     <zorder>tip1Label</zorder>
+     <zorder>pwdEdit</zorder>
+     <zorder>label_9</zorder>
+     <zorder>pushButton</zorder>
+     <zorder>adminLoginBtn</zorder>
+     <zorder>userEdit</zorder>
+     <zorder>label_3</zorder>
+     <zorder>radioButton</zorder>
+     <zorder>label_4</zorder>
+     <zorder>label_6</zorder>
+     <zorder>label_5</zorder>
+     <zorder>tip4Label</zorder>
     </widget>
     <widget class="QWidget" name="page_2">
      <widget class="QLabel" name="label_7">
@@ -529,11 +581,6 @@ QPushButton:disabled {
    </widget>
    <zorder>loginStackWidget</zorder>
    <zorder>switchLabel</zorder>
-   <zorder>radioButton</zorder>
-   <zorder>label_4</zorder>
-   <zorder>label_5</zorder>
-   <zorder>label_6</zorder>
-   <zorder>tip4Label</zorder>
    <zorder>registerLabel</zorder>
   </widget>
   <zorder>bottomImgLabel_2</zorder>

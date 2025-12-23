@@ -1,0 +1,4 @@
+D:/QT/gitqt/flights_arrangement/FlightManagementSystem/build/Desktop_Qt_6_9_3_MinGW_64_bit-Debug/modules/flight/FlightModule_autogen/include/../6YEA5652QU/moc_changeticketwidget.cpp.json
+D:/QT/gitqt/flights_arrangement/FlightManagementSystem/build/Desktop_Qt_6_9_3_MinGW_64_bit-Debug/modules/flight/FlightModule_autogen/include/../6YEA5652QU/moc_flightdetailwidget.cpp.json
+D:/QT/gitqt/flights_arrangement/FlightManagementSystem/build/Desktop_Qt_6_9_3_MinGW_64_bit-Debug/modules/flight/FlightModule_autogen/include/../6YEA5652QU/moc_flightitemwidget.cpp.json
+D:/QT/gitqt/flights_arrangement/FlightManagementSystem/build/Desktop_Qt_6_9_3_MinGW_64_bit-Debug/modules/flight/FlightModule_autogen/include/../6YEA5652QU/moc_flightmanager.cpp.json

@@ -1,0 +1,44 @@
+{
+    "classes": [
+        {
+            "className": "AuthManager",
+            "lineNumber": 6,
+            "object": true,
+            "qualifiedClassName": "AuthManager",
+            "signals": [
+                {
+                    "access": "public",
+                    "index": 0,
+                    "name": "loginSuccessful",
+                    "returnType": "void"
+                },
+                {
+                    "access": "public",
+                    "index": 1,
+                    "name": "loginFailed",
+                    "returnType": "void"
+                },
+                {
+                    "access": "public",
+                    "index": 2,
+                    "name": "registrationSuccessful",
+                    "returnType": "void"
+                },
+                {
+                    "access": "public",
+                    "index": 3,
+                    "name": "registrationFailed",
+                    "returnType": "void"
+                }
+            ],
+            "superClasses": [
+                {
+                    "access": "public",
+                    "name": "QObject"
+                }
+            ]
+        }
+    ],
+    "inputFile": "authmanager.h",
+    "outputRevision": 69
+}

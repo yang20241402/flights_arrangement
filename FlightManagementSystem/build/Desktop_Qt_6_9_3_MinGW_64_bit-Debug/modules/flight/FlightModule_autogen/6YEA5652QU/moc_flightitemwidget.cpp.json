@@ -1,0 +1,40 @@
+{
+    "classes": [
+        {
+            "className": "FlightItemWidget",
+            "lineNumber": 14,
+            "object": true,
+            "qualifiedClassName": "FlightItemWidget",
+            "signals": [
+                {
+                    "access": "public",
+                    "arguments": [
+                        {
+                            "name": "info",
+                            "type": "FlightInfo"
+                        }
+                    ],
+                    "index": 0,
+                    "name": "clicked",
+                    "returnType": "void"
+                }
+            ],
+            "slots": [
+                {
+                    "access": "private",
+                    "index": 1,
+                    "name": "showFlightDetail",
+                    "returnType": "void"
+                }
+            ],
+            "superClasses": [
+                {
+                    "access": "public",
+                    "name": "QWidget"
+                }
+            ]
+        }
+    ],
+    "inputFile": "flightitemwidget.h",
+    "outputRevision": 69
+}

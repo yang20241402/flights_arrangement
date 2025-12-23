@@ -99,69 +99,94 @@ void LoginWidget::on_pushButton_clicked()
         return;
     }
 
-    if(ui->checkBox->isChecked()){
-        QString sql = "SELECT password FROM admin_info WHERE username = :uname LIMIT 1";
+    // 普通用户登录
+    // 转义用户名中的单引号，防止SQL注入
+    QString escapedUsername = username;
+    escapedUsername.replace("'", "''");
+    
+    // 注意：数据库中的字段名是 id，不是 user_id
+    // 并且 user 表只有 username 字段，没有 phone 和 email
+    QString sql = QString("SELECT id, password FROM user WHERE username = '%1' LIMIT 1")
+                      .arg(escapedUsername);
 
-        QSqlQuery query(db);
-        query.prepare(sql);
-        query.bindValue(":uname", username);
+    QSqlQuery query(db);
+    
+    qDebug() << "执行SQL：" << sql;
 
-        if (!query.exec()) {
-            QMessageBox::critical(this, "查询失败", "数据库错误：" + query.lastError().text());
+    if (!query.exec(sql)) {
+        qDebug() << "查询失败：" << query.lastError().text();
+        QMessageBox::critical(this, "查询失败", "数据库错误：" + query.lastError().text());
+        return ;
+    }
+
+    if (query.next()) {
+        int userId = query.value("id").toInt();  // 字段名是 id
+        QString dbPwd = query.value("password").toString();
+
+        if (password == dbPwd) {
+            qDebug() << "用户登录成功，用户ID：" << userId;
+            emit loginSuccessful(userId);  // 传递用户ID
             return ;
-        }
-
-        if (query.next()) {
-            QString dbPwd = query.value("password").toString();
-
-            if (password == dbPwd) {
-                QMessageBox::information(this,"登录提示","管理员登录成功");
-                emit adminLoginSuccessful();
-                return ;
-            } else {
-                QMessageBox::critical(this, "登录提示", "管理员密码错误！");
-                return ;
-            }
         } else {
-            QMessageBox::critical(this, "登录提示", "管理员账号不存在！");
+            QMessageBox::critical(this, "登录提示", "登录失败，用户名或密码错误！");
             return ;
         }
-    }else{
-        // 转义用户名中的单引号，防止SQL注入
-        QString escapedUsername = username;
-        escapedUsername.replace("'", "''");
-        
-        // 注意：数据库中的字段名是 id，不是 user_id
-        // 并且 user 表只有 username 字段，没有 phone 和 email
-        QString sql = QString("SELECT id, password FROM user WHERE username = '%1' LIMIT 1")
-                          .arg(escapedUsername);
+    } else {
+        QMessageBox::critical(this, "登录提示", "登录失败，该账号不存在！");
+        return ;
+    }
+}
 
-        QSqlQuery query(db);
-        
-        qDebug() << "执行SQL：" << sql;
+// 新增：管理员登录按钮槽函数
+void LoginWidget::on_adminLoginBtn_clicked()
+{
+    QString username = ui->userEdit->text().trimmed();
+    QString password = ui->pwdEdit->text().trimmed();
 
-        if (!query.exec(sql)) {
-            qDebug() << "查询失败：" << query.lastError().text();
-            QMessageBox::critical(this, "查询失败", "数据库错误：" + query.lastError().text());
+    if (username.isEmpty()) {
+        QMessageBox::warning(this, "提示", "请输入管理员账号");
+        return;
+    }
+
+    if (password.isEmpty()) {
+        QMessageBox::warning(this, "提示", "请输入管理员密码");
+        return;
+    }
+
+    // 获取数据库连接
+    DatabaseManager* dbManager = DatabaseManager::instance();
+    QSqlDatabase db = dbManager->getDatabase();
+    
+    if (!db.isValid()) {
+        QMessageBox::critical(this, "数据库错误", "数据库连接无效");
+        return;
+    }
+
+    QString sql = "SELECT password FROM admin_info WHERE username = :uname LIMIT 1";
+
+    QSqlQuery query(db);
+    query.prepare(sql);
+    query.bindValue(":uname", username);
+
+    if (!query.exec()) {
+        QMessageBox::critical(this, "查询失败", "数据库错误：" + query.lastError().text());
+        return ;
+    }
+
+    if (query.next()) {
+        QString dbPwd = query.value("password").toString();
+
+        if (password == dbPwd) {
+            QMessageBox::information(this,"登录提示","管理员登录成功");
+            emit adminLoginSuccessful();
             return ;
-        }
-
-        if (query.next()) {
-            int userId = query.value("id").toInt();  // 字段名是 id
-            QString dbPwd = query.value("password").toString();
-
-            if (password == dbPwd) {
-                qDebug() << "用户登录成功，用户ID：" << userId;
-                emit loginSuccessful(userId);  // 传递用户ID
-                return ;
-            } else {
-                QMessageBox::critical(this, "登录提示", "登录失败，用户名或密码错误！");
-                return ;
-            }
         } else {
-            QMessageBox::critical(this, "登录提示", "登录失败，该账号不存在！");
+            QMessageBox::critical(this, "登录提示", "管理员密码错误！");
             return ;
         }
+    } else {
+        QMessageBox::critical(this, "登录提示", "管理员账号不存在！");
+        return ;
     }
 }
 

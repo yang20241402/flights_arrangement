@@ -5,6 +5,8 @@
 #include "personcenterwindow.h"
 #include "flightsearchwidget.h"
 #include "changeticketwidget.h"
+#include "adminpanel.h"
+#include "flightadminpanel.h"
 #include <QMessageBox>
 #include <QDebug>
 #include <QMainWindow>
@@ -17,6 +19,8 @@ ViewManager::ViewManager(QStackedWidget* stackedWidget, QObject *parent)
     , m_passwordResetWidget(nullptr)
     , m_userCenterWidget(nullptr)
     , m_flightSearchWidget(nullptr)
+    , m_adminPanel(nullptr)
+    , m_flightAdminPanel(nullptr)
     , m_currentViewType(LoginView)
     , m_currentUserId(-1)
 {
@@ -57,6 +61,14 @@ void ViewManager::initializeViews()
     m_flightSearchWidget = new FlightSearchWidget();
     m_stackedWidget->addWidget(m_flightSearchWidget);  // index 4
     
+    // 创建管理员系统界面 - 用户管理
+    m_adminPanel = new AdminPanel();
+    m_stackedWidget->addWidget(m_adminPanel);  // index 5
+    
+    // 创建管理员系统界面 - 航班管理
+    m_flightAdminPanel = new FlightAdminPanel();
+    m_stackedWidget->addWidget(m_flightAdminPanel);  // index 6
+    
     // 默认显示登录界面
     m_stackedWidget->setCurrentIndex(LoginView);
     m_currentViewType = LoginView;
@@ -68,12 +80,12 @@ void ViewManager::connectViewSignals()
     if (m_loginWidget) {
         connect(m_loginWidget, &LoginWidget::loginSuccessful, 
                 this, &ViewManager::onLoginSuccessful);
-        connect(m_loginWidget, &LoginWidget::adminLoginSuccessful, 
-                this, &ViewManager::onAdminLoginSuccessful);
         connect(m_loginWidget, &LoginWidget::registerRequested, 
                 this, &ViewManager::showRegisterView);
         connect(m_loginWidget, &LoginWidget::passwordResetRequested, 
                 this, &ViewManager::showPasswordResetView);
+        connect(m_loginWidget, &LoginWidget::adminLoginSuccessful,
+                this, &ViewManager::onAdminLoginSuccessful);
     }
     
     // 连接注册界面信号
@@ -90,6 +102,19 @@ void ViewManager::connectViewSignals()
                 this, &ViewManager::onPasswordResetCompleted);
         connect(m_passwordResetWidget, &PasswordResetWidget::backToLoginRequested, 
                 this, &ViewManager::showLoginView);
+    }
+    
+    // 连接管理员面板切换信号
+    if (m_adminPanel) {
+        connect(m_adminPanel, &AdminPanel::switchToFlightManagement,
+                this, &ViewManager::showFlightAdminPanel);
+        qDebug() << "ViewManager: 已连接 AdminPanel 的 switchToFlightManagement 信号";
+    }
+    
+    if (m_flightAdminPanel) {
+        connect(m_flightAdminPanel, &FlightAdminPanel::switchToUserManagement,
+                this, &ViewManager::showAdminPanel);
+        qDebug() << "ViewManager: 已连接 FlightAdminPanel 的 switchToUserManagement 信号";
     }
 }
 
@@ -129,6 +154,10 @@ void ViewManager::showView(ViewType viewType, const QVariantMap& params)
             m_flightSearchWidget->setUserId(m_currentUserId);
         }
         break;
+    case AdminPanelView:
+    case FlightAdminPanelView:
+        // 管理员系统不需要用户ID
+        break;
     default:
         break;
     }
@@ -148,11 +177,25 @@ void ViewManager::showView(ViewType viewType, const QVariantMap& params)
             break;
         case UserCenterView:
         case FlightSearchView:
-            // 其他界面使用较大尺寸
+            // 用户中心和航班搜索界面
             mainWindow->resize(1200, 800);
             mainWindow->setMinimumSize(800, 600);
             mainWindow->setMaximumSize(QWIDGETSIZE_MAX, QWIDGETSIZE_MAX);
             m_stackedWidget->setGeometry(0, 0, 1200, 800);
+            break;
+        case AdminPanelView:
+            // 用户管理界面 - 5列表格
+            mainWindow->resize(1100, 750);
+            mainWindow->setMinimumSize(1100, 750);
+            mainWindow->setMaximumSize(QWIDGETSIZE_MAX, QWIDGETSIZE_MAX);
+            m_stackedWidget->setGeometry(0, 0, 1100, 750);
+            break;
+        case FlightAdminPanelView:
+            // 航班管理界面 - 10列表格
+            mainWindow->resize(1400, 850);
+            mainWindow->setMinimumSize(1400, 850);
+            mainWindow->setMaximumSize(QWIDGETSIZE_MAX, QWIDGETSIZE_MAX);
+            m_stackedWidget->setGeometry(0, 0, 1400, 850);
             break;
         }
     }
@@ -230,14 +273,6 @@ void ViewManager::onLoginSuccessful(int userId)
     QMessageBox::information(nullptr, "登录成功", QString("欢迎使用航班管理系统！\n用户ID：%1").arg(userId));
 }
 
-void ViewManager::onAdminLoginSuccessful()
-{
-    // 管理员登录成功，可以跳转到管理界面
-    // 暂时跳转到航班搜索界面
-    setCurrentUserId(-1);  // 管理员使用特殊ID
-    showView(FlightSearchView);
-}
-
 void ViewManager::onRegistrationCompleted()
 {
     QMessageBox::information(nullptr, "注册成功", "注册成功，请登录");
@@ -250,6 +285,24 @@ void ViewManager::onPasswordResetCompleted()
     showView(LoginView);
 }
 
+void ViewManager::showAdminPanel()
+{
+    showView(AdminPanelView);
+}
+
+void ViewManager::showFlightAdminPanel()
+{
+    qDebug() << "ViewManager: showFlightAdminPanel 被调用";
+    showView(FlightAdminPanelView);
+}
+
+void ViewManager::onAdminLoginSuccessful()
+{
+    qDebug() << "ViewManager: 管理员登录成功";
+    
+    // 管理员登录成功后跳转到用户管理界面
+    showView(AdminPanelView);
+}
 
 void ViewManager::onOpenChangeTicketPage(const QString& departCity, const QString& arriveCity, 
                                          const QString& flightNo, const QDate& flightDate)

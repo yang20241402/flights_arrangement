@@ -1,0 +1,23 @@
+<RCC>
+    <qresource prefix="/newimages">
+        <file>newimages/11.png</file>
+        <file>newimages/background.png</file>
+        <file>newimages/logo1.png</file>
+        <file>newimages/1.png</file>
+        <file>newimages/2.png</file>
+        <file>newimages/3.png</file>
+        <file>newimages/arrow.jpg</file>
+        <file>newimages/airchina.jpg</file>
+        <file>newimages/chunqiu.jpg</file>
+        <file>newimages/eastern.jpg</file>
+        <file>newimages/hainan.jpg</file>
+        <file>newimages/jixiang.jpg</file>
+        <file>newimages/shenzhen.jpg</file>
+        <file>newimages/southern.jpg</file>
+        <file>newimages/xiamen.jpg</file>
+        <file>newimages/常用信息.png</file>
+        <file>newimages/我的订单 .png</file>
+        <file>newimages/我的积分.png</file>
+        <file>newimages/我的消息.jpg</file>
+    </qresource>
+</RCC>

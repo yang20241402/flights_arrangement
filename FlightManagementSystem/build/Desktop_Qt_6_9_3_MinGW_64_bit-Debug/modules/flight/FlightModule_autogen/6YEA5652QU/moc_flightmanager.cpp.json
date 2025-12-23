@@ -1,0 +1,44 @@
+{
+    "classes": [
+        {
+            "className": "FlightManager",
+            "lineNumber": 7,
+            "object": true,
+            "qualifiedClassName": "FlightManager",
+            "signals": [
+                {
+                    "access": "public",
+                    "arguments": [
+                        {
+                            "name": "flightIds",
+                            "type": "QList<int>"
+                        }
+                    ],
+                    "index": 0,
+                    "name": "flightsFound",
+                    "returnType": "void"
+                },
+                {
+                    "access": "public",
+                    "index": 1,
+                    "name": "bookingSuccessful",
+                    "returnType": "void"
+                },
+                {
+                    "access": "public",
+                    "index": 2,
+                    "name": "bookingFailed",
+                    "returnType": "void"
+                }
+            ],
+            "superClasses": [
+                {
+                    "access": "public",
+                    "name": "QObject"
+                }
+            ]
+        }
+    ],
+    "inputFile": "flightmanager.h",
+    "outputRevision": 69
+}

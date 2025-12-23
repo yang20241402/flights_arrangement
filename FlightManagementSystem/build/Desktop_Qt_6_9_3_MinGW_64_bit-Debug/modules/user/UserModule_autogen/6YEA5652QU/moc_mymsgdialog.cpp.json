@@ -1,0 +1,72 @@
+{
+    "classes": [
+        {
+            "className": "EllipsisDelegate",
+            "lineNumber": 11,
+            "object": true,
+            "qualifiedClassName": "EllipsisDelegate",
+            "superClasses": [
+                {
+                    "access": "public",
+                    "name": "QStyledItemDelegate"
+                }
+            ]
+        },
+        {
+            "className": "mymsgdialog",
+            "lineNumber": 30,
+            "object": true,
+            "qualifiedClassName": "mymsgdialog",
+            "slots": [
+                {
+                    "access": "private",
+                    "index": 0,
+                    "name": "on_allMsgBtn_clicked",
+                    "returnType": "void"
+                },
+                {
+                    "access": "private",
+                    "index": 1,
+                    "name": "on_unreadMsgBtn_clicked",
+                    "returnType": "void"
+                },
+                {
+                    "access": "private",
+                    "index": 2,
+                    "name": "on_markReadBtn_clicked",
+                    "returnType": "void"
+                },
+                {
+                    "access": "private",
+                    "index": 3,
+                    "name": "on_deleteBtn_clicked",
+                    "returnType": "void"
+                },
+                {
+                    "access": "private",
+                    "arguments": [
+                        {
+                            "name": "row",
+                            "type": "int"
+                        },
+                        {
+                            "name": "column",
+                            "type": "int"
+                        }
+                    ],
+                    "index": 4,
+                    "name": "onMsgCellDoubleClicked",
+                    "returnType": "void"
+                }
+            ],
+            "superClasses": [
+                {
+                    "access": "public",
+                    "name": "QDialog"
+                }
+            ]
+        }
+    ],
+    "inputFile": "mymsgdialog.h",
+    "outputRevision": 69
+}

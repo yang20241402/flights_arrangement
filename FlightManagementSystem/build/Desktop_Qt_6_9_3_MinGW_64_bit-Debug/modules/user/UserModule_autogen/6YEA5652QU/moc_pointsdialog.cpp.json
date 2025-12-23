@@ -1,0 +1,26 @@
+{
+    "classes": [
+        {
+            "className": "PointsDialog",
+            "lineNumber": 13,
+            "object": true,
+            "qualifiedClassName": "PointsDialog",
+            "slots": [
+                {
+                    "access": "private",
+                    "index": 0,
+                    "name": "on_refreshBtn_clicked",
+                    "returnType": "void"
+                }
+            ],
+            "superClasses": [
+                {
+                    "access": "public",
+                    "name": "QDialog"
+                }
+            ]
+        }
+    ],
+    "inputFile": "pointsdialog.h",
+    "outputRevision": 69
+}

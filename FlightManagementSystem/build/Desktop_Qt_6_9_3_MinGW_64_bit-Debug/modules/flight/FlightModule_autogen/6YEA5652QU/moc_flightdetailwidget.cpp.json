@@ -1,0 +1,26 @@
+{
+    "classes": [
+        {
+            "className": "FlightDetailWidget",
+            "lineNumber": 17,
+            "object": true,
+            "qualifiedClassName": "FlightDetailWidget",
+            "slots": [
+                {
+                    "access": "private",
+                    "index": 0,
+                    "name": "onReserveClicked",
+                    "returnType": "void"
+                }
+            ],
+            "superClasses": [
+                {
+                    "access": "public",
+                    "name": "QDialog"
+                }
+            ]
+        }
+    ],
+    "inputFile": "flightdetailwidget.h",
+    "outputRevision": 69
+}

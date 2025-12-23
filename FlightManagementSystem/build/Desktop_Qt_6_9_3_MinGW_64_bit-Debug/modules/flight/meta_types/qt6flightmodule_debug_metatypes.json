@@ -1,0 +1,212 @@
+[
+    {
+        "classes": [
+            {
+                "className": "ChangeTicketWidget",
+                "lineNumber": 20,
+                "object": true,
+                "qualifiedClassName": "ChangeTicketWidget",
+                "signals": [
+                    {
+                        "access": "public",
+                        "arguments": [
+                            {
+                                "name": "newFlightNo",
+                                "type": "QString"
+                            }
+                        ],
+                        "index": 0,
+                        "name": "changeTicketSuccess",
+                        "returnType": "void"
+                    },
+                    {
+                        "access": "public",
+                        "index": 1,
+                        "name": "changeTicketCanceled",
+                        "returnType": "void"
+                    }
+                ],
+                "slots": [
+                    {
+                        "access": "private",
+                        "index": 2,
+                        "name": "on_btnSearch_clicked",
+                        "returnType": "void"
+                    },
+                    {
+                        "access": "private",
+                        "arguments": [
+                            {
+                                "name": "date",
+                                "type": "QDate"
+                            }
+                        ],
+                        "index": 3,
+                        "name": "on_dateNewFlight_dateChanged",
+                        "returnType": "void"
+                    },
+                    {
+                        "access": "private",
+                        "arguments": [
+                            {
+                                "name": "index",
+                                "type": "int"
+                            }
+                        ],
+                        "index": 4,
+                        "name": "on_comboBox_3_currentIndexChanged",
+                        "returnType": "void"
+                    },
+                    {
+                        "access": "private",
+                        "index": 5,
+                        "name": "on_dijia_clicked",
+                        "returnType": "void"
+                    },
+                    {
+                        "access": "private",
+                        "index": 6,
+                        "name": "on_ontime_clicked",
+                        "returnType": "void"
+                    },
+                    {
+                        "access": "private",
+                        "index": 7,
+                        "name": "on_depart_clicked",
+                        "returnType": "void"
+                    },
+                    {
+                        "access": "private",
+                        "arguments": [
+                            {
+                                "name": "date",
+                                "type": "QDate"
+                            }
+                        ],
+                        "index": 8,
+                        "name": "on_calendarWidget_clicked",
+                        "returnType": "void"
+                    }
+                ],
+                "superClasses": [
+                    {
+                        "access": "public",
+                        "name": "QWidget"
+                    }
+                ]
+            }
+        ],
+        "inputFile": "changeticketwidget.h",
+        "outputRevision": 69
+    },
+    {
+        "classes": [
+            {
+                "className": "FlightDetailWidget",
+                "lineNumber": 17,
+                "object": true,
+                "qualifiedClassName": "FlightDetailWidget",
+                "slots": [
+                    {
+                        "access": "private",
+                        "index": 0,
+                        "name": "onReserveClicked",
+                        "returnType": "void"
+                    }
+                ],
+                "superClasses": [
+                    {
+                        "access": "public",
+                        "name": "QDialog"
+                    }
+                ]
+            }
+        ],
+        "inputFile": "flightdetailwidget.h",
+        "outputRevision": 69
+    },
+    {
+        "classes": [
+            {
+                "className": "FlightItemWidget",
+                "lineNumber": 14,
+                "object": true,
+                "qualifiedClassName": "FlightItemWidget",
+                "signals": [
+                    {
+                        "access": "public",
+                        "arguments": [
+                            {
+                                "name": "info",
+                                "type": "FlightInfo"
+                            }
+                        ],
+                        "index": 0,
+                        "name": "clicked",
+                        "returnType": "void"
+                    }
+                ],
+                "slots": [
+                    {
+                        "access": "private",
+                        "index": 1,
+                        "name": "showFlightDetail",
+                        "returnType": "void"
+                    }
+                ],
+                "superClasses": [
+                    {
+                        "access": "public",
+                        "name": "QWidget"
+                    }
+                ]
+            }
+        ],
+        "inputFile": "flightitemwidget.h",
+        "outputRevision": 69
+    },
+    {
+        "classes": [
+            {
+                "className": "FlightManager",
+                "lineNumber": 7,
+                "object": true,
+                "qualifiedClassName": "FlightManager",
+                "signals": [
+                    {
+                        "access": "public",
+                        "arguments": [
+                            {
+                                "name": "flightIds",
+                                "type": "QList<int>"
+                            }
+                        ],
+                        "index": 0,
+                        "name": "flightsFound",
+                        "returnType": "void"
+                    },
+                    {
+                        "access": "public",
+                        "index": 1,
+                        "name": "bookingSuccessful",
+                        "returnType": "void"
+                    },
+                    {
+                        "access": "public",
+                        "index": 2,
+                        "name": "bookingFailed",
+                        "returnType": "void"
+                    }
+                ],
+                "superClasses": [
+                    {
+                        "access": "public",
+                        "name": "QObject"
+                    }
+                ]
+            }
+        ],
+        "inputFile": "flightmanager.h",
+        "outputRevision": 69
+    }
+]
