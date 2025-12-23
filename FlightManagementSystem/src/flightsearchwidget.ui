@@ -6,20 +6,20 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>989</width>
-    <height>878</height>
+    <width>985</width>
+    <height>985</height>
    </rect>
   </property>
   <property name="minimumSize">
    <size>
-    <width>989</width>
-    <height>878</height>
+    <width>985</width>
+    <height>985</height>
    </size>
   </property>
   <property name="maximumSize">
    <size>
-    <width>989</width>
-    <height>878</height>
+    <width>985</width>
+    <height>985</height>
    </size>
   </property>
   <property name="windowTitle">
@@ -82,7 +82,7 @@ QTabWidget::pane {
 }</string>
    </property>
    <property name="currentIndex">
-    <number>0</number>
+    <number>1</number>
    </property>
    <widget class="QWidget" name="tab">
     <attribute name="title">
@@ -902,19 +902,6 @@ QPushButton:hover {
      <string>取消</string>
     </property>
    </widget>
-   <widget class="QCalendarWidget" name="calendarWidget_3">
-    <property name="enabled">
-     <bool>true</bool>
-    </property>
-    <property name="geometry">
-     <rect>
-      <x>-100</x>
-      <y>0</y>
-      <width>341</width>
-      <height>211</height>
-     </rect>
-    </property>
-   </widget>
   </widget>
   <widget class="QCalendarWidget" name="calendarWidget_2">
    <property name="enabled">
@@ -1220,14 +1207,28 @@ setSpacing(8)；
     </rect>
    </property>
   </widget>
-  <zorder>tabWidget_2</zorder>
+  <widget class="QCalendarWidget" name="calendarWidget_3">
+   <property name="enabled">
+    <bool>true</bool>
+   </property>
+   <property name="geometry">
+    <rect>
+     <x>640</x>
+     <y>200</y>
+     <width>341</width>
+     <height>211</height>
+    </rect>
+   </property>
+  </widget>
+  <zorder>tabWidget</zorder>
   <zorder>label_2</zorder>
   <zorder>label_3</zorder>
   <zorder>label_5</zorder>
-  <zorder>tabWidget</zorder>
-  <zorder>calendarWidget_2</zorder>
   <zorder>passengerWidget</zorder>
+  <zorder>tabWidget_2</zorder>
   <zorder>calendarWidget</zorder>
+  <zorder>calendarWidget_2</zorder>
+  <zorder>calendarWidget_3</zorder>
  </widget>
  <customwidgets>
   <customwidget>

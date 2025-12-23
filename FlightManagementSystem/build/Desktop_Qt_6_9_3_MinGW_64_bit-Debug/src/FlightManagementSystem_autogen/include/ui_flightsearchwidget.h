@@ -79,7 +79,6 @@ public:
     QSpinBox *spinBox_3;
     QPushButton *pushButton;
     QPushButton *pushButton_2;
-    QCalendarWidget *calendarWidget_3;
     QCalendarWidget *calendarWidget_2;
     QTabWidget *tabWidget_2;
     QWidget *widget_6;
@@ -97,14 +96,15 @@ public:
     ClickableLabel *depart_2;
     ClickableLabel *dijia_2;
     QCalendarWidget *calendarWidget;
+    QCalendarWidget *calendarWidget_3;
 
     void setupUi(QWidget *FlightSearchWidget)
     {
         if (FlightSearchWidget->objectName().isEmpty())
             FlightSearchWidget->setObjectName("FlightSearchWidget");
-        FlightSearchWidget->resize(989, 878);
-        FlightSearchWidget->setMinimumSize(QSize(989, 878));
-        FlightSearchWidget->setMaximumSize(QSize(989, 878));
+        FlightSearchWidget->resize(985, 985);
+        FlightSearchWidget->setMinimumSize(QSize(985, 985));
+        FlightSearchWidget->setMaximumSize(QSize(985, 985));
         FlightSearchWidget->setStyleSheet(QString::fromUtf8(""));
         tabWidget = new QTabWidget(FlightSearchWidget);
         tabWidget->setObjectName("tabWidget");
@@ -461,10 +461,6 @@ public:
 "QPushButton:hover {\n"
 "    border-color: #999999;\n"
 "}"));
-        calendarWidget_3 = new QCalendarWidget(passengerWidget);
-        calendarWidget_3->setObjectName("calendarWidget_3");
-        calendarWidget_3->setEnabled(true);
-        calendarWidget_3->setGeometry(QRect(-100, 0, 341, 211));
         calendarWidget_2 = new QCalendarWidget(FlightSearchWidget);
         calendarWidget_2->setObjectName("calendarWidget_2");
         calendarWidget_2->setEnabled(true);
@@ -573,18 +569,23 @@ public:
         calendarWidget->setObjectName("calendarWidget");
         calendarWidget->setEnabled(true);
         calendarWidget->setGeometry(QRect(400, 210, 341, 211));
-        tabWidget_2->raise();
+        calendarWidget_3 = new QCalendarWidget(FlightSearchWidget);
+        calendarWidget_3->setObjectName("calendarWidget_3");
+        calendarWidget_3->setEnabled(true);
+        calendarWidget_3->setGeometry(QRect(640, 200, 341, 211));
+        tabWidget->raise();
         label_2->raise();
         label_3->raise();
         label_5->raise();
-        tabWidget->raise();
-        calendarWidget_2->raise();
         passengerWidget->raise();
+        tabWidget_2->raise();
         calendarWidget->raise();
+        calendarWidget_2->raise();
+        calendarWidget_3->raise();
 
         retranslateUi(FlightSearchWidget);
 
-        tabWidget->setCurrentIndex(0);
+        tabWidget->setCurrentIndex(1);
         stackedWidget->setCurrentIndex(0);
         tabWidget_2->setCurrentIndex(0);
 

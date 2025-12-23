@@ -439,7 +439,17 @@ bool FlightSearchWidget::eventFilter(QObject *watched, QEvent *event)
         }
     }
     
-    if (watched == ui->calendarWidget || ui->calendarWidget->isAncestorOf(qobject_cast<QWidget*>(watched))) {
+    // 让日历控件的点击事件正常传递，不要拦截
+    if (watched == ui->calendarWidget || watched == ui->calendarWidget_2 || watched == ui->calendarWidget_3) {
+        if (event->type() == QEvent::MouseButtonPress) {
+            return false; // 让日历自己处理点击事件
+        }
+    }
+    
+    // 如果点击的是日历的子控件，也让事件正常传递
+    if (ui->calendarWidget->isAncestorOf(qobject_cast<QWidget*>(watched)) ||
+        ui->calendarWidget_2->isAncestorOf(qobject_cast<QWidget*>(watched)) ||
+        ui->calendarWidget_3->isAncestorOf(qobject_cast<QWidget*>(watched))) {
         return false;
     }
 
@@ -555,7 +565,8 @@ bool FlightSearchWidget::eventFilter(QObject *watched, QEvent *event)
 
                     QPoint clickPos = mouseEvent->globalPosition().toPoint();
 
-                    if (!calendarRect.contains(clickPos) && !widget3Rect.contains(clickPos) ) {
+                    // 只有点击在日历和触发控件之外时才隐藏
+                    if (!calendarRect.contains(clickPos) && !widget3Rect.contains(clickPos)) {
                         ui->calendarWidget->hide();
                     }
                 }
@@ -571,7 +582,8 @@ bool FlightSearchWidget::eventFilter(QObject *watched, QEvent *event)
 
                     QPoint clickPos = mouseEvent->globalPosition().toPoint();
 
-                    if (!calendarRect.contains(clickPos)&& !widget4Rect.contains(clickPos)) {
+                    // 只有点击在日历和触发控件之外时才隐藏
+                    if (!calendarRect.contains(clickPos) && !widget4Rect.contains(clickPos)) {
                         ui->calendarWidget_2->hide();
                     }
                 }
@@ -587,7 +599,8 @@ bool FlightSearchWidget::eventFilter(QObject *watched, QEvent *event)
 
                     QPoint clickPos = mouseEvent->globalPosition().toPoint();
 
-                    if (!calendarRect.contains(clickPos)&& !widget11Rect.contains(clickPos)) {
+                    // 只有点击在日历和触发控件之外时才隐藏
+                    if (!calendarRect.contains(clickPos) && !widget11Rect.contains(clickPos)) {
                         ui->calendarWidget_3->hide();
                     }
                 }

@@ -438,9 +438,15 @@ void MyOrderDialog::onChangeOrderClicked()
     qDebug() << "  航班号：" << flightNum;
     qDebug() << "  日期：" << departTime.date();
     
-    // 直接创建并显示改签窗口（照搬搜索页面的实现）
-    ChangeTicketWidget* changeticketwidget = new ChangeTicketWidget(departCity, arriveCity, flightNum, departTime.date());
-    changeticketwidget->setWindowFlags(Qt::Window | Qt::WindowStaysOnTopHint);
+    // 创建改签窗口，使用独立窗口标志
+    ChangeTicketWidget* changeticketwidget = new ChangeTicketWidget(departCity, arriveCity, flightNum, departTime.date(), nullptr);
+    changeticketwidget->setAttribute(Qt::WA_DeleteOnClose, true);
+    // 使用更强的窗口标志组合，确保窗口在最前面
+    changeticketwidget->setWindowFlags(Qt::Window | Qt::WindowStaysOnTopHint | Qt::WindowTitleHint | Qt::WindowCloseButtonHint);
+    changeticketwidget->setWindowModality(Qt::ApplicationModal); // 使用应用程序模态，强制置顶
+    changeticketwidget->setWindowTitle("航班改签");
+    changeticketwidget->resize(1000, 700);
     changeticketwidget->show();
+    changeticketwidget->raise();
     changeticketwidget->activateWindow();
 }

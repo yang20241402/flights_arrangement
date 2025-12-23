@@ -1,0 +1,46 @@
+{
+	"backtrace" : 0,
+	"backtraceGraph" : 
+	{
+		"commands" : [],
+		"files" : 
+		[
+			"modules/user/CMakeLists.txt"
+		],
+		"nodes" : 
+		[
+			{
+				"file" : 0
+			}
+		]
+	},
+	"dependencies" : 
+	[
+		{
+			"backtrace" : 0,
+			"id" : "DatabaseModule::@464c0413318e7df7717f"
+		},
+		{
+			"backtrace" : 0,
+			"id" : "CommonModule::@d0c3ec9f50741782da50"
+		},
+		{
+			"backtrace" : 0,
+			"id" : "FlightModule::@87b7adb989dca82e5a69"
+		}
+	],
+	"folder" : 
+	{
+		"name" : "QtInternalTargets"
+	},
+	"id" : "UserModule_autogen_timestamp_deps::@104124293095aa094e7b",
+	"isGeneratorProvided" : true,
+	"name" : "UserModule_autogen_timestamp_deps",
+	"paths" : 
+	{
+		"build" : "modules/user",
+		"source" : "modules/user"
+	},
+	"sources" : [],
+	"type" : "UTILITY"
+}

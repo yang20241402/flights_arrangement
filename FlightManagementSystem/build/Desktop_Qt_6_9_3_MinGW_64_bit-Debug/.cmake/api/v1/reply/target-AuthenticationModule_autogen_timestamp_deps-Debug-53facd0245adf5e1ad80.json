@@ -1,0 +1,42 @@
+{
+	"backtrace" : 0,
+	"backtraceGraph" : 
+	{
+		"commands" : [],
+		"files" : 
+		[
+			"modules/authentication/CMakeLists.txt"
+		],
+		"nodes" : 
+		[
+			{
+				"file" : 0
+			}
+		]
+	},
+	"dependencies" : 
+	[
+		{
+			"backtrace" : 0,
+			"id" : "DatabaseModule::@464c0413318e7df7717f"
+		},
+		{
+			"backtrace" : 0,
+			"id" : "CommonModule::@d0c3ec9f50741782da50"
+		}
+	],
+	"folder" : 
+	{
+		"name" : "QtInternalTargets"
+	},
+	"id" : "AuthenticationModule_autogen_timestamp_deps::@3ec84463486d9e98a60b",
+	"isGeneratorProvided" : true,
+	"name" : "AuthenticationModule_autogen_timestamp_deps",
+	"paths" : 
+	{
+		"build" : "modules/authentication",
+		"source" : "modules/authentication"
+	},
+	"sources" : [],
+	"type" : "UTILITY"
+}
